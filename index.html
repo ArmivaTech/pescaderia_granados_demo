@@ -332,30 +332,10 @@ footer b { color: #fff; display: block; font-family: var(--head); }
 .mhero .pts span { color: var(--muted); font-size: 15px; }
 .want { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 26px 0 14px; }
 .want .lbl { margin: 0 6px 0 0; font-size: 15px; color: var(--navy); font-family: var(--head); }
-.counter { border-radius: 22px; overflow: hidden; background: var(--navy-3); box-shadow: 0 18px 40px -24px rgba(15,31,61,.6); }
-.counter .glass { height: 12px; background: linear-gradient(180deg, #C9D3DE, #F3F6F9); }
-.counter .ice { padding: 30px 20px 34px; background-color: #EAF0F6;
-  background-image: radial-gradient(circle, #fff 0 2px, transparent 3px), radial-gradient(circle, #fff 0 3px, transparent 4px), radial-gradient(circle, #D3DFEB 0 2px, transparent 3px), radial-gradient(circle, #DCE6F0 0 2.5px, transparent 3.5px);
-  background-size: 22px 22px, 31px 29px, 17px 19px, 27px 25px; background-position: 0 0, 7px 11px, 3px 9px, 13px 4px;
-  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 30px 20px; }
-.counter .steel { height: 14px; background: linear-gradient(180deg, #AEB8C4, #7E8A99); }
-.counter .base { color: #AFC0DB; padding: 12px 20px; display: flex; justify-content: space-between; gap: 6px 16px; flex-wrap: wrap; font-size: 13.5px; }
-.counter .base b { color: #fff; font-family: var(--head); }
-.tray { position: relative; border: 0; background: transparent; padding: 0; display: grid; justify-items: center; color: var(--navy); transition: opacity .2s, filter .2s; }
-.tray .pile { display: block; position: relative; width: 100%; aspect-ratio: 16 / 10; border-radius: 50%; background: radial-gradient(ellipse at 50% 55%, rgba(255,255,255,.95), rgba(255,255,255,0) 68%); transition: transform .2s; }
-.tray .pile svg { position: absolute; width: 74%; left: 13%; top: 10%; height: 62%; }
-.tray .pile svg.b { left: 22%; top: 26%; width: 66%; height: 54%; transform: rotate(-8deg); opacity: .6; }
-.tray .pile svg.c { left: 6%; top: 0; width: 60%; height: 50%; transform: rotate(7deg); opacity: .35; }
-.tray .pile img { position: absolute; inset: 8% 10%; width: 80%; height: 84%; object-fit: cover; border-radius: 46% 46% 40% 40% / 50% 50% 44% 44%; box-shadow: 0 6px 14px -6px rgba(15,31,61,.5); }
-.tray:hover .pile, .tray:focus-visible .pile { transform: translateY(-4px); }
 .slate { position: relative; margin-top: -10px; background: #1C1E1D; color: #F4F4F0; font-family: var(--chalk); padding: 8px 12px 6px; border-radius: 5px; border: 3px solid #7A5A35; min-width: 74%; transform: rotate(-2deg); box-shadow: 0 5px 10px -3px rgba(0,0,0,.35); line-height: 1.15; text-align: center; }
-.tray:nth-child(even) .slate { transform: rotate(1.6deg); }
-.tray:nth-child(3n) .slate { transform: rotate(-.6deg); }
 .slate .nm { display: block; font-size: 19px; letter-spacing: .04em; }
 .slate .pr { display: block; font-size: 15px; color: #E9DDA8; }
 .slate::before { content: ""; position: absolute; left: 50%; top: -16px; width: 3px; height: 14px; background: #7A5A35; transform: translateX(-50%); }
-.tray .flag { position: absolute; top: 4px; right: 4px; background: var(--coral); color: #fff; font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 999px; z-index: 1; }
-.tray.off { opacity: .28; filter: grayscale(1); }
 .soldout { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 14px; font-size: 14.5px; color: var(--muted); }
 .soldout s { font-family: var(--chalk); color: var(--ink); text-decoration-thickness: 2px; text-decoration-color: var(--coral); }
 .howshop { margin-top: 40px; border-top: 1px solid var(--line); padding-top: 28px; }
@@ -374,6 +354,20 @@ footer b { color: #fff; display: block; font-family: var(--head); }
 .teaser .tx p { margin: 0; color: #CBD6E8; }
 .teaser .slates { display: flex; gap: 8px; flex-wrap: wrap; }
 .teaser .slates span { background: #1C1E1D; font-family: var(--chalk); padding: 4px 10px 2px; border-radius: 4px; border: 2px solid #7A5A35; font-size: 15px; }
+
+/* Mostrador: foto real con puntos */
+.mhero { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); align-items: center; }
+.mphoto { aspect-ratio: 514 / 369; max-height: none; }
+.spot.l { flex-direction: row-reverse; transform: translate(calc(-100% + 14px), -50%); }
+.spot.out .dot { background: #6B7280; animation: none; }
+.spot.out .lab::after { content: " · HOY NO QUEDA"; color: #F2A0AE; }
+.spot.off { opacity: 0; pointer-events: none; }
+.spot { transition: opacity .2s; }
+.spot .lab { white-space: nowrap; }
+.refnote { margin: 8px 0 0; font-size: 13px; color: var(--muted); }
+.mhero .want { margin: 20px 0 10px; }
+.soldout { margin-top: 10px; }
+@media (max-width: 760px) { .spot .lab { font-size: 11px; padding: 3px 6px 2px; letter-spacing: .02em; } .spot .dot { width: 22px; height: 22px; font-size: 15px; } .spot.out .lab::after { content: " · AGOTADO"; } .spot { transform: translate(-11px, -50%); } .spot.l { transform: translate(calc(-100% + 11px), -50%); } }
 /* Ficha de mostrador */
 .ficha { width: min(940px, calc(100% - 32px)); grid-template-columns: minmax(0, 4fr) minmax(0, 6fr); }
 .ficha .ph { background-color: #EAF0F6; background-image: radial-gradient(circle, #fff 0 2px, transparent 3px), radial-gradient(circle, #D3DFEB 0 2px, transparent 3px); background-size: 22px 22px, 17px 19px; display: grid; place-items: center; padding: 30px 20px; }
@@ -415,16 +409,14 @@ footer b { color: #fff; display: block; font-family: var(--head); }
 .fpanel ul.tips li { background: var(--mist); border-radius: 10px; padding: 10px 12px; }
 .fpanel ul.warn li { background: var(--warn-bg); color: #5C3900; border-radius: 10px; padding: 10px 12px; }
 .ficha .foot { flex-wrap: wrap; }
-@media (max-width: 980px) { .counter .ice { grid-template-columns: repeat(3, minmax(0, 1fr)); } .howshop .cols { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 980px) { .howshop .cols { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 760px) {
   .mhero { grid-template-columns: minmax(0, 1fr); gap: 20px; }
   .mphoto { aspect-ratio: 4 / 4.4; }
-  .counter .ice { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 12px; padding: 24px 12px 28px; }
-  .slate .nm { font-size: 16px; } .slate .pr { font-size: 13.5px; }
   .teaser { grid-template-columns: minmax(0, 1fr); } .teaser .ph { min-height: 220px; } .teaser .tx { padding: 24px 20px; }
 }
 @media (max-width: 700px) { .ficha { width: 100%; grid-template-columns: minmax(0, 1fr); } .ficha .ph { aspect-ratio: auto; min-height: 230px; padding: 20px 20px 70px; } .ficha .ph .pile { max-width: 300px; } .fpanel ul.how li { grid-template-columns: minmax(0, 1fr); gap: 0; } .ftabs button { padding: 8px 7px; font-size: 13.5px; } }
-@media (prefers-reduced-motion: reduce) { .spot .dot { animation: none; } .tray .pile { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .spot .dot { animation: none; } }
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -565,46 +557,39 @@ footer b { color: #fff; display: block; font-family: var(--head); }
     <div class="wrap">
       <div style="padding-top:22px"><nav class="vswitch" aria-label="Cómo quieres ver el género"><a href="#piezas"><svg class="art"><use href="#i-grid"/></svg>Vista tienda</a><a href="#mostrador" aria-current="page"><svg class="art"><use href="#i-counter"/></svg>Vista mostrador</a></nav></div>
       <section class="mhero">
-        <div class="mphoto" id="mPhoto">
-          <img src="img/mostrador.jpg" alt="Mostrador de Pescados Granados con lenguados sobre hielo">
-          <button class="spot" data-ficha="Lenguado" style="left:46%;top:44%"><span class="dot" aria-hidden="true">+</span><span class="lab">LENGUADO</span></button>
-          <button class="spot" data-ficha="Mejillón" style="left:9%;top:35%"><span class="dot" aria-hidden="true">+</span><span class="lab">MEJILLÓN</span></button>
-          <div class="cap">Toca un punto para ver la ficha. En la tienda real, foto del mostrador entero con un punto en cada bandeja.</div>
+        <div>
+          <div class="mphoto" id="mPhoto">
+            <img src="img/mostrador-ref.jpg" alt="Mostrador de pescadería visto de frente, con el género sobre hielo" width="514" height="369">
+            <div id="mSpots"></div>
+          </div>
+          <p class="refnote">Foto de ejemplo, no es la tienda de Andrés. En la web real irá una foto de su mostrador.</p>
         </div>
         <div>
           <div class="kicker">Vista mostrador</div>
           <h2>Como si estuvieras delante del mostrador</h2>
-          <p class="lead">Arriba, nuestro mostrador de verdad. Debajo, lo que tenemos hoy con su pizarra. Toca cualquier pescado y te contamos a qué sabe, cómo cocinarlo, un par de recetas y lo que conviene saber.</p>
+          <p class="lead">Este es el mostrador de hoy. Toca cualquier pescado y te contamos a qué sabe, cómo cocinarlo, un par de recetas y lo que conviene saber.</p>
+          <div class="want" role="group" aria-label="¿Qué te apetece?" id="mWant"></div>
+          <p style="margin:-4px 0 0"><span class="sh app">Filtros por metacampos: Search &amp; Discovery (app gratuita de Shopify)</span></p>
+          <div class="soldout" id="mOut"></div>
           <ul class="pts">
-            <li><svg class="art"><use href="#i-boat"/></svg><span><b>Solo lo que hay hoy</b>Lo que se acaba desaparece de la pizarra.</span></li>
+            <li><svg class="art"><use href="#i-boat"/></svg><span><b>Solo lo que hay hoy</b>Lo que se acaba se marca solo en la foto.</span></li>
             <li><svg class="art"><use href="#i-dish"/></svg><span><b>Recetas con la compra hecha</b>Un botón y tienes en la cesta el pescado de la receta, ya con su corte.</span></li>
             <li><svg class="art"><use href="#i-knife"/></svg><span><b>Lo que te diría el pescadero</b>Sabor, espinas, trucos y avisos de salud.</span></li>
           </ul>
-          <p style="margin:14px 0 0"><span class="sh theme">Foto con puntos: sección del tema (algunos temas de pago la traen; si no, la hacemos)</span></p>
+          <p style="margin:14px 0 0;display:flex;gap:6px;flex-wrap:wrap"><span class="sh theme">Foto con puntos: sección a medida del tema</span><span class="sh">Stock por producto: inventario de serie</span></p>
         </div>
       </section>
-
-      <div class="want" role="group" aria-label="¿Qué te apetece?" id="mWant"></div>
-      <p style="margin:-4px 0 12px"><span class="sh app">Filtros por metacampos: Search &amp; Discovery (app gratuita de Shopify)</span></p>
-      <div class="counter">
-        <div class="glass"></div>
-        <div class="ice" id="mIce"></div>
-        <div class="steel"></div>
-        <div class="base"><span><b>Mostrador de hoy</b> · <span id="mDate"></span></span><span>Lonja de Calpe · Calle Jorge Juan, 35</span></div>
-      </div>
-      <div class="soldout" id="mOut"></div>
-      <p style="margin:10px 0 0;display:flex;gap:6px;flex-wrap:wrap"><span class="sh">Stock por producto: inventario de serie; lo agotado se oculta solo</span><span class="sh theme">Mostrador con hielo y pizarras: sección a medida del tema</span></p>
-
       <section class="howshop" aria-labelledby="hsT">
         <div class="kicker">Para Andrés</div>
         <h2 id="hsT" style="font-size:clamp(22px,2.6vw,28px)">Qué es Shopify y qué hacemos nosotros</h2>
         <div class="cols">
-          <div class="col c1"><h3>Shopify de serie</h3><p>Sin pagar nada extra.</p><ul><li>El stock de cada pescado y que lo agotado no salga.</li><li>Sabor, grasa, espinas y avisos como campos de cada producto (metacampos).</li><li>Cada receta como ficha propia con su página web (metaobjetos).</li><li>El corte como opción del producto y la cesta.</li></ul></div>
+          <div class="col c1"><h3>Shopify de serie</h3><p>Sin pagar nada extra.</p><ul><li>El stock de cada pescado: cuando se acaba, su punto se marca como «Hoy no queda».</li><li>Sabor, grasa, espinas y avisos como campos de cada producto (metacampos).</li><li>Cada receta como ficha propia con su página web (metaobjetos).</li><li>El corte como opción del producto y la cesta.</li></ul></div>
           <div class="col c2"><h3>App gratuita de Shopify</h3><p>Search &amp; Discovery.</p><ul><li>Los filtros «¿qué te apetece?»: plancha, horno, sin espinas…</li><li>«Combina bien con» al añadir a la cesta.</li></ul></div>
-          <div class="col c3"><h3>A medida en el tema (Armiva)</h3><p>Trabajo de diseño, sin cuota mensual.</p><ul><li>La foto del mostrador con puntos.</li><li>El mostrador dibujado con hielo y pizarras.</li><li>El botón «Añadir lo de la receta», que mete varios productos con su corte de una vez.</li></ul></div>
+          <div class="col c3"><h3>A medida en el tema (Armiva)</h3><p>Trabajo de diseño, sin cuota mensual.</p><ul><li>La foto del mostrador con un punto en cada bandeja, y el aviso de agotado encima.</li><li>Que la foto sea ligera: una sola imagen de unos 200 KB, carga al momento.</li><li>El botón «Añadir lo de la receta», que mete varios productos con su corte de una vez.</li></ul></div>
         </div>
-        <p class="small" style="margin:14px 0 0">Lo que pondría Andrés: una foto del mostrador lleno y, si quiere, sus recetas. Las fichas de esta demo las hemos escrito nosotros como ejemplo.</p>
+        <p class="small" style="margin:14px 0 0">Lo que pondría Andrés: una foto de su mostrador lleno, de frente, con buena luz (con el móvil vale) y, si quiere, sus recetas. Las fichas de esta demo las hemos escrito nosotros como ejemplo.</p>
       </section>
+
     </div>
     <div style="height:48px"></div>
   </div>
@@ -842,131 +827,1347 @@ footer b { color: #fff; display: block; font-family: var(--head); }
 
   /* ---------- Mostrador ---------- */
   var FICHAS = [
-{"n":"Lenguado","slate":"LENGUADO","ico":"flat","tags":["plancha","horno","ninos","suave"],
- "desc":"Carne blanca, fina y suave. El favorito de los que dicen que no les gusta el pescado.",
- "sabor":{"i":2,"grasa":"Magro","tex":"Fina y delicada","esp":"Muy pocas, salen enteras"},
- "cook":[["Plancha","Entero sin piel, 3-4 minutos por lado a fuego medio-alto."],["Meunière","Enharinado, en sartén con mantequilla, 3 minutos por lado."],["Horno","15 minutos a 180 ºC con aceite y limón."]],
- "rec":[{"t":"Lenguado a la meunière","time":"20 min","steps":["Seca bien los lenguados y pásalos por harina.","Dóralos en la sartén con mantequilla y un hilo de aceite, 3 minutos por lado.","Sácalos, añade a la sartén zumo de limón y perejil picado y riégalos con esa salsa."],"buy":[["Lenguado",2,"Entero limpio sin piel"]],"casa":"Harina, mantequilla, limón y perejil"},
-        {"t":"Filetes de lenguado al horno con almejas","time":"30 min","steps":["Haz una cama de patata panadera ya pochada en la fuente.","Pon encima los filetes con sal, ajo y perejil.","Añade las almejas y un chorro de vino blanco: 12 minutos a 190 ºC, hasta que se abran."],"buy":[["Lenguado",2,"En filetes"],["Almeja japónica",1,null]],"casa":"Patata, ajo, perejil y vino blanco"}],
- "tips":["Pídenoslo sin piel: te lo dejamos listo y no tienes que pelearte con él.","Para niños, en filetes: no tiene ni una espina."],
- "warn":["Alérgeno: pescado."]},
-
-{"n":"Merluza","slate":"MERLUZA","ico":"fish","tags":["horno","arroz","fritura","ninos","suave"],
- "desc":"La de toda la vida: tierna, suave y fácil de cocinar de mil formas.",
- "sabor":{"i":2,"grasa":"Magra","tex":"Tierna, se separa en lascas","esp":"En lomos, ninguna; la rodaja lleva la central"},
- "cook":[["Rebozada","Rodajas en harina y huevo, 2-3 minutos por lado."],["En salsa verde","Lomos, 5-6 minutos a fuego suave en la salsa."],["Horno","Cola entera, 20 minutos a 190 ºC."]],
- "rec":[{"t":"Merluza en salsa verde","time":"25 min","steps":["Dora ajo laminado en una cazuela, añade una cucharada de harina y un chorro de vino blanco.","Incorpora un poco de caldo de pescado y mucho perejil picado.","Mete los lomos con la piel hacia arriba y mueve la cazuela 5-6 minutos para que ligue la salsa."],"buy":[["Merluza",4,"En lomos"],["Caldo de pescado casero",1,null],["Almeja japónica",1,null]],"casa":"Ajo, harina, vino blanco y perejil"},
-        {"t":"Cola de merluza al horno","time":"30 min","steps":["Pon la cola sobre unas patatas en rodajas ya pochadas.","Riégala con un refrito de ajo y guindilla, sal y un chorro de vino blanco.","20 minutos a 190 ºC."],"buy":[["Merluza",4,"Cola para horno"]],"casa":"Patata, ajo, guindilla y vino blanco"}],
- "tips":["La cabeza y la espina te las damos para el caldo, sin coste.","Para que no se rompa al rebozar, sécala bien antes."],
- "warn":["Alérgeno: pescado.","Para niños pequeños, pídela en lomos o filetes: la rodaja lleva la espina central."]},
-
-{"n":"Dorada","slate":"DORADA","ico":"fish","tags":["plancha","horno","suave"],
- "desc":"Carne firme y sabrosa. A la sal o a la espalda, no falla.",
- "sabor":{"i":3,"grasa":"Semigrasa","tex":"Firme y jugosa","esp":"Pocas, grandes y fáciles de quitar"},
- "cook":[["A la sal","Entera sin escamar y cubierta de sal gruesa, 20-25 minutos a 200 ºC."],["A la espalda","Abierta, a la plancha por la piel 6-7 minutos."],["Horno","Con patata y cebolla, 20 minutos a 190 ºC."]],
- "rec":[{"t":"Dorada a la sal","time":"35 min","steps":["Pídenos la dorada «para horno o a la sal»: la vaciamos y no la escamamos.","Haz una cama de sal gruesa un poco humedecida, pon la dorada y cúbrela entera.","25 minutos a 200 ºC. Rompe la costra en la mesa y retira la piel."],"buy":[["Dorada",2,"Para horno o a la sal"]],"casa":"2 kg de sal gruesa"},
-        {"t":"Dorada a la espalda","time":"15 min","steps":["Plancha muy caliente y la dorada abierta con la piel hacia abajo.","6-7 minutos sin moverla; la vuelta, solo 1 minuto.","Por encima, ajo laminado frito con guindilla y un chorrito de vinagre."],"buy":[["Dorada",2,"Abierto a la espalda"]],"casa":"Ajo, guindilla, aceite y vinagre"}],
- "tips":["Una dorada de unos 400 g es justo una ración.","A la sal, la piel la protege: queda jugosa aunque te pases un par de minutos."],
- "warn":["Alérgeno: pescado."]},
-
-{"n":"Lubina","slate":"LUBINA","ico":"fish","tags":["horno","plancha","crudo","suave"],
- "desc":"Más fina que la dorada, de sabor muy limpio. Va muy bien en crudo.",
- "sabor":{"i":2,"grasa":"Semigrasa","tex":"Fina y delicada","esp":"Pocas"},
- "cook":[["Horno","Entera, 18-20 minutos a 190 ºC."],["Plancha","En filetes, 4 minutos por la piel y 1 por el otro lado."],["Ceviche","En dados, 10 minutos en lima (congelada antes)."]],
- "rec":[{"t":"Ceviche de lubina","time":"20 min","steps":["Pídela en filetes y congélala al menos 5 días antes, o pídenosla ya congelada.","Descongélala en la nevera, córtala en dados y mézclala con zumo de lima, cebolla morada, cilantro y sal.","Deja que se marine 10 minutos y sirve muy frío."],"buy":[["Lubina",2,"En filetes"]],"casa":"Limas, cebolla morada, cilantro y guindilla"},
-        {"t":"Lubina al horno con patatas","time":"35 min","steps":["Pocha patata y cebolla en rodajas en la fuente, 15 minutos.","Pon la lubina encima, con unas rodajas de limón dentro.","18-20 minutos a 190 ºC con un chorro de vino blanco."],"buy":[["Lubina",2,"Entero limpio"]],"casa":"Patata, cebolla, limón y vino blanco"}],
- "tips":["La salvaje tiene más sabor: pregúntanos si hoy ha entrado.","Está hecha cuando la carne se separa de la espina sin esfuerzo."],
- "warn":["Alérgeno: pescado.","En crudo (ceviche, tartar), congélala antes: al menos 5 días en el congelador de casa, por el anisakis."]},
-
-{"n":"Boquerón","slate":"BOQUERONES","ico":"fish","tags":["fritura","crudo","intenso"],
- "desc":"El de la fritura y el del aperitivo en vinagre. Barato y buenísimo.",
- "sabor":{"i":4,"grasa":"Graso (azul)","tex":"Tierna","esp":"La central; abiertos en filetes, ninguna"},
- "cook":[["Frito","Enharinados, en aceite a 180 ºC, 1-2 minutos."],["En vinagre","Filetes, 4-6 horas en vinagre con sal (congelados antes)."],["Plancha","Abiertos, 1 minuto por lado."]],
- "rec":[{"t":"Boquerones en vinagre","time":"15 min + 6 h","steps":["Pídelos abiertos en filetes y congélalos al menos 5 días.","Descongélalos en la nevera y cúbrelos con vinagre de vino, un poco de agua y sal: 4-6 horas en la nevera.","Escúrrelos y cúbrelos con aceite de oliva, ajo y perejil picados."],"buy":[["Boquerón",1,"Abierto en filetes sin espina (para fritura o vinagre)"]],"casa":"Vinagre de vino, ajo, perejil y aceite"},
-        {"t":"Boquerones fritos","time":"15 min","steps":["Pídelos sin cabeza y limpios.","Pásalos por harina de freír y sacude el exceso.","Fríelos en tandas pequeñas, con el aceite bien caliente, hasta que estén dorados. La sal, al final."],"buy":[["Boquerón",1,"Sin cabeza"]],"casa":"Harina de freír, aceite y limón"}],
- "tips":["Si son para vinagre, dínoslo y te los damos ya abiertos.","Cómelos en el día: el pescado azul pequeño es el que menos aguanta."],
- "warn":["Alérgeno: pescado.","En vinagre, marinados o crudos: congélalos antes al menos 5 días por el anisakis (recomendación de AESAN)."]},
-
-{"n":"Salmonete","slate":"SALMONETES","ico":"fish","tags":["fritura","plancha","intenso"],
- "desc":"Sabor a mar puro. Pequeño, pero de lo más sabroso de la lonja.",
- "sabor":{"i":4,"grasa":"Semigraso","tex":"Fina","esp":"Bastantes pequeñas; en filetes, casi ninguna"},
- "cook":[["Frito","Entero y enharinado, 3-4 minutos."],["Plancha","En filetes, 2 minutos por la piel y 30 segundos del otro lado."],["Arroz","Sus filetes, encima del arroz los últimos minutos."]],
- "rec":[{"t":"Salmonetes fritos","time":"20 min","steps":["Pídelos enteros y limpios.","Sécalos, sálalos y enharínalos.","Fríelos en aceite muy caliente 3-4 minutos, hasta que estén crujientes."],"buy":[["Salmonete",4,"Entero limpio"]],"casa":"Harina, aceite y limón"},
-        {"t":"Salmonete a la plancha con ajo","time":"10 min","steps":["Pídelos en filetes.","Plancha muy caliente, 2 minutos por la piel hasta que quede crujiente.","Vuelta de 30 segundos y un refrito de ajo y perejil por encima."],"buy":[["Salmonete",4,"En filetes (para fritura o plancha)"]],"casa":"Ajo, perejil y aceite"}],
- "tips":["Si lo fríes entero, deja el hígado: da muchísimo sabor.","En filetes es perfecto para quien no quiere espinas."],
- "warn":["Alérgeno: pescado.","Entero tiene espinas finas: para niños, mejor en filetes."]},
-
-{"n":"Atún rojo","slate":"ATÚN ROJO","ico":"fish","tags":["plancha","crudo","intenso"],
- "desc":"Del Mediterráneo, de carne roja y potente. Vuelta y vuelta, o en crudo.",
- "sabor":{"i":5,"grasa":"Graso","tex":"Carnosa, como un buen solomillo","esp":"Ninguna"},
- "cook":[["Plancha","Tacos o rodaja de 2 cm, 1 minuto por lado, rosado por dentro."],["Tartar","Picado a cuchillo y aliñado al momento (congelado antes)."],["Encebollado","Tacos, los últimos 5 minutos en la cebolla pochada."]],
- "rec":[{"t":"Tataki de atún","time":"15 min","steps":["Pídelo en lomo. Si lo vas a dejar crudo por dentro, congélalo antes al menos 5 días.","Márcalo en la plancha muy caliente, 30 segundos por cada cara.","Córtalo en lonchas y sírvelo con sésamo, soja y un poco de jengibre."],"buy":[["Atún rojo",2,"En lomos"]],"casa":"Sésamo, salsa de soja y jengibre"},
-        {"t":"Tartar de atún","time":"15 min","steps":["Pídelo «para tartar o sashimi»: te lo damos ya congelado.","Pícalo a cuchillo en dados pequeños.","Alíñalo al momento con soja, aceite de sésamo, cebollino y aguacate."],"buy":[["Atún rojo",2,"Para tartar o sashimi (congelado previamente)"]],"casa":"Aguacate, soja, aceite de sésamo y cebollino"}],
- "tips":["No lo pases: en cuanto se hace del todo, se seca.","La ventresca es la parte más grasa: si te gusta, pruébala."],
- "warn":["Alérgeno: pescado.","Mercurio (AESAN): si estás embarazada, buscas estarlo o das el pecho, y en niños de hasta 10 años, mejor evitarlo. De 10 a 14 años, como mucho 120 g al mes.","Crudo o poco hecho: congelado antes al menos 5 días, por el anisakis."]},
-
-{"n":"Suprema de salmón","slate":"SALMÓN","ico":"fish","tags":["horno","plancha","crudo","ninos"],
- "desc":"Supremas sin piel ni espinas. Lo que más piden las familias.",
- "sabor":{"i":3,"grasa":"Graso","tex":"Mantecosa","esp":"Ninguna"},
- "cook":[["Horno","12 minutos a 200 ºC."],["Plancha","4 minutos por un lado y 2 por el otro."],["Papillote","15 minutos a 190 ºC con verduras."]],
- "rec":[{"t":"Salmón en papillote","time":"25 min","steps":["Pon cada suprema sobre papel de horno con calabacín, zanahoria y cebolla en tiras.","Sal, eneldo, un chorrito de aceite y unas gotas de limón. Cierra bien el paquete.","15 minutos a 190 ºC y se abre en la mesa."],"buy":[["Suprema de salmón",2,null]],"casa":"Calabacín, zanahoria, cebolla, eneldo y limón"},
-        {"t":"Salmón con soja y miel","time":"15 min","steps":["Dora las supremas en la sartén, 3 minutos por lado.","Añade una mezcla de soja, miel y un poco de ajo rallado.","Deja que reduzca 1 minuto y sírvelo con arroz blanco."],"buy":[["Suprema de salmón",2,null]],"casa":"Soja, miel, ajo y arroz"}],
- "tips":["El pescado ideal para empezar con los niños: no tiene ni una espina.","Para sushi casero, pídenoslo para crudo y te lo damos ya congelado."],
- "warn":["Alérgeno: pescado.","Para comerlo crudo, congelado antes al menos 5 días, salvo que te lo vendamos ya preparado para crudo."]},
-
-{"n":"Rape","slate":"RAPE","ico":"fish","tags":["arroz","plancha","ninos","suave"],
- "desc":"Carne firme que no se deshace. El rey de los arroces y los guisos.",
- "sabor":{"i":2,"grasa":"Magro","tex":"Firme, casi como marisco","esp":"Solo la central; en medallones, ninguna"},
- "cook":[["Arroz","En rodajas o medallones, los últimos 8 minutos."],["Plancha","Medallones, 2-3 minutos por lado."],["Guisado","En cazuela con su salsa, 6-8 minutos."]],
- "rec":[{"t":"Rape a la marinera","time":"30 min","steps":["Haz un sofrito de cebolla, ajo y tomate, con pimentón y un chorro de vino blanco.","Añade el caldo de pescado y deja que hierva 5 minutos.","Mete el rape y las almejas, 6-8 minutos, hasta que se abran."],"buy":[["Rape",4,"En rodajas"],["Almeja japónica",1,null],["Caldo de pescado casero",1,null]],"casa":"Cebolla, ajo, tomate, pimentón y vino blanco"},
-        {"t":"Brochetas de rape y gamba","time":"20 min","steps":["Pídelo en medallones.","Ensarta los medallones alternando con gamba blanca pelada y pimiento.","Plancha fuerte, 2-3 minutos por lado; termina con ajo y perejil."],"buy":[["Rape",4,"En medallones"],["Gamba blanca",1,null]],"casa":"Pimiento, ajo y perejil"}],
- "tips":["La cabeza da el mejor caldo: te la damos sin coste.","Suelta agua: sécalo bien antes de la plancha."],
- "warn":["Alérgeno: pescado."]},
-
-{"n":"Gamba roja","slate":"GAMBA ROJA","ico":"shrimp","tags":["plancha","arroz","intenso"],
- "desc":"De la lonja de Calpe. A la plancha con sal gorda y poco más.",
- "sabor":{"i":5,"grasa":"—","tex":"Firme y dulce","esp":"No tiene"},
- "cook":[["Plancha","Con sal gorda, 1-2 minutos por lado."],["Cocida","Agua con sal como la del mar; fuera en cuanto vuelva a hervir."],["Arroz","Las colas encima, los últimos 3 minutos."]],
- "rec":[{"t":"Gamba roja a la plancha","time":"10 min","steps":["Plancha muy caliente con una cama de sal gruesa.","Pon las gambas 1-2 minutos por lado: el caparazón debe tostarse un poco.","Sírvelas al momento, sin nada más."],"buy":[["Gamba roja",1,"Crudo"]],"casa":"Sal gruesa"},
-        {"t":"Arroz con gamba roja","time":"45 min","steps":["Pela las gambas y sofríe las cabezas para sacar todo su jugo; retíralas.","Sofrito de ñora y tomate, el arroz y el caldo de pescado caliente.","Pon las colas de gamba encima los últimos 3 minutos."],"buy":[["Gamba roja",1,"Crudo"],["Caldo de pescado casero",1,null]],"casa":"Arroz, ñora, tomate y ajo"}],
- "tips":["Si la vas a cocer, dínoslo y te la damos cocida, sin coste.","Fresca, el color es vivo y la cabeza está firme y pegada."],
- "warn":["Alérgeno: crustáceos.","AESAN recomienda no abusar de chupar las cabezas: acumulan cadmio."]},
-
-{"n":"Sepia","slate":"SEPIA","ico":"squid","tags":["plancha","arroz","fritura"],
- "desc":"Limpia y lista. Plancha rápida o guiso largo; nunca término medio.",
- "sabor":{"i":3,"grasa":"Magra","tex":"Tierna si la haces poco o mucho","esp":"No tiene"},
- "cook":[["Plancha","En tiras, a fuego fuerte 2-3 minutos."],["Arroz","Troceada y sofrita al principio."],["Guisada","Con cebolla, 30-40 minutos a fuego lento."]],
- "rec":[{"t":"Sepia a la plancha con alioli","time":"10 min","steps":["Pídela en tiras, o entera y hazle unos cortes por encima.","Plancha muy caliente con un poco de aceite, 2-3 minutos.","Sal gorda, ajo y perejil, y alioli al lado."],"buy":[["Sepia",1,"En tiras"]],"casa":"Ajo, perejil y alioli"},
-        {"t":"Sepia con guisantes","time":"45 min","steps":["Pocha cebolla y ajo, añade la sepia troceada y deja que suelte el agua.","Un chorro de vino blanco, tomate rallado y un vaso de caldo de pescado.","30 minutos a fuego lento; los guisantes, los últimos 10."],"buy":[["Sepia",1,"Troceada"],["Caldo de pescado casero",1,null]],"casa":"Cebolla, guisantes, tomate y vino blanco"}],
- "tips":["A la plancha, rápida: pasados 3 minutos se endurece y entonces solo la arregla un guiso largo.","Si quieres la tinta para un arroz negro, te la guardamos."],
- "warn":["Alérgeno: moluscos."]},
-
-{"n":"Mejillón","slate":"MEJILLÓN","ico":"shell","tags":["arroz","suave"],
- "desc":"Gallego, vivo y limpio. El marisco más agradecido y más barato.",
- "sabor":{"i":3,"grasa":"Magro","tex":"Tierno y jugoso","esp":"No tiene"},
- "cook":[["Al vapor","Olla tapada con laurel, 3-4 minutos hasta que se abran."],["A la marinera","Con sofrito y vino blanco, 5 minutos."],["En arroz","Abiertos aparte; su agua, al caldo."]],
- "rec":[{"t":"Mejillones al vapor","time":"10 min","steps":["Lávalos con agua fría: te los damos ya limpios.","Olla con un dedo de agua, laurel y unos granos de pimienta. Tapa y fuego fuerte.","En 3-4 minutos se abren: sácalos y sírvelos con limón."],"buy":[["Mejillón",1,null]],"casa":"Laurel, pimienta y limón"},
-        {"t":"Mejillones a la marinera","time":"20 min","steps":["Ábrelos al vapor y guarda su agua colada.","Sofrito de cebolla, ajo y pimentón con una cucharada de harina.","Añade el agua de los mejillones y un chorro de vino blanco; mete los mejillones 2 minutos más."],"buy":[["Mejillón",1,null]],"casa":"Cebolla, ajo, pimentón, harina y vino blanco"}],
- "tips":["En la nevera, en su malla y con un paño húmedo; nunca en agua.","Su agua es oro para el caldo de una paella."],
- "warn":["Alérgeno: moluscos.","Antes de cocinarlos, tira los que estén abiertos y no se cierren al tocarlos; después, los que no se hayan abierto."]}
+{
+"n": "Lenguado",
+"slate": "LENGUADO",
+"ico": "flat",
+"tags": [
+"plancha",
+"horno",
+"ninos",
+"suave"
+],
+"desc": "Carne blanca, fina y suave. El favorito de los que dicen que no les gusta el pescado.",
+"sabor": {
+"i": 2,
+"grasa": "Magro",
+"tex": "Fina y delicada",
+"esp": "Muy pocas, salen enteras"
+},
+"cook": [
+[
+"Plancha",
+"Entero sin piel, 3-4 minutos por lado a fuego medio-alto."
+],
+[
+"Meunière",
+"Enharinado, en sartén con mantequilla, 3 minutos por lado."
+],
+[
+"Horno",
+"15 minutos a 180 ºC con aceite y limón."
 ]
-;
+],
+"rec": [
+{
+"t": "Lenguado a la meunière",
+"time": "20 min",
+"steps": [
+"Seca bien los lenguados y pásalos por harina.",
+"Dóralos en la sartén con mantequilla y un hilo de aceite, 3 minutos por lado.",
+"Sácalos, añade a la sartén zumo de limón y perejil picado y riégalos con esa salsa."
+],
+"buy": [
+[
+"Lenguado",
+2,
+"Entero limpio sin piel"
+]
+],
+"casa": "Harina, mantequilla, limón y perejil"
+},
+{
+"t": "Filetes de lenguado al horno con almejas",
+"time": "30 min",
+"steps": [
+"Haz una cama de patata panadera ya pochada en la fuente.",
+"Pon encima los filetes con sal, ajo y perejil.",
+"Añade las almejas y un chorro de vino blanco: 12 minutos a 190 ºC, hasta que se abran."
+],
+"buy": [
+[
+"Lenguado",
+2,
+"En filetes"
+],
+[
+"Almeja japónica",
+1,
+null
+]
+],
+"casa": "Patata, ajo, perejil y vino blanco"
+}
+],
+"tips": [
+"Pídenoslo sin piel: te lo dejamos listo y no tienes que pelearte con él.",
+"Para niños, en filetes: no tiene ni una espina."
+],
+"warn": [
+"Alérgeno: pescado."
+]
+},
+{
+"n": "Merluza",
+"slate": "MERLUZA",
+"ico": "fish",
+"tags": [
+"horno",
+"arroz",
+"fritura",
+"ninos",
+"suave"
+],
+"desc": "La de toda la vida: tierna, suave y fácil de cocinar de mil formas.",
+"sabor": {
+"i": 2,
+"grasa": "Magra",
+"tex": "Tierna, se separa en lascas",
+"esp": "En lomos, ninguna; la rodaja lleva la central"
+},
+"cook": [
+[
+"Rebozada",
+"Rodajas en harina y huevo, 2-3 minutos por lado."
+],
+[
+"En salsa verde",
+"Lomos, 5-6 minutos a fuego suave en la salsa."
+],
+[
+"Horno",
+"Cola entera, 20 minutos a 190 ºC."
+]
+],
+"rec": [
+{
+"t": "Merluza en salsa verde",
+"time": "25 min",
+"steps": [
+"Dora ajo laminado en una cazuela, añade una cucharada de harina y un chorro de vino blanco.",
+"Incorpora un poco de caldo de pescado y mucho perejil picado.",
+"Mete los lomos con la piel hacia arriba y mueve la cazuela 5-6 minutos para que ligue la salsa."
+],
+"buy": [
+[
+"Merluza",
+4,
+"En lomos"
+],
+[
+"Caldo de pescado casero",
+1,
+null
+],
+[
+"Almeja japónica",
+1,
+null
+]
+],
+"casa": "Ajo, harina, vino blanco y perejil"
+},
+{
+"t": "Cola de merluza al horno",
+"time": "30 min",
+"steps": [
+"Pon la cola sobre unas patatas en rodajas ya pochadas.",
+"Riégala con un refrito de ajo y guindilla, sal y un chorro de vino blanco.",
+"20 minutos a 190 ºC."
+],
+"buy": [
+[
+"Merluza",
+4,
+"Cola para horno"
+]
+],
+"casa": "Patata, ajo, guindilla y vino blanco"
+}
+],
+"tips": [
+"La cabeza y la espina te las damos para el caldo, sin coste.",
+"Para que no se rompa al rebozar, sécala bien antes."
+],
+"warn": [
+"Alérgeno: pescado.",
+"Para niños pequeños, pídela en lomos o filetes: la rodaja lleva la espina central."
+]
+},
+{
+"n": "Dorada",
+"slate": "DORADA",
+"ico": "fish",
+"tags": [
+"plancha",
+"horno",
+"suave"
+],
+"desc": "Carne firme y sabrosa. A la sal o a la espalda, no falla.",
+"sabor": {
+"i": 3,
+"grasa": "Semigrasa",
+"tex": "Firme y jugosa",
+"esp": "Pocas, grandes y fáciles de quitar"
+},
+"cook": [
+[
+"A la sal",
+"Entera sin escamar y cubierta de sal gruesa, 20-25 minutos a 200 ºC."
+],
+[
+"A la espalda",
+"Abierta, a la plancha por la piel 6-7 minutos."
+],
+[
+"Horno",
+"Con patata y cebolla, 20 minutos a 190 ºC."
+]
+],
+"rec": [
+{
+"t": "Dorada a la sal",
+"time": "35 min",
+"steps": [
+"Pídenos la dorada «para horno o a la sal»: la vaciamos y no la escamamos.",
+"Haz una cama de sal gruesa un poco humedecida, pon la dorada y cúbrela entera.",
+"25 minutos a 200 ºC. Rompe la costra en la mesa y retira la piel."
+],
+"buy": [
+[
+"Dorada",
+2,
+"Para horno o a la sal"
+]
+],
+"casa": "2 kg de sal gruesa"
+},
+{
+"t": "Dorada a la espalda",
+"time": "15 min",
+"steps": [
+"Plancha muy caliente y la dorada abierta con la piel hacia abajo.",
+"6-7 minutos sin moverla; la vuelta, solo 1 minuto.",
+"Por encima, ajo laminado frito con guindilla y un chorrito de vinagre."
+],
+"buy": [
+[
+"Dorada",
+2,
+"Abierto a la espalda"
+]
+],
+"casa": "Ajo, guindilla, aceite y vinagre"
+}
+],
+"tips": [
+"Una dorada de unos 400 g es justo una ración.",
+"A la sal, la piel la protege: queda jugosa aunque te pases un par de minutos."
+],
+"warn": [
+"Alérgeno: pescado."
+]
+},
+{
+"n": "Lubina",
+"slate": "LUBINA",
+"ico": "fish",
+"tags": [
+"horno",
+"plancha",
+"crudo",
+"suave"
+],
+"desc": "Más fina que la dorada, de sabor muy limpio. Va muy bien en crudo.",
+"sabor": {
+"i": 2,
+"grasa": "Semigrasa",
+"tex": "Fina y delicada",
+"esp": "Pocas"
+},
+"cook": [
+[
+"Horno",
+"Entera, 18-20 minutos a 190 ºC."
+],
+[
+"Plancha",
+"En filetes, 4 minutos por la piel y 1 por el otro lado."
+],
+[
+"Ceviche",
+"En dados, 10 minutos en lima (congelada antes)."
+]
+],
+"rec": [
+{
+"t": "Ceviche de lubina",
+"time": "20 min",
+"steps": [
+"Pídela en filetes y congélala al menos 5 días antes, o pídenosla ya congelada.",
+"Descongélala en la nevera, córtala en dados y mézclala con zumo de lima, cebolla morada, cilantro y sal.",
+"Deja que se marine 10 minutos y sirve muy frío."
+],
+"buy": [
+[
+"Lubina",
+2,
+"En filetes"
+]
+],
+"casa": "Limas, cebolla morada, cilantro y guindilla"
+},
+{
+"t": "Lubina al horno con patatas",
+"time": "35 min",
+"steps": [
+"Pocha patata y cebolla en rodajas en la fuente, 15 minutos.",
+"Pon la lubina encima, con unas rodajas de limón dentro.",
+"18-20 minutos a 190 ºC con un chorro de vino blanco."
+],
+"buy": [
+[
+"Lubina",
+2,
+"Entero limpio"
+]
+],
+"casa": "Patata, cebolla, limón y vino blanco"
+}
+],
+"tips": [
+"La salvaje tiene más sabor: pregúntanos si hoy ha entrado.",
+"Está hecha cuando la carne se separa de la espina sin esfuerzo."
+],
+"warn": [
+"Alérgeno: pescado.",
+"En crudo (ceviche, tartar), congélala antes: al menos 5 días en el congelador de casa, por el anisakis."
+]
+},
+{
+"n": "Boquerón",
+"slate": "BOQUERONES",
+"ico": "fish",
+"tags": [
+"fritura",
+"crudo",
+"intenso"
+],
+"desc": "El de la fritura y el del aperitivo en vinagre. Barato y buenísimo.",
+"sabor": {
+"i": 4,
+"grasa": "Graso (azul)",
+"tex": "Tierna",
+"esp": "La central; abiertos en filetes, ninguna"
+},
+"cook": [
+[
+"Frito",
+"Enharinados, en aceite a 180 ºC, 1-2 minutos."
+],
+[
+"En vinagre",
+"Filetes, 4-6 horas en vinagre con sal (congelados antes)."
+],
+[
+"Plancha",
+"Abiertos, 1 minuto por lado."
+]
+],
+"rec": [
+{
+"t": "Boquerones en vinagre",
+"time": "15 min + 6 h",
+"steps": [
+"Pídelos abiertos en filetes y congélalos al menos 5 días.",
+"Descongélalos en la nevera y cúbrelos con vinagre de vino, un poco de agua y sal: 4-6 horas en la nevera.",
+"Escúrrelos y cúbrelos con aceite de oliva, ajo y perejil picados."
+],
+"buy": [
+[
+"Boquerón",
+1,
+"Abierto en filetes sin espina (para fritura o vinagre)"
+]
+],
+"casa": "Vinagre de vino, ajo, perejil y aceite"
+},
+{
+"t": "Boquerones fritos",
+"time": "15 min",
+"steps": [
+"Pídelos sin cabeza y limpios.",
+"Pásalos por harina de freír y sacude el exceso.",
+"Fríelos en tandas pequeñas, con el aceite bien caliente, hasta que estén dorados. La sal, al final."
+],
+"buy": [
+[
+"Boquerón",
+1,
+"Sin cabeza"
+]
+],
+"casa": "Harina de freír, aceite y limón"
+}
+],
+"tips": [
+"Si son para vinagre, dínoslo y te los damos ya abiertos.",
+"Cómelos en el día: el pescado azul pequeño es el que menos aguanta."
+],
+"warn": [
+"Alérgeno: pescado.",
+"En vinagre, marinados o crudos: congélalos antes al menos 5 días por el anisakis (recomendación de AESAN)."
+]
+},
+{
+"n": "Salmonete",
+"slate": "SALMONETES",
+"ico": "fish",
+"tags": [
+"fritura",
+"plancha",
+"intenso"
+],
+"desc": "Sabor a mar puro. Pequeño, pero de lo más sabroso de la lonja.",
+"sabor": {
+"i": 4,
+"grasa": "Semigraso",
+"tex": "Fina",
+"esp": "Bastantes pequeñas; en filetes, casi ninguna"
+},
+"cook": [
+[
+"Frito",
+"Entero y enharinado, 3-4 minutos."
+],
+[
+"Plancha",
+"En filetes, 2 minutos por la piel y 30 segundos del otro lado."
+],
+[
+"Arroz",
+"Sus filetes, encima del arroz los últimos minutos."
+]
+],
+"rec": [
+{
+"t": "Salmonetes fritos",
+"time": "20 min",
+"steps": [
+"Pídelos enteros y limpios.",
+"Sécalos, sálalos y enharínalos.",
+"Fríelos en aceite muy caliente 3-4 minutos, hasta que estén crujientes."
+],
+"buy": [
+[
+"Salmonete",
+4,
+"Entero limpio"
+]
+],
+"casa": "Harina, aceite y limón"
+},
+{
+"t": "Salmonete a la plancha con ajo",
+"time": "10 min",
+"steps": [
+"Pídelos en filetes.",
+"Plancha muy caliente, 2 minutos por la piel hasta que quede crujiente.",
+"Vuelta de 30 segundos y un refrito de ajo y perejil por encima."
+],
+"buy": [
+[
+"Salmonete",
+4,
+"En filetes (para fritura o plancha)"
+]
+],
+"casa": "Ajo, perejil y aceite"
+}
+],
+"tips": [
+"Si lo fríes entero, deja el hígado: da muchísimo sabor.",
+"En filetes es perfecto para quien no quiere espinas."
+],
+"warn": [
+"Alérgeno: pescado.",
+"Entero tiene espinas finas: para niños, mejor en filetes."
+]
+},
+{
+"n": "Atún rojo",
+"slate": "ATÚN ROJO",
+"ico": "fish",
+"tags": [
+"plancha",
+"crudo",
+"intenso"
+],
+"desc": "Del Mediterráneo, de carne roja y potente. Vuelta y vuelta, o en crudo.",
+"sabor": {
+"i": 5,
+"grasa": "Graso",
+"tex": "Carnosa, como un buen solomillo",
+"esp": "Ninguna"
+},
+"cook": [
+[
+"Plancha",
+"Tacos o rodaja de 2 cm, 1 minuto por lado, rosado por dentro."
+],
+[
+"Tartar",
+"Picado a cuchillo y aliñado al momento (congelado antes)."
+],
+[
+"Encebollado",
+"Tacos, los últimos 5 minutos en la cebolla pochada."
+]
+],
+"rec": [
+{
+"t": "Tataki de atún",
+"time": "15 min",
+"steps": [
+"Pídelo en lomo. Si lo vas a dejar crudo por dentro, congélalo antes al menos 5 días.",
+"Márcalo en la plancha muy caliente, 30 segundos por cada cara.",
+"Córtalo en lonchas y sírvelo con sésamo, soja y un poco de jengibre."
+],
+"buy": [
+[
+"Atún rojo",
+2,
+"En lomos"
+]
+],
+"casa": "Sésamo, salsa de soja y jengibre"
+},
+{
+"t": "Tartar de atún",
+"time": "15 min",
+"steps": [
+"Pídelo «para tartar o sashimi»: te lo damos ya congelado.",
+"Pícalo a cuchillo en dados pequeños.",
+"Alíñalo al momento con soja, aceite de sésamo, cebollino y aguacate."
+],
+"buy": [
+[
+"Atún rojo",
+2,
+"Para tartar o sashimi (congelado previamente)"
+]
+],
+"casa": "Aguacate, soja, aceite de sésamo y cebollino"
+}
+],
+"tips": [
+"No lo pases: en cuanto se hace del todo, se seca.",
+"La ventresca es la parte más grasa: si te gusta, pruébala."
+],
+"warn": [
+"Alérgeno: pescado.",
+"Mercurio (AESAN): si estás embarazada, buscas estarlo o das el pecho, y en niños de hasta 10 años, mejor evitarlo. De 10 a 14 años, como mucho 120 g al mes.",
+"Crudo o poco hecho: congelado antes al menos 5 días, por el anisakis."
+]
+},
+{
+"n": "Suprema de salmón",
+"slate": "SALMÓN",
+"ico": "fish",
+"tags": [
+"horno",
+"plancha",
+"crudo",
+"ninos"
+],
+"desc": "Supremas sin piel ni espinas. Lo que más piden las familias.",
+"sabor": {
+"i": 3,
+"grasa": "Graso",
+"tex": "Mantecosa",
+"esp": "Ninguna"
+},
+"cook": [
+[
+"Horno",
+"12 minutos a 200 ºC."
+],
+[
+"Plancha",
+"4 minutos por un lado y 2 por el otro."
+],
+[
+"Papillote",
+"15 minutos a 190 ºC con verduras."
+]
+],
+"rec": [
+{
+"t": "Salmón en papillote",
+"time": "25 min",
+"steps": [
+"Pon cada suprema sobre papel de horno con calabacín, zanahoria y cebolla en tiras.",
+"Sal, eneldo, un chorrito de aceite y unas gotas de limón. Cierra bien el paquete.",
+"15 minutos a 190 ºC y se abre en la mesa."
+],
+"buy": [
+[
+"Suprema de salmón",
+2,
+null
+]
+],
+"casa": "Calabacín, zanahoria, cebolla, eneldo y limón"
+},
+{
+"t": "Salmón con soja y miel",
+"time": "15 min",
+"steps": [
+"Dora las supremas en la sartén, 3 minutos por lado.",
+"Añade una mezcla de soja, miel y un poco de ajo rallado.",
+"Deja que reduzca 1 minuto y sírvelo con arroz blanco."
+],
+"buy": [
+[
+"Suprema de salmón",
+2,
+null
+]
+],
+"casa": "Soja, miel, ajo y arroz"
+}
+],
+"tips": [
+"El pescado ideal para empezar con los niños: no tiene ni una espina.",
+"Para sushi casero, pídenoslo para crudo y te lo damos ya congelado."
+],
+"warn": [
+"Alérgeno: pescado.",
+"Para comerlo crudo, congelado antes al menos 5 días, salvo que te lo vendamos ya preparado para crudo."
+]
+},
+{
+"n": "Rape",
+"slate": "RAPE",
+"ico": "fish",
+"tags": [
+"arroz",
+"plancha",
+"ninos",
+"suave"
+],
+"desc": "Carne firme que no se deshace. El rey de los arroces y los guisos.",
+"sabor": {
+"i": 2,
+"grasa": "Magro",
+"tex": "Firme, casi como marisco",
+"esp": "Solo la central; en medallones, ninguna"
+},
+"cook": [
+[
+"Arroz",
+"En rodajas o medallones, los últimos 8 minutos."
+],
+[
+"Plancha",
+"Medallones, 2-3 minutos por lado."
+],
+[
+"Guisado",
+"En cazuela con su salsa, 6-8 minutos."
+]
+],
+"rec": [
+{
+"t": "Rape a la marinera",
+"time": "30 min",
+"steps": [
+"Haz un sofrito de cebolla, ajo y tomate, con pimentón y un chorro de vino blanco.",
+"Añade el caldo de pescado y deja que hierva 5 minutos.",
+"Mete el rape y las almejas, 6-8 minutos, hasta que se abran."
+],
+"buy": [
+[
+"Rape",
+4,
+"En rodajas"
+],
+[
+"Almeja japónica",
+1,
+null
+],
+[
+"Caldo de pescado casero",
+1,
+null
+]
+],
+"casa": "Cebolla, ajo, tomate, pimentón y vino blanco"
+},
+{
+"t": "Brochetas de rape y gamba",
+"time": "20 min",
+"steps": [
+"Pídelo en medallones.",
+"Ensarta los medallones alternando con gamba blanca pelada y pimiento.",
+"Plancha fuerte, 2-3 minutos por lado; termina con ajo y perejil."
+],
+"buy": [
+[
+"Rape",
+4,
+"En medallones"
+],
+[
+"Gamba blanca",
+1,
+null
+]
+],
+"casa": "Pimiento, ajo y perejil"
+}
+],
+"tips": [
+"La cabeza da el mejor caldo: te la damos sin coste.",
+"Suelta agua: sécalo bien antes de la plancha."
+],
+"warn": [
+"Alérgeno: pescado."
+]
+},
+{
+"n": "Gamba roja",
+"slate": "GAMBA ROJA",
+"ico": "shrimp",
+"tags": [
+"plancha",
+"arroz",
+"intenso"
+],
+"desc": "De la lonja de Calpe. A la plancha con sal gorda y poco más.",
+"sabor": {
+"i": 5,
+"grasa": "—",
+"tex": "Firme y dulce",
+"esp": "No tiene"
+},
+"cook": [
+[
+"Plancha",
+"Con sal gorda, 1-2 minutos por lado."
+],
+[
+"Cocida",
+"Agua con sal como la del mar; fuera en cuanto vuelva a hervir."
+],
+[
+"Arroz",
+"Las colas encima, los últimos 3 minutos."
+]
+],
+"rec": [
+{
+"t": "Gamba roja a la plancha",
+"time": "10 min",
+"steps": [
+"Plancha muy caliente con una cama de sal gruesa.",
+"Pon las gambas 1-2 minutos por lado: el caparazón debe tostarse un poco.",
+"Sírvelas al momento, sin nada más."
+],
+"buy": [
+[
+"Gamba roja",
+1,
+"Crudo"
+]
+],
+"casa": "Sal gruesa"
+},
+{
+"t": "Arroz con gamba roja",
+"time": "45 min",
+"steps": [
+"Pela las gambas y sofríe las cabezas para sacar todo su jugo; retíralas.",
+"Sofrito de ñora y tomate, el arroz y el caldo de pescado caliente.",
+"Pon las colas de gamba encima los últimos 3 minutos."
+],
+"buy": [
+[
+"Gamba roja",
+1,
+"Crudo"
+],
+[
+"Caldo de pescado casero",
+1,
+null
+]
+],
+"casa": "Arroz, ñora, tomate y ajo"
+}
+],
+"tips": [
+"Si la vas a cocer, dínoslo y te la damos cocida, sin coste.",
+"Fresca, el color es vivo y la cabeza está firme y pegada."
+],
+"warn": [
+"Alérgeno: crustáceos.",
+"AESAN recomienda no abusar de chupar las cabezas: acumulan cadmio."
+]
+},
+{
+"n": "Sepia",
+"slate": "SEPIA",
+"ico": "squid",
+"tags": [
+"plancha",
+"arroz",
+"fritura"
+],
+"desc": "Limpia y lista. Plancha rápida o guiso largo; nunca término medio.",
+"sabor": {
+"i": 3,
+"grasa": "Magra",
+"tex": "Tierna si la haces poco o mucho",
+"esp": "No tiene"
+},
+"cook": [
+[
+"Plancha",
+"En tiras, a fuego fuerte 2-3 minutos."
+],
+[
+"Arroz",
+"Troceada y sofrita al principio."
+],
+[
+"Guisada",
+"Con cebolla, 30-40 minutos a fuego lento."
+]
+],
+"rec": [
+{
+"t": "Sepia a la plancha con alioli",
+"time": "10 min",
+"steps": [
+"Pídela en tiras, o entera y hazle unos cortes por encima.",
+"Plancha muy caliente con un poco de aceite, 2-3 minutos.",
+"Sal gorda, ajo y perejil, y alioli al lado."
+],
+"buy": [
+[
+"Sepia",
+1,
+"En tiras"
+]
+],
+"casa": "Ajo, perejil y alioli"
+},
+{
+"t": "Sepia con guisantes",
+"time": "45 min",
+"steps": [
+"Pocha cebolla y ajo, añade la sepia troceada y deja que suelte el agua.",
+"Un chorro de vino blanco, tomate rallado y un vaso de caldo de pescado.",
+"30 minutos a fuego lento; los guisantes, los últimos 10."
+],
+"buy": [
+[
+"Sepia",
+1,
+"Troceada"
+],
+[
+"Caldo de pescado casero",
+1,
+null
+]
+],
+"casa": "Cebolla, guisantes, tomate y vino blanco"
+}
+],
+"tips": [
+"A la plancha, rápida: pasados 3 minutos se endurece y entonces solo la arregla un guiso largo.",
+"Si quieres la tinta para un arroz negro, te la guardamos."
+],
+"warn": [
+"Alérgeno: moluscos."
+]
+},
+{
+"n": "Mejillón",
+"slate": "MEJILLÓN",
+"ico": "shell",
+"tags": [
+"arroz",
+"suave"
+],
+"desc": "Gallego, vivo y limpio. El marisco más agradecido y más barato.",
+"sabor": {
+"i": 3,
+"grasa": "Magro",
+"tex": "Tierno y jugoso",
+"esp": "No tiene"
+},
+"cook": [
+[
+"Al vapor",
+"Olla tapada con laurel, 3-4 minutos hasta que se abran."
+],
+[
+"A la marinera",
+"Con sofrito y vino blanco, 5 minutos."
+],
+[
+"En arroz",
+"Abiertos aparte; su agua, al caldo."
+]
+],
+"rec": [
+{
+"t": "Mejillones al vapor",
+"time": "10 min",
+"steps": [
+"Lávalos con agua fría: te los damos ya limpios.",
+"Olla con un dedo de agua, laurel y unos granos de pimienta. Tapa y fuego fuerte.",
+"En 3-4 minutos se abren: sácalos y sírvelos con limón."
+],
+"buy": [
+[
+"Mejillón",
+1,
+null
+]
+],
+"casa": "Laurel, pimienta y limón"
+},
+{
+"t": "Mejillones a la marinera",
+"time": "20 min",
+"steps": [
+"Ábrelos al vapor y guarda su agua colada.",
+"Sofrito de cebolla, ajo y pimentón con una cucharada de harina.",
+"Añade el agua de los mejillones y un chorro de vino blanco; mete los mejillones 2 minutos más."
+],
+"buy": [
+[
+"Mejillón",
+1,
+null
+]
+],
+"casa": "Cebolla, ajo, pimentón, harina y vino blanco"
+}
+],
+"tips": [
+"En la nevera, en su malla y con un paño húmedo; nunca en agua.",
+"Su agua es oro para el caldo de una paella."
+],
+"warn": [
+"Alérgeno: moluscos.",
+"Antes de cocinarlos, tira los que estén abiertos y no se cierren al tocarlos; después, los que no se hayan abierto."
+]
+},
+{
+"n": "Bonito",
+"slate": "BONITO",
+"ico": "fish",
+"tags": [
+"plancha",
+"arroz",
+"intenso"
+],
+"desc": "El primo pequeño del atún: carne rosada, jugosa y con mucho sabor.",
+"sabor": {
+"i": 4,
+"grasa": "Graso (azul)",
+"tex": "Carnosa y jugosa",
+"esp": "Solo la central; en lomos, ninguna"
+},
+"cook": [
+[
+"Plancha",
+"Rodaja de 2 cm, 1-2 minutos por lado; rosado por dentro."
+],
+[
+"Marmitako",
+"En dados, los últimos 3-4 minutos, con el fuego ya apagado."
+],
+[
+"Encebollado",
+"En tacos, sobre la cebolla pochada, 5 minutos."
+]
+],
+"rec": [
+{
+"t": "Marmitako",
+"time": "45 min",
+"steps": [
+"Sofríe pimiento verde, cebolla y ajo; añade una cucharada de pulpa de choricero.",
+"Echa la patata chascada y cúbrela con caldo de pescado: 20 minutos.",
+"Apaga el fuego, mete el bonito en dados y deja reposar 4 minutos tapado."
+],
+"buy": [
+[
+"Bonito",
+2,
+"En tacos"
+],
+[
+"Caldo de pescado casero",
+1,
+null
+]
+],
+"casa": "Patata, pimiento verde, cebolla, ajo y pimiento choricero"
+},
+{
+"t": "Bonito a la plancha con pisto",
+"time": "20 min",
+"steps": [
+"Saca el bonito de la nevera 10 minutos antes y sécalo bien.",
+"Plancha muy caliente, 1-2 minutos por lado; que quede rosado.",
+"Sírvelo sobre un pisto casero o con tomate frito."
+],
+"buy": [
+[
+"Bonito",
+2,
+"En rodajas"
+]
+],
+"casa": "Pisto o tomate frito"
+}
+],
+"tips": [
+"Si se pasa, se seca: mejor un punto menos que uno más.",
+"Para el marmitako, en tacos: te lo cortamos del tamaño justo."
+],
+"warn": [
+"Alérgeno: pescado.",
+"Crudo o poco hecho: congelado antes al menos 5 días, por el anisakis."
+]
+},
+{
+"n": "Ventresca",
+"slate": "VENTRESCA",
+"ico": "fish",
+"tags": [
+"plancha",
+"crudo",
+"intenso"
+],
+"desc": "La parte más grasa del atún rojo. Se deshace en la boca.",
+"sabor": {
+"i": 5,
+"grasa": "Muy grasa",
+"tex": "Mantecosa, con vetas de grasa",
+"esp": "Ninguna"
+},
+"cook": [
+[
+"Plancha",
+"Vuelta y vuelta: 30-40 segundos por lado."
+],
+[
+"Tataki",
+"Marcada por fuera y cruda por dentro (congelada antes)."
+],
+[
+"Brasa",
+"Unos segundos por lado; la grasa hace el resto."
+]
+],
+"rec": [
+{
+"t": "Ventresca vuelta y vuelta",
+"time": "5 min",
+"steps": [
+"Atempera la ventresca 10 minutos fuera de la nevera.",
+"Plancha humeante, 30-40 segundos por cada lado.",
+"Escamas de sal y unas gotas de aceite de oliva. Nada más."
+],
+"buy": [
+[
+"Ventresca",
+2,
+"Para plancha"
+]
+],
+"casa": "Sal en escamas y aceite de oliva"
+},
+{
+"t": "Tataki de ventresca",
+"time": "15 min",
+"steps": [
+"Congélala antes al menos 5 días, o pídenosla ya congelada.",
+"Márcala 20 segundos por cada cara y enfríala en hielo.",
+"Córtala en lonchas finas con soja, lima y cebollino."
+],
+"buy": [
+[
+"Ventresca",
+2,
+"En filetes"
+]
+],
+"casa": "Soja, lima y cebollino"
+}
+],
+"tips": [
+"Es un capricho: con 100 g por persona hay de sobra.",
+"No la mezcles con salsas fuertes: el sabor ya lo pone ella."
+],
+"warn": [
+"Alérgeno: pescado.",
+"Mercurio (AESAN): si estás embarazada, buscas estarlo o das el pecho, y en niños de hasta 10 años, mejor evitarlo. De 10 a 14 años, como mucho 120 g al mes.",
+"Cruda o poco hecha: congelada antes al menos 5 días, por el anisakis."
+]
+},
+{
+"n": "Cigalas",
+"slate": "CIGALAS",
+"ico": "shrimp",
+"tags": [
+"plancha",
+"arroz",
+"intenso"
+],
+"desc": "Dulces y delicadas. Cocidas o a la plancha, son de fiesta.",
+"sabor": {
+"i": 4,
+"grasa": "—",
+"tex": "Dulce y delicada",
+"esp": "No tiene"
+},
+"cook": [
+[
+"Cocidas",
+"Agua con sal como la del mar; 1-2 minutos desde que vuelve a hervir."
+],
+[
+"Plancha",
+"Abiertas por la mitad, 1-2 minutos por la carne."
+],
+[
+"Arroz",
+"Encima, los últimos 4 minutos."
+]
+],
+"rec": [
+{
+"t": "Cigalas cocidas",
+"time": "10 min",
+"steps": [
+"Agua con 60 g de sal por litro a hervor fuerte.",
+"Mete las cigalas y cuenta 1-2 minutos desde que vuelva a hervir.",
+"Sácalas a agua con hielo para cortar la cocción."
+],
+"buy": [
+[
+"Cigalas",
+1,
+"Crudo"
+]
+],
+"casa": "Sal y hielo"
+},
+{
+"t": "Cigalas a la plancha",
+"time": "10 min",
+"steps": [
+"Ábrelas por la mitad a lo largo.",
+"Plancha muy caliente, con la carne hacia abajo 1-2 minutos.",
+"Un hilo de aceite con ajo y perejil por encima."
+],
+"buy": [
+[
+"Cigalas",
+1,
+"Crudo"
+]
+],
+"casa": "Ajo, perejil y aceite"
+}
+],
+"tips": [
+"Si las quieres listas para servir, te las damos cocidas sin coste.",
+"Frescas, la cabeza está firme y sin manchas negras."
+],
+"warn": [
+"Alérgeno: crustáceos.",
+"AESAN recomienda no abusar de chupar las cabezas: acumulan cadmio."
+]
+},
+{
+"n": "Quisquilla",
+"slate": "QUISQUILLA",
+"ico": "shrimp",
+"tags": [
+"suave"
+],
+"desc": "Pequeña, dulce y muy nuestra. Cocida un minuto y a la mesa.",
+"sabor": {
+"i": 3,
+"grasa": "—",
+"tex": "Fina y dulce",
+"esp": "No tiene"
+},
+"cook": [
+[
+"Cocida",
+"1 minuto en agua hirviendo con sal y a agua con hielo."
+],
+[
+"Salteada",
+"A la sartén con ajo, 1 minuto."
+],
+[
+"En revuelto",
+"Peladas, al final del revuelto."
+]
+],
+"rec": [
+{
+"t": "Quisquilla cocida",
+"time": "5 min",
+"steps": [
+"Agua con sal como la del mar a hervor fuerte.",
+"Mete la quisquilla 1 minuto, nada más.",
+"Escúrrela a agua con hielo y sirve con sal gorda."
+],
+"buy": [
+[
+"Quisquilla",
+1,
+"Crudo"
+]
+],
+"casa": "Sal gorda y hielo"
+},
+{
+"t": "Revuelto de quisquilla y ajetes",
+"time": "15 min",
+"steps": [
+"Pela la quisquilla cocida y reserva.",
+"Saltea ajetes troceados y cuaja unos huevos a fuego suave.",
+"Antes de que cuajen del todo, añade la quisquilla."
+],
+"buy": [
+[
+"Quisquilla",
+1,
+"Cocido"
+]
+],
+"casa": "Huevos y ajetes"
+}
+],
+"tips": [
+"Pídela cocida y te la llevas lista para el aperitivo.",
+"Cómela en el día: es delicada."
+],
+"warn": [
+"Alérgeno: crustáceos."
+]
+},
+{
+"n": "Ostra Gillardeau",
+"slate": "OSTRAS",
+"ico": "shell",
+"tags": [
+"crudo",
+"intenso"
+],
+"desc": "Gillardeau francesa: carnosa, yodada y con un final dulce.",
+"sabor": {
+"i": 4,
+"grasa": "—",
+"tex": "Carnosa y crujiente",
+"esp": "No tiene"
+},
+"cook": [
+[
+"Al natural",
+"Recién abierta, con su agua y unas gotas de limón."
+],
+[
+"Gratinada",
+"Con un poco de cava y mantequilla, 2-3 minutos al grill."
+],
+[
+"Vinagreta",
+"Chalota picada en vinagre de vino."
+]
+],
+"rec": [
+{
+"t": "Ostras al natural",
+"time": "10 min",
+"steps": [
+"Pídelas abiertas para servir, o ábrelas justo antes con un cuchillo de ostras.",
+"Colócalas sobre hielo picado, sin tirar su agua.",
+"Limón o una vinagreta de chalota, al gusto."
+],
+"buy": [
+[
+"Ostra Gillardeau",
+1,
+"Abierta para servir"
+]
+],
+"casa": "Hielo, limón o chalota y vinagre"
+},
+{
+"t": "Ostras gratinadas al cava",
+"time": "15 min",
+"steps": [
+"Ábrelas y reserva su agua.",
+"Reduce el agua con un chorro de cava y liga con mantequilla fría.",
+"Napa cada ostra y gratina 2-3 minutos."
+],
+"buy": [
+[
+"Ostra Gillardeau",
+1,
+"Viva"
+]
+],
+"casa": "Cava y mantequilla"
+}
+],
+"tips": [
+"Vivas, aguantan cerradas en la nevera, con la parte cóncava hacia abajo.",
+"Abiertas, cómelas en el momento."
+],
+"warn": [
+"Alérgeno: moluscos.",
+"Tira las que estén abiertas y no se cierren al tocarlas.",
+"Si estás embarazada o tienes las defensas bajas, mejor cocinadas."
+]
+}
+];
   var fichaBy = {}; FICHAS.forEach(function (f) { fichaBy[f.n] = f; });
   var SOLD_OUT = ['Rodaballo'];
+  var POS = { 'Ventresca': '50% 20%', 'Atún rojo': '50% 30%', 'Cigalas': '50% 30%', 'Gamba roja': '50% 35%' };
+  var ROW1 = ['Atún rojo', 'Ventresca', 'Bonito', 'Merluza', 'Suprema de salmón', 'Lenguado'];
+  var ROW2 = ['Gamba roja', 'Cigalas', 'Quisquilla', 'Mejillón', 'Ostra Gillardeau'];
   var LOW = { 'Gamba roja': 'Quedan 4' };
   var WANT = [['', 'Todo'], ['plancha', 'A la plancha'], ['horno', 'Al horno'], ['arroz', 'Arroz y guisos'], ['fritura', 'Fritura'], ['crudo', 'En crudo'], ['ninos', 'Sin espinas'], ['suave', 'Sabor suave'], ['intenso', 'Sabor intenso']];
   var mState = { want: '', f: null, tab: 'cook' };
   var COL = { 'Lenguado': '#8A6A3E', 'Merluza': '#3E5675', 'Dorada': '#9C7A1E', 'Lubina': '#4F6478', 'Boquerón': '#2D5F86', 'Salmonete': '#C8324F', 'Atún rojo': '#8E1F33', 'Suprema de salmón': '#D0612F', 'Rape': '#6B4E3A', 'Gamba roja': '#C8324F', 'Sepia': '#5B5577', 'Mejillón': '#1F3A6E' };
   function pile(f, big) { return '<span class="pile" aria-hidden="true" style="color:' + (COL[f.n] || '#1F3A6E') + '"><svg class="art c"><use href="#i-' + f.ico + '"/></svg><svg class="art b"><use href="#i-' + f.ico + '"/></svg><svg class="art"><use href="#i-' + f.ico + '"/></svg></span>'; }
   function slate(f, p) { return '<span class="slate"><span class="nm">' + esc(f.slate) + '</span><span class="pr">' + eur(p.pk) + (p.u === 'ud' ? '/ud' : '/kg') + '</span></span>'; }
+  var SPOTS = [['Gamba roja', 30, 22.6, 'l'], ['Boquerón', 42, 23.4], ['Salmonete', 50, 33, 'l'], ['Suprema de salmón', 71, 32], ['Lubina', 51, 51.6], ['Merluza', 88, 67.7, 'l'], ['Dorada', 55, 79], ['Sepia', 78, 90, 'l']];
+  var OUT_TODAY = ['Salmonete'];
   function renderCounter() {
     $('#mWant').innerHTML = '<span class="lbl">¿Qué te apetece?</span>' + WANT.map(function (w) { return '<button class="chip" data-want="' + w[0] + '" aria-pressed="' + (w[0] === mState.want) + '">' + w[1] + '</button>'; }).join('');
-    $('#mIce').innerHTML = FICHAS.map(function (f) {
-      var p = byName[f.n], on = !mState.want || f.tags.indexOf(mState.want) > -1;
-      return '<button class="tray' + (on ? '' : ' off') + '" data-ficha="' + esc(f.n) + '" aria-label="' + esc(f.n) + ', ' + eur(p.pk) + ' el kilo' + (on ? '' : ' (no encaja con el filtro)') + '">' + (LOW[f.n] ? '<span class="flag">' + LOW[f.n] + '</span>' : '') + pile(f) + slate(f, p) + '</button>';
+    $('#mSpots').innerHTML = SPOTS.map(function (x) {
+      var f = fichaBy[x[0]], p = byName[x[0]], on = !mState.want || f.tags.indexOf(mState.want) > -1, out = OUT_TODAY.indexOf(x[0]) > -1;
+      return '<button class="spot' + (x[3] ? ' ' + x[3] : '') + (on ? '' : ' off') + (out ? ' out' : '') + '" ' + (out ? 'disabled ' : 'data-ficha="' + esc(x[0]) + '" ') + 'style="left:' + x[1] + '%;top:' + x[2] + '%" aria-label="' + esc(x[0]) + (out ? ', hoy no queda' : ', ' + eur(p.pk) + ' el kilo') + '"' + (on ? '' : ' tabindex="-1"') + '><span class="dot" aria-hidden="true">' + (out ? '–' : '+') + '</span><span class="lab">' + esc(f.slate) + '</span></button>';
     }).join('');
-    $('#mOut').innerHTML = 'Hoy se ha terminado: ' + SOLD_OUT.map(function (n) { return '<s>' + esc(n.toUpperCase()) + '</s>'; }).join(' ') + '<span>· Cuando se acaba, sale solo de la pizarra.</span>';
-    var d = new Date(); $('#mDate').textContent = WD[d.getDay()] + ' ' + d.getDate() + ' de ' + ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'][d.getMonth()];
+    $('#mOut').innerHTML = 'Hoy se ha terminado: ' + OUT_TODAY.concat(SOLD_OUT).map(function (n) { return '<s>' + esc((fichaBy[n] ? fichaBy[n].slate : n).toUpperCase()) + '</s>'; }).join(' ') + '<span>· Cuando se acaba, se marca solo.</span>';
   }
   $('#mWant').addEventListener('click', function (e) { var b = e.target.closest('[data-want]'); if (!b) return; mState.want = b.dataset.want; renderCounter(); });
   document.addEventListener('click', function (e) { var b = e.target.closest('[data-ficha]'); if (b) openFicha(b.dataset.ficha); });
