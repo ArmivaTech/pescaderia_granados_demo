@@ -1,0 +1,1190 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex, nofollow"><link rel="icon" type="image/png" href="img/logo.png"></head><body>
+<title>Pescados Granados · Tienda</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Familjen+Grotesk:wght@500;600;700&family=Permanent+Marker&display=swap">
+<style>
+/* La marca manda: azul marino del logo en cabecera y bloques, rojo del pez para precios y acciones, blanco de mostrador. Productos sin recuadro, como en un escaparate. */
+:root {
+  --navy: #1F3A6E; --navy-2: #15294F; --navy-3: #0F1F3D; --coral: #C8324F; --coral-2: #A9283F; --coral-soft: #FBEAED;
+  --paper: #FFFFFF; --mist: #F1F4F8; --dusk: #9DB0CC; --dusk-2: #DCE4EF; --sand: #B99559;
+  --ink: #16213A; --muted: #5E6A84; --line: #E2E7EF;
+  --ok: #1B6E46; --ok-bg: #E6F2EB; --warn: #8A5300; --warn-bg: #FCF0DA;
+  --head: 'Familjen Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --chalk: 'Permanent Marker', 'Marker Felt', 'Segoe Print', cursive;
+  --font: 'Albert Sans', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --gl: max(16px, env(safe-area-inset-left, 0px)); --gr: max(16px, env(safe-area-inset-right, 0px));
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-padding-top: 80px; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font); font-size: 16px; line-height: 1.55; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--navy-2); }
+img { max-width: 100%; display: block; }
+button, input, select { font: inherit; color: inherit; }
+input, select, textarea { background-color: #fff; color: var(--ink); color-scheme: light; }
+input::placeholder { color: #8A94A8; opacity: 1; }
+button { cursor: pointer; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--coral); outline-offset: 2px; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: var(--gl); padding-right: var(--gr); }
+h1, h2, h3 { margin: 0; font-family: var(--head); line-height: 1.12; text-wrap: balance; color: var(--navy); letter-spacing: -.01em; }
+h2 { font-size: clamp(26px, 3.4vw, 36px); font-weight: 700; }
+h3 { font-size: 20px; font-weight: 600; }
+.kicker { font-size: 13px; font-weight: 700; color: var(--coral); letter-spacing: .06em; text-transform: uppercase; }
+.lead { color: var(--muted); max-width: 62ch; margin: 8px 0 0; }
+.sec { padding-block: 48px; }
+.sec-head { display: flex; justify-content: space-between; align-items: end; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+.link { color: var(--navy); font-weight: 600; text-decoration: none; background: none; border: 0; padding: 0; display: inline-flex; gap: 6px; align-items: center; }
+.link::after { content: "→"; transition: transform .15s; }
+.link:hover::after { transform: translateX(3px); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; border-radius: 999px; padding: 10px 20px; font-weight: 600; font-size: 15px; min-height: 42px; text-decoration: none; transition: background .15s; }
+.btn.coral { background: var(--coral); color: #fff; } .btn.coral:hover { background: var(--coral-2); }
+.btn.navy { background: var(--navy); color: #fff; } .btn.navy:hover { background: var(--navy-2); }
+.btn.line { background: transparent; color: var(--navy); box-shadow: inset 0 0 0 1px var(--dusk); }
+.btn.white { background: #fff; color: var(--navy); }
+.btn.ghostw { background: transparent; color: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.55); }
+.btn.sm { min-height: 34px; padding: 6px 14px; font-size: 14px; }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.chip { border: 1px solid var(--line); background: var(--paper); border-radius: 999px; padding: 6px 14px; font-size: 14px; font-weight: 500; min-height: 36px; color: var(--ink); }
+.chip:hover { border-color: var(--dusk); }
+.chip[aria-pressed="true"] { border-color: var(--navy); background: var(--navy); color: #fff; }
+.price { font-variant-numeric: tabular-nums; }
+.wave { display: block; width: 100%; height: 14px; color: var(--sand); }
+svg.art { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Banda de la demo */
+.demo { background: var(--navy-3); color: #AFC0DB; font-size: 12.5px; }
+.demo .wrap { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: center; justify-content: space-between; padding-block: 5px; }
+.techbtn { border: 1px solid #3E5480; background: transparent; color: #DCE4F2; border-radius: 999px; padding: 2px 12px; font-size: 12.5px; font-weight: 600; }
+.techbtn[aria-pressed="true"] { background: #95BF47; border-color: #95BF47; color: var(--ink); }
+.sh { display: none; }
+.tech .sh { display: inline-block; font-family: var(--font); font-size: 12px; font-weight: 700; line-height: 1.35; padding: 4px 9px; border-radius: 6px; background: #E6F4EA; color: #0E5A35; border: 1px solid #A9D8BA; text-transform: none; letter-spacing: 0; }
+.tech .sh.app { background: #FFF3DC; color: #7A4B00; border-color: #EBCB8E; }
+.tech .sh.theme { background: #E8EEFD; color: #1D3D9E; border-color: #B7C6F2; }
+.tech .sh::before { content: "Shopify · "; font-weight: 800; }
+
+/* Cabecera en el azul del logo */
+header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--navy-2); color: #fff; }
+header.top .wrap { display: flex; align-items: center; gap: 16px; min-height: 68px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; }
+.brand img { width: 46px; height: 46px; }
+.brand b { display: block; font-family: var(--head); font-size: 18px; font-weight: 700; line-height: 1.1; letter-spacing: .01em; }
+.brand small { font-size: 12px; color: #AFC0DB; }
+nav.tabs { display: flex; gap: 4px; margin-left: 10px; }
+nav.tabs a { text-decoration: none; font-weight: 500; font-size: 15px; color: #C8D4E8; padding: 8px 12px; white-space: nowrap; position: relative; }
+nav.tabs a:hover { color: #fff; }
+nav.tabs a[aria-current="page"] { color: #fff; }
+nav.tabs a[aria-current="page"]::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: 2px; height: 2px; background: var(--coral); border-radius: 2px; }
+.hd-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+.cp-btn { display: inline-flex; align-items: center; gap: 6px; border: 0; background: rgba(255,255,255,.1); color: #fff; border-radius: 999px; padding: 6px 12px; font-size: 14px; font-weight: 500; min-height: 38px; max-width: 230px; }
+.cp-btn:hover { background: rgba(255,255,255,.16); }
+.cp-btn span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cart-btn { display: inline-flex; align-items: center; gap: 8px; border: 0; border-radius: 999px; background: var(--coral); color: #fff; font-weight: 600; padding: 6px 14px; min-height: 38px; }
+.cart-btn svg { width: 20px; height: 20px; }
+.cart-btn .n { background: #fff; color: var(--coral); border-radius: 999px; min-width: 20px; height: 20px; font-size: 12.5px; font-weight: 700; display: grid; place-items: center; padding: 0 5px; }
+@media (max-width: 980px) { nav.tabs { display: none; } }
+@media (max-width: 560px) { .brand span { display: none; } .cp-btn { max-width: 170px; } .cart-btn .t { display: none; } }
+
+/* Barra inferior en móvil */
+.bottom { display: none; }
+@media (max-width: 980px) {
+  .bottom { display: grid; grid-template-columns: repeat(4, 1fr); position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--paper); border-top: 1px solid var(--line); padding: 4px var(--gr) calc(4px + env(safe-area-inset-bottom, 0px)) var(--gl); }
+  .bottom a { display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; font-size: 11.5px; font-weight: 600; color: var(--muted); padding: 6px 0; }
+  .bottom a svg { width: 24px; height: 24px; }
+  .bottom a[aria-current="page"] { color: var(--coral); }
+  body { padding-bottom: 72px; }
+}
+
+/* Inicio: foto */
+.hero { position: relative; background: var(--navy-2); }
+.hero img { width: 100%; height: clamp(340px, 50vw, 560px); object-fit: cover; object-position: center 40%; }
+.hero .over { position: absolute; inset: auto 0 0 0; background: linear-gradient(to top, rgba(15,31,61,.9), rgba(15,31,61,0)); padding-top: 100px; }
+.hero .over .wrap { padding-block: 0 30px; color: #fff; }
+.hero h1 { color: #fff; font-size: clamp(30px, 4.8vw, 52px); font-weight: 700; max-width: 20ch; }
+.hero p { margin: 10px 0 20px; color: #DCE4F2; max-width: 50ch; font-size: 17.5px; }
+.hero .ctas { display: flex; flex-wrap: wrap; gap: 10px; }
+.hero .credit { position: absolute; right: var(--gr); top: 14px; background: rgba(255,255,255,.92); color: var(--navy); font-size: 12.5px; font-weight: 600; padding: 4px 10px; border-radius: 999px; }
+@media (max-width: 600px) { .hero img { height: 250px; } .hero .over { position: static; background: var(--navy-2); padding-top: 0; } .hero .over .wrap { padding-block: 20px 24px; } .hero p { font-size: 16px; } }
+
+/* Franja de confianza */
+.trust { background: var(--navy); color: #fff; }
+.trust .wrap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; padding-block: 16px; }
+.trust div { display: flex; gap: 10px; align-items: center; font-size: 14.5px; line-height: 1.3; }
+.trust svg { width: 34px; height: 34px; flex: none; color: #F2A0AE; }
+.trust b { display: block; }
+.trust span span { color: #C8D4E8; font-size: 13px; }
+@media (max-width: 860px) { .trust .wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Productos sin recuadro */
+.rail { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(200px, 1fr); gap: 22px; overflow-x: auto; padding-bottom: 6px; scroll-snap-type: x mandatory; }
+.rail > * { scroll-snap-align: start; }
+@media (min-width: 981px) { .rail { grid-auto-flow: row; grid-template-columns: repeat(3, minmax(0, 1fr)); overflow: visible; } }
+.card { background: none; border: 0; display: flex; flex-direction: column; text-align: left; padding: 0; min-width: 0; color: var(--ink); text-decoration: none; position: relative; }
+.card .ph { aspect-ratio: 1 / 1; background: var(--mist); position: relative; overflow: hidden; border-radius: 14px; }
+.card .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s; }
+.card:hover .ph img { transform: scale(1.04); }
+.card .bd { padding: 10px 2px 0; display: flex; flex-direction: column; gap: 1px; flex: 1; }
+.card .nm { font-weight: 600; font-size: 16px; line-height: 1.3; }
+.card .fm { color: var(--muted); font-size: 13.5px; }
+.card .row { display: flex; align-items: baseline; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
+.card .pp { font-family: var(--head); font-size: 21px; font-weight: 700; color: var(--ink); }
+.card .pp.off { color: var(--coral); }
+.card s { color: var(--muted); font-size: 13.5px; }
+.card .pk { color: var(--muted); font-size: 12.5px; margin-left: auto; }
+.qa { position: absolute; right: 10px; bottom: 10px; width: 40px; height: 40px; border-radius: 50%; background: #fff; color: var(--navy); display: grid; place-items: center; box-shadow: 0 2px 10px rgba(15,31,61,.18); font-size: 24px; font-weight: 500; line-height: 1; transition: background .15s, color .15s; }
+.card:hover .qa { background: var(--coral); color: #fff; }
+.badge { position: absolute; left: 10px; top: 10px; background: #fff; color: var(--navy); font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px; }
+.badge.off { background: var(--coral); color: #fff; }
+.badge.fresh { background: var(--navy); color: #fff; }
+.badge.local { top: auto; bottom: 12px; background: var(--warn-bg); color: var(--warn); }
+.ill { width: 100%; height: 100%; display: grid; place-items: center; background: var(--dusk-2); color: var(--navy); }
+.ill svg { width: 62%; height: auto; }
+.pgrid { display: grid; gap: 26px 20px; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); }
+@media (max-width: 460px) { .pgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 12px; } .card .pp { font-size: 18px; } .card .pk { display: none; } }
+
+/* Lonja + selección del mes */
+.duo { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 26px; align-items: start; }
+.duo .pgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.month { background: var(--navy); color: #fff; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; position: relative; overflow: hidden; }
+.month h3 { color: #fff; font-size: 24px; }
+.month p { margin: 0; color: #D8E0EE; }
+.month .art { position: absolute; right: -18px; bottom: -10px; width: 170px; color: rgba(255,255,255,.16); }
+.month .btn { align-self: flex-start; position: relative; }
+@media (max-width: 860px) { .duo { grid-template-columns: minmax(0, 1fr); } .duo .pgrid { grid-template-columns: repeat(3, minmax(150px, 1fr)); overflow-x: auto; } }
+
+/* Primer pedido */
+.promo { background: var(--coral-soft); border-radius: 16px; padding: 22px 26px; display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; justify-content: space-between; }
+.promo h3 { color: var(--coral-2); font-size: 22px; }
+.promo p { margin: 4px 0 0; color: var(--ink); }
+.promo code { font-family: var(--head); font-weight: 700; background: #fff; color: var(--coral-2); border: 1.5px dashed var(--coral); border-radius: 8px; padding: 6px 12px; font-size: 18px; letter-spacing: .06em; }
+
+/* Cómo trabajamos (estilo de sus carteles) */
+.craft { background: var(--dusk); color: var(--navy-3); position: relative; overflow: hidden; }
+.craft h2 { color: var(--navy-3); }
+.craft .lead { color: #22385F; }
+.craft .deco1 { position: absolute; right: -30px; top: 20px; width: 230px; color: rgba(15,31,61,.25); }
+.craft .deco2 { position: absolute; left: -24px; bottom: -14px; width: 170px; color: rgba(15,31,61,.22); }
+.steps { list-style: none; margin: 26px 0 0; padding: 0; display: grid; gap: 22px; grid-template-columns: repeat(4, minmax(0, 1fr)); position: relative; }
+.steps li { display: grid; gap: 8px; align-content: start; }
+.steps svg { width: 54px; height: 54px; color: var(--navy-3); }
+.steps b { font-family: var(--head); font-size: 18px; }
+.steps span { font-size: 14.5px; color: #22385F; }
+.craft .quote { margin-top: 28px; font-family: var(--head); font-size: clamp(20px, 2.6vw, 26px); font-weight: 600; color: var(--navy-3); position: relative; }
+@media (max-width: 860px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Packs */
+.packs { display: grid; gap: 26px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+.pack { background: var(--mist); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+.pack .ph { aspect-ratio: 16 / 10; background: var(--dusk-2); position: relative; }
+.pack .ph img { width: 100%; height: 100%; object-fit: cover; }
+.pack .bd { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.pack h3 { font-size: 24px; }
+.ppl { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
+.ppl .chip { min-height: 32px; padding: 3px 12px; background: #fff; }
+.ppl .chip[aria-pressed="true"] { background: var(--navy); }
+.items { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 14.5px; }
+.items li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: baseline; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+.items .q { color: var(--muted); font-size: 13px; }
+.items select, .sel { border: 1px solid var(--line); border-radius: 8px; padding: 4px 6px; background: #fff; max-width: 100%; font-weight: 600; }
+.note { font-size: 13.5px; color: var(--ok); background: var(--ok-bg); border-radius: 8px; padding: 6px 10px; }
+.pack .foot { margin-top: auto; display: flex; align-items: end; justify-content: space-between; gap: 12px; }
+.pack .total s { color: var(--muted); font-size: 14px; }
+.pack .total b { display: block; font-family: var(--head); font-size: 28px; font-weight: 700; line-height: 1.1; color: var(--ink); }
+.pack .total small { color: var(--ok); font-weight: 600; font-size: 13px; }
+
+/* Presupuesto */
+.bud { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 28px; align-items: start; }
+.bud .box { background: var(--mist); border-radius: 16px; padding: 24px; }
+.bud label { display: block; font-size: 13px; font-weight: 700; color: var(--muted); margin: 16px 0 6px; }
+.bud input[type=range] { width: 100%; accent-color: var(--coral); }
+.bud .amt { font-family: var(--head); font-size: 44px; font-weight: 700; color: var(--navy); line-height: 1; }
+.bud .chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.res { display: grid; gap: 14px; }
+.res .r { display: grid; grid-template-columns: 120px minmax(0, 1fr) auto; gap: 14px; align-items: center; border-radius: 14px; overflow: hidden; background: var(--mist); }
+.res .r .ph { height: 100%; min-height: 100px; background: var(--dusk-2); }
+.res .r .ph img { width: 100%; height: 100%; object-fit: cover; }
+.res .r .tx { padding-block: 10px; min-width: 0; }
+.res .r .tx span { color: var(--muted); font-size: 14px; display: block; }
+.res .r .act { padding-right: 16px; display: grid; gap: 6px; justify-items: end; }
+.res .r .act b { font-family: var(--head); font-size: 22px; }
+@media (max-width: 860px) { .bud { grid-template-columns: minmax(0, 1fr); } .res .r { grid-template-columns: 90px minmax(0, 1fr); } .res .r .act { grid-column: 1 / -1; padding: 0 14px 12px; display: flex; justify-content: space-between; align-items: center; } }
+
+/* Asistente */
+.chat { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--mist); display: flex; flex-direction: column; }
+.chat .hd { display: flex; gap: 12px; align-items: center; padding: 12px 14px; background: var(--navy-2); color: #fff; }
+.chat .hd b { display: block; color: #fff; font-family: var(--head); }
+.chat .hd small { color: #AFC0DB; }
+.msgs { flex: 1; padding: 16px; display: flex; flex-direction: column; gap: 10px; overflow: auto; }
+.bub { max-width: 88%; padding: 10px 14px; border-radius: 16px; font-size: 15px; }
+.bub.bot { background: #fff; border-top-left-radius: 4px; align-self: flex-start; box-shadow: 0 1px 2px rgba(15,31,61,.06); }
+.bub.me { background: var(--navy); color: #fff; border-top-right-radius: 4px; align-self: flex-end; }
+.reco { display: grid; grid-template-columns: 90px minmax(0, 1fr); gap: 12px; margin-top: 10px; background: var(--mist); border-radius: 12px; overflow: hidden; }
+.reco .ph { background: var(--dusk-2); min-height: 90px; }
+.reco .ph img { width: 100%; height: 100%; object-fit: cover; }
+.reco .tx { padding: 10px 12px 10px 0; display: grid; gap: 4px; }
+.quick { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 16px 12px; }
+.chat form { display: flex; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--line); background: #fff; }
+.chat form input { flex: 1; min-width: 0; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; min-height: 40px; }
+.fab { position: fixed; z-index: 25; right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(18px + env(safe-area-inset-bottom, 0px)); display: inline-flex; align-items: center; gap: 10px; border: 0; background: var(--navy-2); color: #fff; border-radius: 999px; padding: 5px 16px 5px 5px; font-weight: 600; box-shadow: 0 6px 22px rgba(15,31,61,.28); }
+.bot-ic { width: 50px; height: 50px; border-radius: 50%; background: var(--coral); color: #fff; display: grid; place-items: center; flex: none; }
+.bot-ic svg { width: 36px; height: 36px; stroke-width: 3; }
+.bot-ic.sm { width: 38px; height: 38px; } .bot-ic.sm svg { width: 28px; height: 28px; }
+.fab:hover .bot-ic svg { transform: rotate(-8deg); transition: transform .2s; }
+.hint { position: fixed; z-index: 25; right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(84px + env(safe-area-inset-bottom, 0px)); width: min(260px, calc(100% - 32px)); background: #fff; border-radius: 14px 14px 4px 14px; padding: 12px 30px 12px 14px; font-size: 14.5px; box-shadow: 0 6px 22px rgba(15,31,61,.18); cursor: pointer; }
+.hint-x { position: absolute; right: 4px; top: 4px; border: 0; background: none; font-size: 18px; color: var(--muted); width: 28px; height: 28px; }
+.bot-panel { position: fixed; z-index: 42; right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); width: min(400px, calc(100% - 32px)); }
+.bot-panel .chat { height: min(600px, calc(100vh - 120px)); box-shadow: 0 14px 40px rgba(15,31,61,.3); }
+.x2 { margin-left: auto; border: 0; background: rgba(255,255,255,.12); width: 34px; height: 34px; border-radius: 50%; font-size: 20px; color: #fff; flex: none; }
+@media (max-width: 980px) { .fab { bottom: calc(80px + env(safe-area-inset-bottom, 0px)); padding: 4px; } .fab-t { display: none; } .hint { bottom: calc(144px + env(safe-area-inset-bottom, 0px)); } }
+@media (max-width: 600px) { .bot-panel { left: 0; right: 0; bottom: 0; width: 100%; } .bot-panel .chat { height: calc(100vh - 60px); height: calc(100dvh - 60px); border-radius: 16px 16px 0 0; padding-bottom: env(safe-area-inset-bottom, 0px); } }
+
+/* Aviso al añadir */
+.fly { position: fixed; z-index: 35; right: calc(16px + env(safe-area-inset-right, 0px)); top: calc(84px + env(safe-area-inset-top, 0px)); width: min(360px, calc(100% - 32px)); background: #fff; border-radius: 16px; box-shadow: 0 14px 40px rgba(15,31,61,.25); padding: 16px; display: grid; gap: 10px; }
+.fly .ok { display: flex; gap: 8px; align-items: center; font-weight: 700; color: var(--ok); }
+.fly .mini { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.fly .mini .card .ph { border-radius: 10px; }
+.fly .mini .card .nm { font-size: 13.5px; }
+.fly .mini .card .pp { font-size: 16px; }
+.fly .mini .qa { width: 32px; height: 32px; font-size: 20px; right: 6px; bottom: 6px; }
+.fly .acts { display: flex; gap: 8px; justify-content: space-between; align-items: center; }
+@media (max-width: 600px) { .fly { top: auto; bottom: calc(76px + env(safe-area-inset-bottom, 0px)); } }
+
+/* Ficha, cesta, código postal */
+.veil { position: fixed; inset: 0; background: rgba(15,31,61,.5); z-index: 40; }
+.sheet { position: fixed; z-index: 41; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(820px, calc(100% - 32px)); max-height: calc(100% - 40px); overflow: auto; background: #fff; border-radius: 18px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.sheet .ph { background: var(--mist); position: relative; min-height: 100%; }
+.sheet .ph img { width: 100%; height: 100%; object-fit: cover; }
+.sheet .ph .ill { min-height: 300px; }
+.sheet .bd { padding: 22px 22px 22px; display: grid; gap: 14px; align-content: start; }
+.sheet h3 { font-size: 28px; }
+.sheet .big { font-family: var(--head); font-size: 28px; font-weight: 700; }
+.lbl { font-size: 13px; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.stepper { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 999px; }
+.stepper button { width: 40px; height: 40px; border: 0; background: transparent; font-size: 20px; color: var(--navy); }
+.stepper output { min-width: 30px; text-align: center; font-weight: 700; }
+.sheet .foot { display: flex; gap: 10px; align-items: center; }
+.sheet .foot .btn { flex: 1; }
+.tip { background: var(--mist); border-radius: 12px; padding: 12px 14px; font-size: 14.5px; }
+.tip b { font-family: var(--head); color: var(--navy); display: block; }
+.x { position: absolute; left: 12px; top: 12px; width: 38px; height: 38px; border-radius: 50%; border: 0; background: rgba(255,255,255,.94); color: var(--navy); font-size: 22px; z-index: 2; }
+.eta { display: flex; gap: 8px; align-items: center; font-size: 14px; font-weight: 600; color: var(--ok); }
+.eta.warn { color: var(--warn); }
+.eta svg { flex: none; }
+@media (max-width: 700px) { .sheet { left: 0; right: 0; top: auto; bottom: 0; transform: none; width: 100%; border-radius: 18px 18px 0 0; grid-template-columns: minmax(0, 1fr); padding-bottom: env(safe-area-inset-bottom, 0px); max-height: calc(100% - 30px); } .sheet .ph { aspect-ratio: 16 / 10; min-height: 0; } .sheet .ph .ill { min-height: 0; } }
+.drawer { position: fixed; z-index: 41; top: 0; right: 0; bottom: 0; width: min(430px, 100%); background: #fff; display: flex; flex-direction: column; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); padding-right: env(safe-area-inset-right, 0px); }
+.drawer .hd { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--line); }
+.drawer .hd h3 { font-size: 24px; }
+.drawer .hd button { border: 0; background: var(--mist); width: 36px; height: 36px; border-radius: 50%; font-size: 20px; color: var(--navy); }
+.drawer .lines { flex: 1; overflow: auto; padding: 4px 20px; }
+.line { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.line b { font-weight: 600; }
+.line .d { color: var(--muted); font-size: 13.5px; }
+.line .p { font-weight: 700; text-align: right; }
+.line .ctl { display: flex; gap: 6px; justify-content: end; align-items: center; }
+.line .ctl button { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--line); background: #fff; color: var(--navy); }
+.line .warnline { grid-column: 1 / -1; font-size: 13px; color: var(--warn); }
+.drawer .sum { border-top: 1px solid var(--line); padding: 14px 20px 18px; display: grid; gap: 10px; background: var(--mist); }
+.sum .r { display: flex; justify-content: space-between; gap: 12px; font-size: 15px; }
+.sum .r.t { font-family: var(--head); font-size: 22px; font-weight: 700; }
+.bar { height: 6px; border-radius: 999px; background: var(--line); overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--coral); border-radius: 999px; }
+.small { font-size: 13.5px; color: var(--muted); }
+.days { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; }
+.days .chip { white-space: nowrap; font-size: 13px; }
+.done { padding: 22px 20px; display: grid; gap: 12px; }
+.pop { position: fixed; z-index: 41; top: calc(84px + env(safe-area-inset-top, 0px)); right: var(--gr); width: min(360px, calc(100% - 32px)); background: #fff; border-radius: 16px; padding: 18px; display: grid; gap: 10px; box-shadow: 0 14px 40px rgba(15,31,61,.25); }
+.pop input { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; min-height: 44px; font-size: 18px; letter-spacing: .08em; }
+.pop ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 14px; }
+footer { background: var(--navy-3); color: #AFC0DB; font-size: 14px; }
+footer .wrap { padding-block: 30px; display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+footer b { color: #fff; display: block; font-family: var(--head); }
+.toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 50; background: var(--ink); color: #fff; padding: 10px 18px; border-radius: 999px; font-weight: 600; font-size: 14px; max-width: calc(100% - 32px); text-align: center; }
+@media (max-width: 980px) { .toast { bottom: calc(146px + env(safe-area-inset-bottom, 0px)); } }
+.view { display: none; }
+.view.on { display: block; }
+.pagehead { padding-block: 34px 6px; }
+.pagehead .art { width: 110px; color: var(--dusk); float: right; margin-left: 12px; }
+@media (max-width: 600px) { .pagehead .art { display: none; } }
+@media (prefers-reduced-motion: reduce) { .card .ph img, .fab .bot-ic svg, .link::after { transition: none; } .card:hover .ph img { transform: none; } }
+
+/* ---------- Mostrador ---------- */
+.vswitch { display: inline-flex; background: var(--mist); border-radius: 999px; padding: 4px; gap: 2px; margin-top: 16px; }
+.vswitch a { padding: 8px 16px; border-radius: 999px; font-weight: 600; font-size: 14px; color: var(--navy); text-decoration: none; display: inline-flex; gap: 8px; align-items: center; min-height: 38px; }
+.vswitch a svg { width: 18px; height: 18px; }
+.vswitch a[aria-current] { background: var(--navy); color: #fff; }
+.mhero { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 36px; align-items: center; padding-block: 26px 10px; }
+.mphoto { position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 4 / 5; max-height: 600px; background: var(--mist); }
+.mphoto img { width: 100%; height: 100%; object-fit: cover; }
+.spot { position: absolute; transform: translate(-14px, -50%); border: 0; background: none; padding: 0; display: flex; align-items: center; gap: 8px; }
+.spot .dot { width: 28px; height: 28px; border-radius: 50%; background: var(--coral); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 18px; line-height: 1; animation: spot 2.2s infinite; }
+.spot .lab { background: #1C1E1D; color: #F4F4F0; font-family: var(--chalk); padding: 4px 10px 3px; border-radius: 4px; font-size: 15px; letter-spacing: .04em; box-shadow: 0 3px 8px rgba(0,0,0,.25); }
+@keyframes spot { 0% { box-shadow: 0 0 0 0 rgba(200,50,79,.55); } 70% { box-shadow: 0 0 0 14px rgba(200,50,79,0); } 100% { box-shadow: 0 0 0 0 rgba(200,50,79,0); } }
+.mphoto .cap { position: absolute; left: 12px; right: 12px; bottom: 12px; background: rgba(15,31,61,.8); color: #fff; font-size: 13px; line-height: 1.4; padding: 8px 12px; border-radius: 10px; }
+.mhero h2 { margin-top: 4px; }
+.mhero .pts { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 12px; }
+.mhero .pts li { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; }
+.mhero .pts svg { width: 34px; height: 34px; color: var(--navy); }
+.mhero .pts b { display: block; font-family: var(--head); color: var(--navy); }
+.mhero .pts span { color: var(--muted); font-size: 15px; }
+.want { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 26px 0 14px; }
+.want .lbl { margin: 0 6px 0 0; font-size: 15px; color: var(--navy); font-family: var(--head); }
+.counter { border-radius: 22px; overflow: hidden; background: var(--navy-3); box-shadow: 0 18px 40px -24px rgba(15,31,61,.6); }
+.counter .glass { height: 12px; background: linear-gradient(180deg, #C9D3DE, #F3F6F9); }
+.counter .ice { padding: 30px 20px 34px; background-color: #EAF0F6;
+  background-image: radial-gradient(circle, #fff 0 2px, transparent 3px), radial-gradient(circle, #fff 0 3px, transparent 4px), radial-gradient(circle, #D3DFEB 0 2px, transparent 3px), radial-gradient(circle, #DCE6F0 0 2.5px, transparent 3.5px);
+  background-size: 22px 22px, 31px 29px, 17px 19px, 27px 25px; background-position: 0 0, 7px 11px, 3px 9px, 13px 4px;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 30px 20px; }
+.counter .steel { height: 14px; background: linear-gradient(180deg, #AEB8C4, #7E8A99); }
+.counter .base { color: #AFC0DB; padding: 12px 20px; display: flex; justify-content: space-between; gap: 6px 16px; flex-wrap: wrap; font-size: 13.5px; }
+.counter .base b { color: #fff; font-family: var(--head); }
+.tray { position: relative; border: 0; background: transparent; padding: 0; display: grid; justify-items: center; color: var(--navy); transition: opacity .2s, filter .2s; }
+.tray .pile { display: block; position: relative; width: 100%; aspect-ratio: 16 / 10; border-radius: 50%; background: radial-gradient(ellipse at 50% 55%, rgba(255,255,255,.95), rgba(255,255,255,0) 68%); transition: transform .2s; }
+.tray .pile svg { position: absolute; width: 74%; left: 13%; top: 10%; height: 62%; }
+.tray .pile svg.b { left: 22%; top: 26%; width: 66%; height: 54%; transform: rotate(-8deg); opacity: .6; }
+.tray .pile svg.c { left: 6%; top: 0; width: 60%; height: 50%; transform: rotate(7deg); opacity: .35; }
+.tray .pile img { position: absolute; inset: 8% 10%; width: 80%; height: 84%; object-fit: cover; border-radius: 46% 46% 40% 40% / 50% 50% 44% 44%; box-shadow: 0 6px 14px -6px rgba(15,31,61,.5); }
+.tray:hover .pile, .tray:focus-visible .pile { transform: translateY(-4px); }
+.slate { position: relative; margin-top: -10px; background: #1C1E1D; color: #F4F4F0; font-family: var(--chalk); padding: 8px 12px 6px; border-radius: 5px; border: 3px solid #7A5A35; min-width: 74%; transform: rotate(-2deg); box-shadow: 0 5px 10px -3px rgba(0,0,0,.35); line-height: 1.15; text-align: center; }
+.tray:nth-child(even) .slate { transform: rotate(1.6deg); }
+.tray:nth-child(3n) .slate { transform: rotate(-.6deg); }
+.slate .nm { display: block; font-size: 19px; letter-spacing: .04em; }
+.slate .pr { display: block; font-size: 15px; color: #E9DDA8; }
+.slate::before { content: ""; position: absolute; left: 50%; top: -16px; width: 3px; height: 14px; background: #7A5A35; transform: translateX(-50%); }
+.tray .flag { position: absolute; top: 4px; right: 4px; background: var(--coral); color: #fff; font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 999px; z-index: 1; }
+.tray.off { opacity: .28; filter: grayscale(1); }
+.soldout { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 14px; font-size: 14.5px; color: var(--muted); }
+.soldout s { font-family: var(--chalk); color: var(--ink); text-decoration-thickness: 2px; text-decoration-color: var(--coral); }
+.howshop { margin-top: 40px; border-top: 1px solid var(--line); padding-top: 28px; }
+.howshop .cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 16px; }
+.howshop .col { border-radius: 14px; padding: 16px 18px; }
+.howshop .col h3 { font-size: 17px; margin: 0 0 4px; }
+.howshop .col p { margin: 0 0 8px; font-size: 13.5px; }
+.howshop .col ul { margin: 0; padding-left: 18px; font-size: 14.5px; display: grid; gap: 6px; }
+.howshop .c1 { background: #E6F4EA; color: #0E3F26; } .howshop .c1 h3 { color: #0E5A35; }
+.howshop .c2 { background: #FFF3DC; color: #4F3100; } .howshop .c2 h3 { color: #7A4B00; }
+.howshop .c3 { background: #E8EEFD; color: #14296A; } .howshop .c3 h3 { color: #1D3D9E; }
+.teaser { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 0; border-radius: 22px; overflow: hidden; background: var(--navy); color: #fff; }
+.teaser .ph { min-height: 300px; position: relative; }
+.teaser .ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.teaser .tx { padding: 34px 32px; display: grid; gap: 12px; align-content: center; }
+.teaser .tx p { margin: 0; color: #CBD6E8; }
+.teaser .slates { display: flex; gap: 8px; flex-wrap: wrap; }
+.teaser .slates span { background: #1C1E1D; font-family: var(--chalk); padding: 4px 10px 2px; border-radius: 4px; border: 2px solid #7A5A35; font-size: 15px; }
+/* Ficha de mostrador */
+.ficha { width: min(940px, calc(100% - 32px)); grid-template-columns: minmax(0, 4fr) minmax(0, 6fr); }
+.ficha .ph { background-color: #EAF0F6; background-image: radial-gradient(circle, #fff 0 2px, transparent 3px), radial-gradient(circle, #D3DFEB 0 2px, transparent 3px); background-size: 22px 22px, 17px 19px; display: grid; place-items: center; padding: 30px 20px; }
+.ficha .ph > img { position: absolute; inset: 0; }
+.ficha .ph .pile { display: block; position: relative; width: 100%; aspect-ratio: 16 / 10; color: var(--navy); }
+.ficha .ph .pile svg { position: absolute; width: 80%; left: 10%; top: 6%; height: 66%; }
+.ficha .ph .pile svg.b { left: 20%; top: 30%; width: 70%; height: 58%; transform: rotate(-8deg); opacity: .6; }
+.ficha .ph .slate { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%) rotate(-2deg); min-width: 0; padding: 8px 16px 6px; }
+.ficha .ph .slate::before { display: none; }
+.ficha .ph .slate .nm { font-size: 22px; }
+.ficha .desc { margin: 4px 0 0; color: var(--muted); }
+.meter { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 16px; background: var(--mist); border-radius: 12px; padding: 12px 14px; margin: 0; }
+.meter div { min-width: 0; }
+.meter dt { font-size: 12px; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+.meter dd { margin: 0; font-weight: 600; font-size: 14.5px; line-height: 1.35; }
+.dots { display: inline-flex; gap: 4px; vertical-align: middle; margin-right: 6px; }
+.dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--dusk-2); }
+.dots i.on { background: var(--coral); }
+.ftabs { display: flex; gap: 2px; border-bottom: 1px solid var(--line); overflow-x: auto; scrollbar-width: none; }
+.ftabs button { border: 0; background: none; padding: 8px 10px; font-weight: 600; color: var(--muted); border-bottom: 3px solid transparent; white-space: nowrap; font-size: 14.5px; min-height: 40px; }
+.ftabs button[aria-selected="true"] { color: var(--navy); border-color: var(--coral); }
+.ftabs button .n { display: inline-grid; place-items: center; min-width: 18px; height: 18px; border-radius: 9px; background: var(--warn-bg); color: var(--warn); font-size: 11.5px; margin-left: 4px; }
+.fpanel { display: grid; gap: 10px; font-size: 15px; }
+.fpanel ul.how { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.fpanel ul.how li { display: grid; grid-template-columns: 112px 1fr; gap: 10px; }
+.fpanel ul.how b { color: var(--navy); font-family: var(--head); }
+.recipe { border: 1px solid var(--line); border-radius: 12px; }
+.recipe summary { list-style: none; cursor: pointer; padding: 12px 14px; display: flex; justify-content: space-between; gap: 10px; align-items: center; font-family: var(--head); font-weight: 600; color: var(--navy); font-size: 16px; }
+.recipe summary::-webkit-details-marker { display: none; }
+.recipe summary small { font-family: var(--font); color: var(--muted); font-weight: 500; font-size: 13px; white-space: nowrap; }
+.recipe summary::after { content: "+"; font-size: 20px; color: var(--coral); }
+.recipe[open] summary::after { content: "−"; }
+.recipe .in { padding: 0 14px 14px; display: grid; gap: 10px; }
+.recipe ol { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
+.recipe .buy { background: var(--mist); border-radius: 10px; padding: 10px 12px; display: grid; gap: 8px; font-size: 14px; }
+.recipe .buy ul { margin: 0; padding-left: 18px; }
+.recipe .buy .row { display: flex; justify-content: space-between; gap: 10px; align-items: center; flex-wrap: wrap; }
+.fpanel ul.tips, .fpanel ul.warn { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.fpanel ul.tips li { background: var(--mist); border-radius: 10px; padding: 10px 12px; }
+.fpanel ul.warn li { background: var(--warn-bg); color: #5C3900; border-radius: 10px; padding: 10px 12px; }
+.ficha .foot { flex-wrap: wrap; }
+@media (max-width: 980px) { .counter .ice { grid-template-columns: repeat(3, minmax(0, 1fr)); } .howshop .cols { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 760px) {
+  .mhero { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .mphoto { aspect-ratio: 4 / 4.4; }
+  .counter .ice { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 12px; padding: 24px 12px 28px; }
+  .slate .nm { font-size: 16px; } .slate .pr { font-size: 13.5px; }
+  .teaser { grid-template-columns: minmax(0, 1fr); } .teaser .ph { min-height: 220px; } .teaser .tx { padding: 24px 20px; }
+}
+@media (max-width: 700px) { .ficha { width: 100%; grid-template-columns: minmax(0, 1fr); } .ficha .ph { aspect-ratio: auto; min-height: 230px; padding: 20px 20px 70px; } .ficha .ph .pile { max-width: 300px; } .fpanel ul.how li { grid-template-columns: minmax(0, 1fr); gap: 0; } .ftabs button { padding: 8px 7px; font-size: 13.5px; } }
+@media (prefers-reduced-motion: reduce) { .spot .dot { animation: none; } .tray .pile { transition: none; } }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-fish" viewBox="0 0 160 80"><path d="M18 40C34 18 78 12 110 30L140 14C136 28 136 52 140 66L110 50C78 68 34 62 18 40Z"/><path d="M50 26C56 36 56 46 50 54"/><path d="M62 21C72 9 92 10 100 24"/><path d="M60 47C66 55 74 57 80 52"/><path d="M54 40C74 38 96 38 112 40"/><path d="M70 30q6 4 0 8M84 30q6 4 0 8M98 32q5 4 0 7M78 44q6 4 0 8M92 44q5 4 0 7"/><circle cx="33" cy="35" r="3"/><path d="M18 40l9 2"/></symbol>
+    <symbol id="i-shrimp" viewBox="0 0 160 110"><path d="M40 32C70 18 112 24 124 52C132 70 120 88 98 88C90 88 88 80 96 78C110 76 114 62 106 52C94 38 66 40 44 48Z"/><path d="M70 30c3 6 3 12 0 17M86 33c4 6 4 12 0 18M100 39c4 6 4 13 0 18M112 56c5 4 5 10 0 15"/><path d="M98 88l-10 12M100 88v14M102 88l8 12"/><path d="M40 32L16 26M42 34C26 42 14 62 8 84M44 36C32 52 28 74 30 96"/><path d="M60 48l-2 11M70 47l-1 11M80 48v11M90 50l1 10"/><circle cx="46" cy="37" r="3"/></symbol>
+    <symbol id="i-octopus" viewBox="0 0 120 120"><path d="M38 52C28 18 92 18 82 52"/><path d="M38 52C36 72 18 70 20 88C22 98 36 96 32 86"/><path d="M50 56C48 78 36 92 46 104C52 110 60 102 54 98"/><path d="M66 56C70 78 84 88 76 102C70 110 62 102 68 98"/><path d="M82 52C88 70 104 70 102 88C100 98 88 96 92 86"/><circle cx="51" cy="43" r="2.6"/><circle cx="69" cy="43" r="2.6"/><path d="M28 86h4M24 80h3M100 82h-3M96 76h-3"/></symbol>
+    <symbol id="i-shell" viewBox="0 0 120 104"><path d="M60 88C30 88 12 64 16 40C22 16 98 16 104 40C108 64 90 88 60 88Z"/><path d="M48 88l4 9h16l4-9"/><path d="M60 88V20M60 88L40 22M60 88L80 22M60 88L24 34M60 88L96 34M60 88L17 54M60 88L103 54"/></symbol>
+    <symbol id="i-squid" viewBox="0 0 160 80"><path d="M22 40C34 22 80 26 100 34V46C80 54 34 58 22 40Z"/><path d="M22 40L6 28l4 12-4 12Z"/><path d="M100 36c18-6 38-2 54-8M100 40c22 0 36 4 50 2M100 44c18 6 32 12 50 16M100 38c14-4 26-16 38-20"/><circle cx="92" cy="40" r="3"/></symbol>
+    <symbol id="i-flat" viewBox="0 0 160 80"><path d="M18 40C18 20 70 12 112 24C124 28 128 34 128 40S124 52 112 56C70 68 18 60 18 40Z"/><path d="M128 40L150 24V56Z"/><path d="M28 28q44-16 92-2M28 52q44 16 92 2" stroke-dasharray="2 6"/><circle cx="36" cy="33" r="2.6"/><circle cx="44" cy="29" r="2.6"/><path d="M60 40q24 6 48 0"/></symbol>
+    <symbol id="i-counter" viewBox="0 0 24 24"><path d="M3 10h18v9H3Z"/><path d="M3 10l2-4h14l2 4"/><path d="M7 14h4M14 13l3 3"/></symbol>
+    <symbol id="i-dish" viewBox="0 0 120 80"><path d="M10 50h100"/><path d="M18 50C20 30 42 18 60 18S100 30 102 50"/><path d="M60 18v-6M54 12h12"/><path d="M22 58h76"/></symbol>
+    <symbol id="i-boat" viewBox="0 0 64 64"><path d="M8 40h48l-8 12H16Z"/><path d="M32 40V10"/><path d="M32 12l18 24H32"/><path d="M4 58q6-4 12 0t12 0 12 0 12 0 12 0"/></symbol>
+    <symbol id="i-knife" viewBox="0 0 64 64"><path d="M12 44L46 12c8-4 12 4 6 10L22 52Z"/><path d="M22 52L12 62 4 54l10-10"/><path d="M30 34l4 4"/></symbol>
+    <symbol id="i-box" viewBox="0 0 64 64"><path d="M10 22L32 12 54 22V48L32 58 10 48Z"/><path d="M10 22l22 10 22-10M32 32v26"/><path d="M43 36v12M37 39l12 6M37 45l12-6"/></symbol>
+    <symbol id="i-van" viewBox="0 0 64 64"><path d="M4 18h34v28H4Z"/><path d="M38 28h12l10 10v8H38"/><circle cx="15" cy="48" r="5"/><circle cx="49" cy="48" r="5"/><path d="M42 31h7l6 6"/></symbol>
+    <symbol id="i-bot" viewBox="0 0 64 64"><path d="M32 7v6"/><circle cx="32" cy="6" r="2.6"/><rect x="13" y="14" width="38" height="32" rx="13"/><circle cx="25" cy="29" r="3.4"/><circle cx="39" cy="29" r="3.4"/><path d="M26 37q6 5 12 0"/><path d="M13 28l-7-5v12Z"/><path d="M51 28l7-5v12Z"/><path d="M23 46l-3 9h24l-3-9"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.6"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9H3Z"/><path d="M9 20v-6h6v6"/></symbol>
+    <symbol id="i-pack" viewBox="0 0 24 24"><path d="M3 8l9-4 9 4v9l-9 4-9-4Z"/><path d="M3 8l9 4 9-4M12 12v9"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><path d="M3 16C6 11 12 10 16 13l5-3c-1 2.5-1 4.5 0 7l-5-3c-4 3-10 2-13-1Z"/><path d="M3 7h6M3 4h9"/></symbol>
+    <symbol id="i-euro" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5a4.5 4.5 0 1 0 0 7M7 11h6M7 13.5h6"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4Z"/><path d="M8 9h8M8 12h5"/></symbol>
+    <symbol id="i-wave" viewBox="0 0 240 14" preserveAspectRatio="none"><path d="M0 7q10-6 20 0t20 0 20 0 20 0 20 0 20 0 20 0 20 0 20 0 20 0 20 0 20 0"/><path d="M0 12q10-5 20 0t20 0 20 0 20 0 20 0 20 0 20 0 20 0 20 0 20 0 20 0 20 0" opacity=".5"/></symbol>
+  </defs>
+</svg>
+
+<div class="demo"><div class="wrap"><span>Demo de Armiva para Pescados Granados · Precios orientativos · No se hacen pedidos reales</span><button class="techbtn" id="techBtn" aria-pressed="false">Ver qué hace Shopify</button></div></div>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio"><img src="img/logo.png" alt="Pescados Granados" width="44" height="44"><span><b>Pescados Granados</b><small>Elche, desde 1985</small></span></a>
+    <nav class="tabs" aria-label="Secciones">
+      <a href="#inicio">Inicio</a><a href="#packs">Packs</a><a href="#piezas">Pieza a pieza</a><a href="#presupuesto">Por presupuesto</a>
+    </nav>
+    <div class="hd-right">
+      <button class="cp-btn" id="cpBtn" aria-haspopup="dialog"><svg class="art" width="18" height="18"><use href="#i-pin"/></svg><span id="cpLabel">¿Dónde lo recibes?</span></button>
+      <button class="cart-btn" id="openCart" aria-label="Abrir la cesta"><svg class="art"><use href="#i-bag"/></svg><span class="t">Cesta</span><span class="n" id="cartN">0</span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- INICIO -->
+  <div class="view" id="v-inicio">
+    <section class="hero">
+      <img src="img/gamba-roja.jpg" alt="Gamba roja sobre hielo en Pescados Granados">
+      <span class="credit">Gamba roja · bandeja de 500 g</span>
+      <div class="over"><div class="wrap">
+        <h1>El pescado de la lonja de Calpe, limpio y cortado como en el mostrador</h1>
+        <p>Elige la pieza y cómo la quieres. Te la preparamos lista para cocinar y te la llevamos a casa.</p>
+        <div class="ctas"><a class="btn coral" href="#packs">Ver los packs</a><a class="btn ghostw" href="#piezas">Elegir pieza a pieza</a></div>
+      </div></div>
+    </section>
+    <div class="trust"><div class="wrap">
+      <div><svg class="art"><use href="#i-fish"/></svg><span><b>Desde 1985</b><span>4 pescaderías en Elche</span></span></div>
+      <div><svg class="art"><use href="#i-boat"/></svg><span><b>Lonja de Calpe</b><span>Género fresco cada mañana</span></span></div>
+      <div><svg class="art"><use href="#i-knife"/></svg><span><b>Corte incluido</b><span>Limpio y listo para cocinar</span></span></div>
+      <div><svg class="art"><use href="#i-van"/></svg><span><b>Hoy en casa</b><span>En Elche, si pides antes de las 12</span></span></div>
+    </div></div>
+
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-head"><div><div class="kicker">Lo que te recomendamos</div><h2>Lo que más sale esta semana</h2></div><a class="link" href="#packs">Ver todos los packs</a><span class="sh theme">Colección «Recomendados», ordenada a mano o por ventas</span></div>
+        <div class="rail" id="recoList"></div>
+      </div>
+    </section>
+
+    <section class="sec" style="padding-top:0">
+      <div class="wrap duo">
+        <div>
+          <div class="sec-head"><div><div class="kicker">Ofertas de la semana</div><h2>Lo mejor de la lonja</h2></div><span class="sh">Precio tachado y colección «Ofertas»</span></div>
+          <div class="pgrid" id="offerList"></div>
+        </div>
+        <aside class="month">
+          <svg class="art"><use href="#i-octopus"/></svg>
+          <div class="kicker" style="color:#F2A0AE">Cada mes</div>
+          <h3>Selección de pescado y marisco del mes</h3>
+          <p>Una caja elegida por nuestros pescaderos con lo mejor de temporada, para 2 o 4 personas. Te avisamos antes de prepararla y la cambias si quieres.</p>
+          <p style="font-size:22px;font-weight:800;color:#fff">desde 59 € al mes</p>
+          <span class="sh app">Shopify Subscriptions (app gratuita)</span>
+          <button class="btn white" id="monthBtn">Quiero probarla</button>
+        </aside>
+      </div>
+    </section>
+
+    <section class="sec" style="padding-top:0"><div class="wrap"><div class="promo">
+      <div><h3>Un 10 % menos en tu primer pedido</h3><p>Usa este código al pagar. Válido en packs y en pieza a pieza.</p></div>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><code>BIENVENIDA</code><a class="btn coral" href="#packs">Empezar a comprar</a></div>
+      <span class="sh">Código de descuento (de serie)</span>
+    </div></div></section>
+
+    <section class="sec" style="padding-top:0"><div class="wrap"><div class="teaser">
+      <div class="ph"><img src="img/mostrador.jpg" alt="Lenguados en el mostrador de Pescados Granados" loading="lazy"></div>
+      <div class="tx">
+        <div class="kicker" style="color:#F2A0AE">Nuevo · Vista mostrador</div>
+        <h2 style="color:#fff">Elige como en la pescadería</h2>
+        <p>Nuestro mostrador de hoy, con sus pizarras. Toca un pescado y te contamos a qué sabe, cómo cocinarlo y un par de recetas con la compra ya hecha.</p>
+        <div class="slates" aria-hidden="true"><span>LENGUADO</span><span>BOQUERONES</span><span>GAMBA ROJA</span><span>SEPIA</span></div>
+        <div><a class="btn coral" href="#mostrador">Entrar al mostrador</a></div>
+      </div>
+    </div></div></section>
+
+    <section class="craft sec">
+      <svg class="art deco1"><use href="#i-fish"/></svg>
+      <svg class="art deco2"><use href="#i-octopus"/></svg>
+      <div class="wrap" style="position:relative">
+        <div class="kicker" style="color:var(--navy-2)">Cómo trabajamos</div>
+        <h2>Como si estuvieras en la tienda</h2>
+        <p class="lead">Más de 40 años detrás del mostrador. En la web hacemos lo mismo que en la pescadería, solo que te lo llevamos.</p>
+        <ol class="steps">
+          <li><svg class="art"><use href="#i-boat"/></svg><b>De la lonja de Calpe</b><span>Cada mañana elegimos el género. En la web solo ves lo que tenemos ese día.</span></li>
+          <li><svg class="art"><use href="#i-knife"/></svg><b>Limpio y a tu gusto</b><span>Entero, abierto, en filetes o en rodajas. El marisco, crudo o cocido.</span></li>
+          <li><svg class="art"><use href="#i-box"/></svg><b>Envasado pieza a pieza</b><span>El corte llega intacto, sin agua, en caja con frío.</span></li>
+          <li><svg class="art"><use href="#i-van"/></svg><b>A tu puerta</b><span>El mismo día en Elche y alrededores; en 24 horas al resto de la Península.</span></li>
+        </ol>
+        <p class="quote">«Nadie se va sin su pescado limpio y listo para cocinar.»</p>
+        <span class="sh theme">Sección del tema con sus textos e ilustraciones</span>
+      </div>
+      <svg class="wave" style="position:absolute;bottom:0"><use href="#i-wave"/></svg>
+    </section>
+  </div>
+
+  <!-- PACKS -->
+  <div class="view" id="v-packs">
+    <div class="wrap pagehead"><svg class="art"><use href="#i-dish"/></svg><div class="kicker">Packs</div><h2>Lo pensamos por ti</h2><p class="lead">Las cantidades justas para las personas que elijas, con el pescado limpio y cortado para esa receta. Cada pack sale un 5 % más barato que comprar las piezas por separado.</p><p style="margin:10px 0 0"><span class="sh app">Shopify Bundles (app gratuita): packs fijos con hasta 3 opciones, como personas y pescado</span></p></div>
+    <section class="sec" style="padding-top:18px"><div class="wrap"><div class="packs" id="packList"></div></div></section>
+  </div>
+
+  <!-- PIEZA A PIEZA -->
+  <div class="view" id="v-piezas">
+    <div class="wrap pagehead"><svg class="art"><use href="#i-fish"/></svg><div class="kicker">Pieza a pieza</div><h2>Pescado y marisco</h2><p class="lead">Precio por pieza o bandeja con su peso aproximado. Al elegir, nos dices cómo te lo preparamos.</p><p style="margin:10px 0 0"><span class="sh">Colecciones por familia; el corte es una opción del producto</span></p><nav class="vswitch" aria-label="Cómo quieres ver el género"><a href="#piezas" aria-current="page"><svg class="art"><use href="#i-grid"/></svg>Vista tienda</a><a href="#mostrador"><svg class="art"><use href="#i-counter"/></svg>Vista mostrador</a></nav></div>
+    <section class="sec" style="padding-top:14px"><div class="wrap"><div class="chips" role="tablist" id="famTabs" style="margin-bottom:18px"></div><div class="pgrid" id="prodList"></div></div></section>
+  </div>
+
+  <!-- MOSTRADOR -->
+  <div class="view" id="v-mostrador">
+    <div class="wrap">
+      <div style="padding-top:22px"><nav class="vswitch" aria-label="Cómo quieres ver el género"><a href="#piezas"><svg class="art"><use href="#i-grid"/></svg>Vista tienda</a><a href="#mostrador" aria-current="page"><svg class="art"><use href="#i-counter"/></svg>Vista mostrador</a></nav></div>
+      <section class="mhero">
+        <div class="mphoto" id="mPhoto">
+          <img src="img/mostrador.jpg" alt="Mostrador de Pescados Granados con lenguados sobre hielo">
+          <button class="spot" data-ficha="Lenguado" style="left:46%;top:44%"><span class="dot" aria-hidden="true">+</span><span class="lab">LENGUADO</span></button>
+          <button class="spot" data-ficha="Mejillón" style="left:9%;top:35%"><span class="dot" aria-hidden="true">+</span><span class="lab">MEJILLÓN</span></button>
+          <div class="cap">Toca un punto para ver la ficha. En la tienda real, foto del mostrador entero con un punto en cada bandeja.</div>
+        </div>
+        <div>
+          <div class="kicker">Vista mostrador</div>
+          <h2>Como si estuvieras delante del mostrador</h2>
+          <p class="lead">Arriba, nuestro mostrador de verdad. Debajo, lo que tenemos hoy con su pizarra. Toca cualquier pescado y te contamos a qué sabe, cómo cocinarlo, un par de recetas y lo que conviene saber.</p>
+          <ul class="pts">
+            <li><svg class="art"><use href="#i-boat"/></svg><span><b>Solo lo que hay hoy</b>Lo que se acaba desaparece de la pizarra.</span></li>
+            <li><svg class="art"><use href="#i-dish"/></svg><span><b>Recetas con la compra hecha</b>Un botón y tienes en la cesta el pescado de la receta, ya con su corte.</span></li>
+            <li><svg class="art"><use href="#i-knife"/></svg><span><b>Lo que te diría el pescadero</b>Sabor, espinas, trucos y avisos de salud.</span></li>
+          </ul>
+          <p style="margin:14px 0 0"><span class="sh theme">Foto con puntos: sección del tema (algunos temas de pago la traen; si no, la hacemos)</span></p>
+        </div>
+      </section>
+
+      <div class="want" role="group" aria-label="¿Qué te apetece?" id="mWant"></div>
+      <p style="margin:-4px 0 12px"><span class="sh app">Filtros por metacampos: Search &amp; Discovery (app gratuita de Shopify)</span></p>
+      <div class="counter">
+        <div class="glass"></div>
+        <div class="ice" id="mIce"></div>
+        <div class="steel"></div>
+        <div class="base"><span><b>Mostrador de hoy</b> · <span id="mDate"></span></span><span>Lonja de Calpe · Calle Jorge Juan, 35</span></div>
+      </div>
+      <div class="soldout" id="mOut"></div>
+      <p style="margin:10px 0 0;display:flex;gap:6px;flex-wrap:wrap"><span class="sh">Stock por producto: inventario de serie; lo agotado se oculta solo</span><span class="sh theme">Mostrador con hielo y pizarras: sección a medida del tema</span></p>
+
+      <section class="howshop" aria-labelledby="hsT">
+        <div class="kicker">Para Andrés</div>
+        <h2 id="hsT" style="font-size:clamp(22px,2.6vw,28px)">Qué es Shopify y qué hacemos nosotros</h2>
+        <div class="cols">
+          <div class="col c1"><h3>Shopify de serie</h3><p>Sin pagar nada extra.</p><ul><li>El stock de cada pescado y que lo agotado no salga.</li><li>Sabor, grasa, espinas y avisos como campos de cada producto (metacampos).</li><li>Cada receta como ficha propia con su página web (metaobjetos).</li><li>El corte como opción del producto y la cesta.</li></ul></div>
+          <div class="col c2"><h3>App gratuita de Shopify</h3><p>Search &amp; Discovery.</p><ul><li>Los filtros «¿qué te apetece?»: plancha, horno, sin espinas…</li><li>«Combina bien con» al añadir a la cesta.</li></ul></div>
+          <div class="col c3"><h3>A medida en el tema (Armiva)</h3><p>Trabajo de diseño, sin cuota mensual.</p><ul><li>La foto del mostrador con puntos.</li><li>El mostrador dibujado con hielo y pizarras.</li><li>El botón «Añadir lo de la receta», que mete varios productos con su corte de una vez.</li></ul></div>
+        </div>
+        <p class="small" style="margin:14px 0 0">Lo que pondría Andrés: una foto del mostrador lleno y, si quiere, sus recetas. Las fichas de esta demo las hemos escrito nosotros como ejemplo.</p>
+      </section>
+    </div>
+    <div style="height:48px"></div>
+  </div>
+
+  <!-- PRESUPUESTO -->
+  <div class="view" id="v-presupuesto">
+    <div class="wrap pagehead"><svg class="art"><use href="#i-shell"/></svg><div class="kicker">Por presupuesto</div><h2>Dinos cuánto quieres gastar</h2><p class="lead">Y para cuántos sois. Te proponemos los packs que encajan, del que más aprovecha tu presupuesto al más ajustado.</p><p style="margin:10px 0 0"><span class="sh theme">Página a medida del tema, con los precios de los packs</span></p></div>
+    <section class="sec" style="padding-top:18px"><div class="wrap bud">
+      <div class="box">
+        <div class="lbl" style="margin:0">Quiero gastar como mucho</div>
+        <div class="amt price" id="bAmtLabel">60 €</div>
+        <input type="range" id="bAmount" min="20" max="200" step="5" value="60" aria-label="Presupuesto en euros">
+        <label>Somos</label>
+        <div class="chips" id="bPeople"></div>
+        <label>Para</label>
+        <div class="chips" id="bOcc"></div>
+      </div>
+      <div class="res" id="bOut" aria-live="polite"></div>
+    </div></section>
+  </div>
+
+</main>
+
+<footer><div class="wrap">
+  <div><b>Calle Jorge Juan, 35 · Elche</b>Lunes a sábado 9-21 h · domingo 9-14 h · 865 711 912</div>
+  <div><b>Porta de la Morera, 5 · Elche</b>Lunes a sábado 9-21 h · domingo 9-14 h · 966 610 915</div>
+  <div><b>Servicio a domicilio</b>686 973 996 · Tradición y referencia en el sector desde 1985</div>
+</div></footer>
+
+<nav class="bottom" aria-label="Secciones">
+  <a href="#inicio"><svg class="art"><use href="#i-home"/></svg>Inicio</a>
+  <a href="#packs"><svg class="art"><use href="#i-pack"/></svg>Packs</a>
+  <a href="#piezas"><svg class="art"><use href="#i-grid"/></svg>Piezas</a>
+  <a href="#presupuesto"><svg class="art"><use href="#i-euro"/></svg>Presupuesto</a>
+</nav>
+
+<div class="veil" id="veil" hidden></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="shName" hidden></div>
+<div class="sheet ficha" id="ficha" role="dialog" aria-modal="true" aria-labelledby="fiName" hidden></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Cesta" hidden></aside>
+<div class="pop" id="pop" role="dialog" aria-label="Código postal de entrega" hidden>
+  <b style="color:var(--navy)">¿Dónde lo recibes?</b>
+  <input id="cpIn" inputmode="numeric" maxlength="5" placeholder="03203" aria-label="Código postal">
+  <div class="small" id="cpInfo">Con tu código postal te decimos qué día te llega cada cosa y cuánto cuesta el envío.</div>
+  <ul><li>Elche y alrededores: el mismo día, con nuestro reparto.</li><li>Resto de la Península: en 24 horas, en caja con frío.</li><li>Sushi y elaborados: solo en Elche y alrededores.</li></ul>
+  <span class="sh">En el pago, la entrega local por código postal es de serie</span><span class="sh app">El aviso en la tienda: app de entregas (p. ej. Zapiet) o el tema</span>
+  <button class="btn navy" id="cpOk">Guardar</button>
+</div>
+<button class="fab" id="fab" aria-label="Abrir el asistente de compra"><span class="bot-ic"><svg class="art"><use href="#i-bot"/></svg></span><span class="fab-t">¿En qué te ayudo?</span></button>
+<div class="hint" id="hint" hidden><button class="hint-x" id="hintX" aria-label="Cerrar">×</button>¡Hola! ¿En qué te puedo ayudar?</div>
+<section class="bot-panel" id="botPanel" role="dialog" aria-label="Asistente de compra" hidden>
+  <div class="chat">
+    <div class="hd"><span class="bot-ic sm"><svg class="art"><use href="#i-bot"/></svg></span><div><b>Asistente de Pescados Granados</b><small>Pedidos, envíos, consejos · o te pasa con la pescadería</small></div><button class="x2" id="botClose" aria-label="Cerrar el asistente">×</button></div>
+    <div class="msgs" id="msgs" aria-live="polite"></div>
+    <div class="quick" id="quick"></div>
+    <form id="chatForm"><input id="chatIn" autocomplete="off" aria-label="Escribe tu pregunta" placeholder="Escribe tu pregunta"><button class="btn navy sm">Enviar</button></form>
+  </div>
+  <span class="sh theme" style="margin:8px 0 0">Asistente a medida (Armiva) en el tema; en la versión real, con IA y revisado por la pescadería</span>
+</section>
+<div class="fly" id="fly" role="status" hidden></div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(function () {
+  var PRODUCTS = [{"n": "Salmón en rodajas", "f": "Pescado azul", "c": ["Rodajas"], "fmt": "Rodaja ~150 g", "pk": 22.17, "pp": 3.33, "u": "kg", "img": "salmon"}, {"n": "Suprema de salmón", "f": "Pescado azul", "c": ["Supremas sin piel ni espinas"], "fmt": "Suprema ~150 g", "pk": 24.7, "pp": 3.71, "u": "kg", "img": "salmon"}, {"n": "Salmón, filete entero", "f": "Pescado azul", "c": ["Filete entero", "En tacos", "Para tartar o sashimi (congelado previamente)"], "fmt": "Filete ~1,3 kg", "pk": 28.49, "pp": 37.04, "u": "kg", "img": "salmon"}, {"n": "Boquerón", "f": "Pescado azul", "c": ["Entero limpio", "Sin cabeza", "Abierto en filetes sin espina (para fritura o vinagre)"], "fmt": "Bandeja 500 g", "pk": 6.73, "pp": 3.37, "u": "kg", "img": ""}, {"n": "Sardina", "f": "Pescado azul", "c": ["Entera limpia", "Sin cabeza", "Abierta sin espina"], "fmt": "Bandeja 500 g", "pk": 5.64, "pp": 2.82, "u": "kg", "img": ""}, {"n": "Caballa", "f": "Pescado azul", "c": ["Entera limpia", "Abierta", "En filetes"], "fmt": "Pieza ~300 g", "pk": 6.01, "pp": 1.8, "u": "kg", "img": ""}, {"n": "Bonito", "f": "Pescado azul", "c": ["En rodajas", "En lomos", "En tacos"], "fmt": "Rodaja ~200 g", "pk": 16, "pp": 3.2, "u": "kg", "img": "bonito"}, {"n": "Salmonete", "f": "Pescado azul", "c": ["Entero limpio", "En filetes (para fritura o plancha)"], "fmt": "Pieza ~150 g", "pk": 18.16, "pp": 2.72, "u": "kg", "img": ""}, {"n": "Atún rojo", "f": "Pescado azul", "c": ["En rodajas", "En lomos", "En tacos", "Para tartar o sashimi (congelado previamente)"], "fmt": "Filete ~150 g", "pk": 58.82, "pp": 8.82, "u": "kg", "img": "atun-rojo"}, {"n": "Ventresca", "f": "Pescado azul", "c": ["En filetes", "Para plancha"], "fmt": "Pieza ~200 g", "pk": 60, "pp": 12, "u": "kg", "img": "ventresca"}, {"n": "Merluza", "f": "Pescado blanco", "c": ["En rodajas", "En lomos", "En filetes", "Cola para horno", "Cabeza y espinas para caldo"], "fmt": "Rodaja ~150 g", "pk": 13.86, "pp": 2.08, "u": "kg", "img": "merluza"}, {"n": "Pescadilla", "f": "Pescado blanco", "c": ["Entera limpia", "Abierta", "En rodajas", "Mordida (para fritura)"], "fmt": "Pieza ~350 g", "pk": 9, "pp": 3.15, "u": "kg", "img": ""}, {"n": "Rape", "f": "Pescado blanco", "c": ["Cola entera", "En rodajas", "En medallones", "Cabeza para caldo"], "fmt": "Rodaja ~120 g", "pk": 22, "pp": 2.64, "u": "kg", "img": ""}, {"n": "Rodaballo", "f": "Pescado blanco", "c": ["Entero limpio", "En rodajas", "En filetes", "Para horno"], "fmt": "Pieza ~1 kg", "pk": 18, "pp": 18, "u": "kg", "img": ""}, {"n": "Bacalao", "f": "Pescado blanco", "c": ["En lomos", "En rodajas", "Desmigado"], "fmt": "Lomo ~300 g", "pk": 49.67, "pp": 14.9, "u": "kg", "img": ""}, {"n": "Lenguado", "f": "Pescado blanco", "c": ["Entero limpio sin piel", "En filetes"], "fmt": "Pieza ~250 g", "pk": 26.05, "pp": 6.51, "u": "kg", "img": "lenguado"}, {"n": "Dorada", "f": "Pescado blanco", "c": ["Entero limpio", "Abierto a la espalda", "En filetes", "Para horno o a la sal"], "fmt": "Pieza ~400 g", "pk": 14.37, "pp": 5.75, "u": "kg", "img": ""}, {"n": "Lubina", "f": "Pescado blanco", "c": ["Entero limpio", "Abierto a la espalda", "En filetes", "Para horno o a la sal"], "fmt": "Pieza ~400 g", "pk": 14.98, "pp": 5.99, "u": "kg", "img": ""}, {"n": "Dentón", "f": "Pescado blanco", "c": ["Entero limpio", "Abierto a la espalda", "En filetes", "Para horno o a la sal"], "fmt": "Pieza ~1,2 kg", "pk": 30, "pp": 36, "u": "kg", "img": ""}, {"n": "Gallina", "f": "Pescado blanco", "c": ["Entero limpio", "Abierto a la espalda", "En filetes", "Para horno o a la sal"], "fmt": "Pieza ~500 g", "pk": 15, "pp": 7.5, "u": "kg", "img": ""}, {"n": "San Pedro", "f": "Pescado blanco", "c": ["Entero limpio", "Abierto a la espalda", "En filetes", "Para horno o a la sal"], "fmt": "Pieza ~800 g", "pk": 30, "pp": 24, "u": "kg", "img": ""}, {"n": "Lubina salvaje", "f": "Pescado blanco", "c": ["Entero limpio", "Abierto a la espalda", "En filetes", "Para horno o a la sal"], "fmt": "Pieza ~1 kg", "pk": 30, "pp": 30, "u": "kg", "img": ""}, {"n": "Dorada salvaje", "f": "Pescado blanco", "c": ["Entero limpio", "Abierto a la espalda", "En filetes", "Para horno o a la sal"], "fmt": "Pieza ~800 g", "pk": 28, "pp": 22.4, "u": "kg", "img": ""}, {"n": "Palaya", "f": "Pescado blanco", "c": ["Limpia", "Enharinada para freír"], "fmt": "Bandeja 500 g", "pk": 16.0, "pp": 8.0, "u": "kg", "img": ""}, {"n": "Gamba roja", "f": "Marisco", "c": ["Crudo", "Cocido"], "fmt": "Bandeja 500 g", "pk": 62.5, "pp": 31.25, "u": "kg", "img": "gamba-roja"}, {"n": "Gamba blanca", "f": "Marisco", "c": ["Crudo", "Cocido"], "fmt": "Bandeja 500 g", "pk": 34.6, "pp": 17.3, "u": "kg", "img": ""}, {"n": "Cigalas", "f": "Marisco", "c": ["Crudo", "Cocido"], "fmt": "Bandeja 500 g", "pk": 42.8, "pp": 21.4, "u": "kg", "img": "cigalas"}, {"n": "Quisquilla", "f": "Marisco", "c": ["Crudo", "Cocido"], "fmt": "Bandeja 250 g", "pk": 45, "pp": 11.25, "u": "kg", "img": "quisquilla"}, {"n": "Langostino", "f": "Marisco", "c": ["Crudo", "Cocido"], "fmt": "Bandeja 500 g", "pk": 20.7, "pp": 10.35, "u": "kg", "img": ""}, {"n": "Cola de gamba pelada", "f": "Marisco", "c": ["Pelada, cruda o cocida"], "fmt": "Bandeja 250 g", "pk": 65.6, "pp": 16.4, "u": "kg", "img": ""}, {"n": "Galera", "f": "Marisco", "c": ["Crudo", "Cocido"], "fmt": "Bandeja 500 g", "pk": 18.9, "pp": 9.45, "u": "kg", "img": ""}, {"n": "Nécora", "f": "Marisco", "c": ["Crudo", "Cocido"], "fmt": "Bandeja 1 kg", "pk": 48, "pp": 48, "u": "kg", "img": ""}, {"n": "Buey", "f": "Marisco", "c": ["Crudo", "Cocido"], "fmt": "Pieza ~800 g", "pk": 22, "pp": 17.6, "u": "kg", "img": ""}, {"n": "Centolla", "f": "Marisco", "c": ["Crudo", "Cocido"], "fmt": "Pieza ~800 g", "pk": 25.17, "pp": 20.14, "u": "kg", "img": ""}, {"n": "Cangrejo azul", "f": "Marisco", "c": ["Crudo", "Cocido"], "fmt": "Bandeja 500 g", "pk": 14.9, "pp": 7.45, "u": "kg", "img": ""}, {"n": "Bogavante", "f": "Marisco", "c": ["Crudo", "Cocido"], "fmt": "Pieza ~500 g", "pk": 69.22, "pp": 34.61, "u": "kg", "img": ""}, {"n": "Langosta", "f": "Marisco", "c": ["Crudo", "Cocido"], "fmt": "Pieza ~800 g", "pk": 115, "pp": 92, "u": "kg", "img": ""}, {"n": "Coquina", "f": "Marisco", "c": ["Vivo, listo para cocinar"], "fmt": "Bandeja 500 g", "pk": 30, "pp": 15, "u": "kg", "img": ""}, {"n": "Mejillón", "f": "Marisco", "c": ["Vivo, listo para cocinar"], "fmt": "Malla 1 kg", "pk": 5.21, "pp": 5.21, "u": "kg", "img": "mejillon"}, {"n": "Mejillón bouchot", "f": "Marisco", "c": ["Vivo, listo para cocinar"], "fmt": "Malla 1 kg", "pk": 11.18, "pp": 11.18, "u": "kg", "img": "mejillon"}, {"n": "Almeja japónica", "f": "Marisco", "c": ["Vivo, listo para cocinar"], "fmt": "Bandeja 500 g", "pk": 18, "pp": 9, "u": "kg", "img": ""}, {"n": "Ostra Gillardeau", "f": "Marisco", "c": ["Viva", "Abierta para servir"], "fmt": "Caja de 6", "pk": 5, "pp": 30, "u": "ud", "img": "ostras"}, {"n": "Berberecho", "f": "Marisco", "c": ["Vivo, listo para cocinar"], "fmt": "Bandeja 500 g", "pk": 23.23, "pp": 11.62, "u": "kg", "img": ""}, {"n": "Navajas", "f": "Marisco", "c": ["Vivo, listo para cocinar"], "fmt": "Bandeja 500 g", "pk": 18.4, "pp": 9.2, "u": "kg", "img": ""}, {"n": "Almeja de Carril", "f": "Marisco", "c": ["Viva, lista para cocinar"], "fmt": "Bandeja 500 g", "pk": 84.7, "pp": 42.35, "u": "kg", "img": ""}, {"n": "Ostra gallega", "f": "Marisco", "c": ["Viva", "Abierta para servir"], "fmt": "Caja de 6", "pk": 3.5, "pp": 21, "u": "ud", "img": "ostras"}, {"n": "Percebe", "f": "Marisco", "c": ["Vivo, listo para cocinar"], "fmt": "Bandeja 250 g", "pk": 90, "pp": 22.5, "u": "kg", "img": ""}, {"n": "Cañaílla", "f": "Marisco", "c": ["Vivo, listo para cocinar"], "fmt": "Bandeja 500 g", "pk": 23.96, "pp": 11.98, "u": "kg", "img": ""}, {"n": "Sepia", "f": "Cefalópodos", "c": ["Limpia entera", "En tiras", "Troceada"], "fmt": "Pieza ~500 g", "pk": 14.35, "pp": 7.18, "u": "kg", "img": ""}, {"n": "Calamar", "f": "Cefalópodos", "c": ["Limpio entero", "En anillas", "Relleno"], "fmt": "Bandeja 500 g", "pk": 18, "pp": 9, "u": "kg", "img": ""}, {"n": "Pulpo", "f": "Cefalópodos", "c": ["Entero crudo", "Cocido", "En patas"], "fmt": "Pieza ~1,5 kg", "pk": 20, "pp": 30, "u": "kg", "img": ""}, {"n": "Pata de pulpo cocido", "f": "Cefalópodos", "c": ["Cocida, lista para servir"], "fmt": "2 patas ~400 g", "pk": 64.38, "pp": 25.75, "u": "kg", "img": ""}, {"n": "Lasaña de espinacas y pescadilla", "f": "Sushi y elaborados", "c": [], "fmt": "Bandeja individual", "pk": null, "pp": 4.9, "u": "ud", "img": ""}, {"n": "Ensaladilla de bonito", "f": "Sushi y elaborados", "c": [], "fmt": "Tarrina", "pk": null, "pp": 4.5, "u": "ud", "img": ""}, {"n": "Ensaladilla de bogavante", "f": "Sushi y elaborados", "c": [], "fmt": "Tarrina", "pk": null, "pp": 5.5, "u": "ud", "img": ""}, {"n": "Hamburguesa de merluza", "f": "Sushi y elaborados", "c": [], "fmt": "Bandeja", "pk": null, "pp": 5.8, "u": "ud", "img": ""}, {"n": "Sushi variado", "f": "Sushi y elaborados", "c": [], "fmt": "Bandeja 12 piezas", "pk": 1.1, "pp": 13.2, "u": "ud", "img": "sushi"}, {"n": "Caldo de pescado casero", "f": "Sushi y elaborados", "c": [], "fmt": "Botella 1 litro", "pk": null, "pp": 6.5, "u": "ud", "img": ""}];
+  var $ = function (s) { return document.querySelector(s); };
+  var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
+  var byName = {}; PRODUCTS.forEach(function (p) { p.local = p.f === 'Sushi y elaborados' && p.n !== 'Caldo de pescado casero'; byName[p.n] = p; });
+  var ICON = { 'Pescado blanco': 'fish', 'Pescado azul': 'fish', 'Marisco': 'shrimp', 'Cefalópodos': 'squid', 'Sushi y elaborados': 'dish' };
+  var SHELLS = ['Coquina', 'Mejillón', 'Mejillón bouchot', 'Almeja japónica', 'Berberecho', 'Navajas', 'Almeja de Carril', 'Ostra gallega', 'Ostra Gillardeau', 'Percebe', 'Cañaílla'];
+  var OFFERS = { 'Merluza': 10, 'Mejillón': 10, 'Salmón en rodajas': 10 };
+  var PACKS = [
+    { id: 'arroz', n: 'Arroz a banda', who: 'Fin de semana', occ: 'arroz', img: 'quisquilla', base: 4, items: [{ p: 'Cola de gamba pelada', q: 1 }, { p: 'Sepia', q: 1 }, { slot: ['Rape', 'Atún rojo'], q: 4, l: 'Pescado' }, { p: 'Caldo de pescado casero', q: 1 }], note: 'Con el caldo ya preparado', tip: 'Sofríe la sepia, luego la gamba un minuto y sácala. Arroz, caldo caliente y el pescado los últimos 8 minutos.' },
+    { id: 'paella', n: 'Paella marinera', who: 'Fin de semana', occ: 'arroz', img: 'mejillon', base: 4, items: [{ p: 'Cigalas', q: 1 }, { p: 'Calamar', q: 1 }, { p: 'Mejillón', q: 1 }, { p: 'Almeja japónica', q: 1 }, { slot: ['Rape', 'Atún rojo'], q: 4, l: 'Pescado' }, { p: 'Caldo de pescado casero', q: 1 }], tip: 'Abre el mejillón y la almeja aparte y usa su agua en el caldo. Las cigalas, encima al final.' },
+    { id: 'fritura', n: 'Fritura', who: 'Para compartir', occ: 'fritura', img: '', icon: 'fish', base: 4, items: [{ p: 'Boquerón', q: 1 }, { p: 'Calamar', q: 1 }, { p: 'Pescadilla', q: 2 }, { p: 'Palaya', q: 1 }, { p: 'Salmonete', q: 4 }], note: 'Limpio y listo para enharinar', tip: 'Harina de freír, aceite bien caliente y poca cantidad cada vez. La palaya, la última.' },
+    { id: 'plancha', n: 'Plancha de diario', who: 'Comida rápida', occ: 'diario', img: 'lenguado', base: 2, items: [{ slot: ['Dorada', 'Lubina', 'Atún rojo', 'Suprema de salmón', 'Lenguado', 'Merluza', 'Salmonete', 'Pescadilla'], q: 2, l: 'Pescado' }, { p: 'Quisquilla', q: 1 }], note: 'Abierto y limpio para la plancha', tip: 'Plancha muy caliente, primero por la piel y sin moverlo. La quisquilla, cocida 1 minuto con sal.' },
+    { id: 'semana', n: 'Semana en casa', who: 'Familia', occ: 'diario', img: 'merluza', base: 4, items: [{ slot: ['Merluza', 'Suprema de salmón'], q: 4, l: 'Comida 1' }, { slot: ['Boquerón', 'Sardina', 'Caballa'], q: 2, l: 'Comida 2' }, { p: 'Dorada', q: 2 }], tip: 'Lo azul se come primero. La dorada aguanta bien para el horno el tercer día.' },
+    { id: 'ninos', n: 'Sin espinas', who: 'Familias con niños', occ: 'ninos', img: 'salmon', base: 4, items: [{ p: 'Suprema de salmón', q: 4 }, { p: 'Merluza', q: 4 }, { p: 'Lenguado', q: 2 }], note: 'Todo en filetes, sin una espina', tip: 'Al horno con un poco de aceite, 12 minutos a 200 ºC. Rebozado, les encanta.' },
+    { id: 'mariscada', n: 'Mariscada', who: 'Celebración', occ: 'fiesta', img: 'cigalas', base: 4, items: [{ p: 'Gamba roja', q: 1 }, { p: 'Gamba blanca', q: 1 }, { p: 'Cigalas', q: 1 }, { p: 'Quisquilla', q: 1 }, { p: 'Ostra gallega', q: 1 }], prep: true, tip: 'Si lo pides cocido, te lo damos listo para servir. La gamba roja, mejor a la plancha con sal gorda.' },
+    { id: 'barbacoa', n: 'Barbacoa', who: 'Al aire libre', occ: 'barbacoa', img: 'lecha', base: 4, items: [{ p: 'Sardina', q: 1 }, { p: 'Salmón en rodajas', q: 4 }, { p: 'Gamba blanca', q: 1 }, { p: 'Sepia', q: 1 }], tip: 'Brasa sin llama. Sardina con sal gorda, la sepia a tiras y el salmón con piel hacia abajo.' },
+    { id: 'gourmet', n: 'Gourmet', who: 'Para darse un capricho', occ: 'fiesta', img: 'ventresca', base: 2, items: [{ p: 'Ventresca', q: 1 }, { p: 'Gamba roja', q: 1 }, { p: 'Ostra Gillardeau', q: 1 }], tip: 'La ventresca, vuelta y vuelta. Las ostras, recién abiertas con unas gotas de limón.' }
+  ];
+  var TIPS = {
+    'Pescado blanco': 'A la plancha, primero por la piel y sin moverlo; o al horno, 15 minutos a 200 ºC con un chorrito de aceite.',
+    'Pescado azul': 'Plancha muy caliente y sal gorda. No le des la vuelta hasta que se dore.',
+    'Marisco': 'Cocido: agua con sal como la del mar y fuera en cuanto vuelva a hervir. Si quieres, te lo cocemos nosotros.',
+    'Cefalópodos': 'Plancha fuerte y poco tiempo para que quede tierno, o guisado lento con cebolla.',
+    'Sushi y elaborados': 'Listo para tomar o en pocos minutos: sigue las indicaciones de la etiqueta.'
+  };
+  var PAIR = { 'Pescado blanco': ['Almeja japónica', 'Caldo de pescado casero'], 'Pescado azul': ['Ensaladilla de bonito', 'Gamba blanca'], 'Marisco': ['Ostra gallega', 'Quisquilla'], 'Cefalópodos': ['Gamba blanca', 'Mejillón'], 'Sushi y elaborados': ['Ostra Gillardeau', 'Ensaladilla de bogavante'] };
+  var FRESH = ['Gamba roja', 'Lenguado', 'Dorada', 'Boquerón', 'Salmonete', 'Cigalas'];
+  var RECO = [{ pk: 'mariscada' }, { pk: 'arroz' }, { p: 'Gamba roja' }, { p: 'Ventresca' }, { p: 'Lenguado' }, { p: 'Ostra Gillardeau' }];
+  var FAMS = ['Pescado blanco', 'Pescado azul', 'Marisco', 'Cefalópodos', 'Sushi y elaborados'];
+  var OCC = [['diario', 'Diario'], ['arroz', 'Arroz o paella'], ['fritura', 'Fritura'], ['fiesta', 'Celebración'], ['barbacoa', 'Barbacoa'], ['ninos', 'Niños'], ['', 'Me da igual']];
+  var state = { people: {}, slots: {}, prep: {}, fam: FAMS[0], cart: [], cp: '', day: null, sheet: null, bPeople: 4, bOcc: '' };
+
+  function eur(n) { return n.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' }); }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function unitPrice(p) { var d = OFFERS[p.n] || 0; return Math.round(p.pp * (100 - d)) / 100; }
+  function iconFor(p) { return SHELLS.indexOf(p.n) > -1 ? 'shell' : ICON[p.f] || 'fish'; }
+  function art(name) { return '<div class="ill"><svg class="art"><use href="#i-' + name + '"/></svg></div>'; }
+  function photo(img, alt, icon) { return img ? '<img src="img/' + img + '.jpg" alt="' + esc(alt) + '" loading="lazy">' : art(icon || 'fish'); }
+  function toast(t) { var el = $('#toast'); el.textContent = t; el.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(function () { el.hidden = true; }, 2200); }
+
+  /* ---------- Zona de entrega ---------- */
+  var LOCAL = ['032', '03130', '03138', '03330', '030', '03690', '03550', '03559', '03540', '03560'];
+  var WD = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+  function zone(cp) {
+    if (!/^\d{5}$/.test(cp)) return null;
+    var pr = +cp.slice(0, 2);
+    if (pr < 1 || pr > 52) return { k: 'bad' };
+    if (LOCAL.some(function (x) { return cp.indexOf(x) === 0; })) return { k: 'local', n: 'Elche y alrededores', fee: 3.9, free: 40 };
+    if (pr === 7) return { k: 'bal', n: 'Baleares', fee: 19.9, free: 150 };
+    if (pr === 35 || pr === 38 || pr === 51 || pr === 52) return { k: 'no', n: 'Canarias, Ceuta y Melilla' };
+    return { k: 'pen', n: 'Península', fee: 12.9, free: 100 };
+  }
+  function days(z) {
+    var out = [], d = new Date(), start = z.k === 'local' && d.getHours() < 12 ? 0 : 1;
+    for (var i = start; out.length < 5 && i < 16; i++) {
+      var x = new Date(d); x.setDate(d.getDate() + i); var w = x.getDay();
+      if (w === 0) continue;
+      if (z.k !== 'local' && (w === 1 || w === 6)) continue;
+      if (z.k === 'bal' && i < 2) continue;
+      out.push({ k: x.toISOString().slice(0, 10), t: i === 0 ? 'Hoy' : i === 1 ? 'Mañana' : WD[w].slice(0, 3) + ' ' + x.getDate(), long: i === 0 ? 'hoy' : i === 1 ? 'mañana' : 'el ' + WD[w] + ' ' + x.getDate() });
+    }
+    return out;
+  }
+  function eta(p) {
+    var z = zone(state.cp);
+    if (!z) return '<div class="eta warn"><svg class="art" width="18" height="18"><use href="#i-pin"/></svg><span>Dinos tu código postal y te decimos cuándo te llega.</span></div>';
+    if (z.k === 'bad' || z.k === 'no') return '<div class="eta warn">De momento no enviamos pescado fresco a esa zona.</div>';
+    if (p && p.local && z.k !== 'local') return '<div class="eta warn">Este producto solo lo llevamos en Elche y alrededores.</div>';
+    var d = days(z)[0];
+    return '<div class="eta"><svg class="art" width="18" height="18"><use href="#i-van"/></svg><span>Te llega ' + d.long + (z.k === 'local' && d.t === 'Hoy' ? ' si lo pides antes de las 12:00' : '') + '.</span></div>';
+  }
+  function setCp(cp) {
+    state.cp = cp; state.day = null; var z = zone(cp);
+    $('#cpLabel').textContent = z && z.n ? cp + (innerWidth > 560 ? ' · ' + z.n : '') : (innerWidth > 560 ? '¿Dónde lo recibes?' : 'Código postal');
+    renderAll();
+  }
+
+  /* ---------- Tarjetas ---------- */
+  function prodCard(p) {
+    var d = OFFERS[p.n], z = zone(state.cp);
+    var per = p.pk ? '<span class="pk">' + eur(p.pk) + (p.u === 'ud' ? '/ud' : '/kg') + '</span>' : '';
+    var lb = p.local ? '<span class="badge local">Solo en Elche</span>' : '';
+    var top = d ? '<span class="badge off">−' + d + ' %</span>' : FRESH.indexOf(p.n) > -1 ? '<span class="badge fresh">Hoy en lonja</span>' : '';
+    return '<button class="card" data-prod="' + esc(p.n) + '" aria-label="' + esc(p.n) + ', ' + eur(unitPrice(p)) + '"><div class="ph">' + photo(p.img, p.n, iconFor(p)) + top + lb + '<span class="qa" aria-hidden="true">+</span></div><div class="bd"><span class="nm">' + esc(p.n) + '</span><span class="fm">' + esc(p.fmt) + '</span><span class="row"><span class="pp price' + (d ? ' off' : '') + '">' + eur(unitPrice(p)) + '</span>' + (d ? '<s>' + eur(p.pp) + '</s>' : '') + per + '</span></div></button>';
+  }
+  function packMini(pk) {
+    var pr = packPrice(pk, pk.base);
+    return '<a class="card" href="#packs" data-gopack="' + pk.id + '" style="text-decoration:none"><div class="ph">' + photo(pk.img, pk.n, pk.icon) + '<span class="badge">Pack · ' + pk.base + ' personas</span><span class="qa" aria-hidden="true">+</span></div><div class="bd"><span class="nm">' + esc(pk.n) + '</span><span class="fm">' + esc(pk.who) + '</span><span class="row"><span class="pp price">' + eur(pr.final) + '</span><span class="pk">ahorras un 5 %</span></span></div></a>';
+  }
+
+  /* ---------- Packs ---------- */
+  function getPack(id) { return PACKS.filter(function (x) { return x.id === id; })[0]; }
+  function packLines(pk, people) {
+    var f = people / pk.base;
+    return pk.items.map(function (it, i) {
+      var name = it.slot ? (state.slots[pk.id + i] || it.slot[0]) : it.p;
+      var p = byName[name], q = Math.max(1, Math.ceil(it.q * f - 0.001));
+      return { i: i, it: it, p: p, q: q, sub: unitPrice(p) * q };
+    });
+  }
+  function packPrice(pk, people) { var full = packLines(pk, people).reduce(function (s, l) { return s + l.sub; }, 0); return { full: full, final: Math.round(full * 0.95 * 100) / 100 }; }
+  function renderPack(pk) {
+    var people = state.people[pk.id] || pk.base, lines = packLines(pk, people), pr = packPrice(pk, people);
+    var h = '<div class="ph">' + photo(pk.img, pk.n, pk.icon) + '<span class="badge">' + esc(pk.who) + '</span></div><div class="bd"><h3>' + esc(pk.n) + '</h3>' +
+      '<div class="ppl">Para <span role="group" aria-label="Personas">' + [2, 4, 6].map(function (n) { return '<button class="chip" data-pp="' + pk.id + '" data-n="' + n + '" aria-pressed="' + (n === people) + '">' + n + '</button>'; }).join(' ') + '</span> personas</div><ul class="items">';
+    lines.forEach(function (l) {
+      var left = l.it.slot ? '<label class="q" for="s-' + pk.id + l.i + '">' + esc(l.it.l) + '</label><br><select id="s-' + pk.id + l.i + '" data-slot="' + pk.id + l.i + '">' + l.it.slot.map(function (o) { return '<option' + (o === l.p.n ? ' selected' : '') + '>' + esc(o) + '</option>'; }).join('') + '</select>' : esc(l.p.n);
+      h += '<li><span>' + left + '<br><span class="q">' + l.q + ' × ' + esc(l.p.fmt) + '</span></span><span class="price">' + eur(l.sub) + '</span></li>';
+    });
+    h += '</ul>';
+    if (pk.note) h += '<div class="note">' + esc(pk.note) + '</div>';
+    if (pk.prep) h += '<label style="display:flex;gap:8px;align-items:center;font-size:14px;font-weight:600" for="pr-' + pk.id + '">Marisco <select class="sel" id="pr-' + pk.id + '" data-prep="' + pk.id + '"><option' + (state.prep[pk.id] ? '' : ' selected') + '>Crudo</option><option' + (state.prep[pk.id] ? ' selected' : '') + '>Cocido, sin coste</option></select></label>';
+    h += eta(null);
+    h += '<div class="foot"><div class="total"><s class="price">' + eur(pr.full) + '</s><b class="price">' + eur(pr.final) + '</b><small>Ahorras ' + eur(pr.full - pr.final) + '</small></div><button class="btn navy" data-addpack="' + pk.id + '">Añadir</button></div></div>';
+    return h;
+  }
+  function renderPacks() { $('#packList').innerHTML = PACKS.map(function (pk) { return '<article class="pack" id="pk-' + pk.id + '">' + renderPack(pk) + '</article>'; }).join(''); }
+  $('#packList').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-pp]'); if (b) { state.people[b.dataset.pp] = +b.dataset.n; $('#pk-' + b.dataset.pp).innerHTML = renderPack(getPack(b.dataset.pp)); return; }
+    var a = e.target.closest('[data-addpack]'); if (a) addPack(a.dataset.addpack, state.people[a.dataset.addpack]);
+  });
+  $('#packList').addEventListener('change', function (e) {
+    var s = e.target.closest('[data-slot]'); if (s) { state.slots[s.dataset.slot] = s.value; var id = s.dataset.slot.replace(/\d+$/, ''); $('#pk-' + id).innerHTML = renderPack(getPack(id)); return; }
+    var t = e.target.closest('[data-prep]'); if (t) state.prep[t.dataset.prep] = t.value !== 'Crudo';
+  });
+  function addPack(id, people) {
+    var pk = getPack(id); people = people || pk.base;
+    var lines = packLines(pk, people), pr = packPrice(pk, people);
+    state.cart.push({ name: 'Pack ' + pk.n + ' · ' + people + ' personas', detail: lines.map(function (l) { return l.q + ' × ' + l.p.n; }).join(', ') + (pk.prep && state.prep[id] ? ' · cocido' : ''), unit: pr.final, qty: 1, local: false });
+    updateCart(); fly('Pack ' + pk.n, [EXTRA[pk.occ]]);
+  }
+
+  /* ---------- Pieza a pieza ---------- */
+  function renderFams() { $('#famTabs').innerHTML = FAMS.map(function (f) { return '<button class="chip" role="tab" data-fam="' + f + '" aria-selected="' + (f === state.fam) + '" aria-pressed="' + (f === state.fam) + '">' + f + '</button>'; }).join(''); }
+  function renderProds() { $('#prodList').innerHTML = PRODUCTS.filter(function (p) { return p.f === state.fam; }).map(prodCard).join(''); }
+  $('#famTabs').addEventListener('click', function (e) { var b = e.target.closest('[data-fam]'); if (!b) return; state.fam = b.dataset.fam; renderFams(); renderProds(); });
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-prod]'); if (b) { openSheet(b.dataset.prod); return; }
+    var g = e.target.closest('[data-gopack]'); if (g) { setTimeout(function () { var el = document.getElementById('pk-' + g.dataset.gopack); if (el) el.scrollIntoView({ block: 'start' }); }, 30); }
+  });
+
+  /* ---------- Ficha ---------- */
+  function openSheet(name) { var p = byName[name]; state.sheet = { p: p, cut: p.c[0] || '', q: 1 }; drawSheet(); $('#veil').hidden = false; $('#sheet').hidden = false; $('#sheet .x').focus(); }
+  function drawSheet() {
+    var s = state.sheet, p = s.p, z = zone(state.cp), blocked = p.local && z && z.k !== 'local', d = OFFERS[p.n];
+    $('#sheet').innerHTML = '<div class="ph">' + photo(p.img, p.n, iconFor(p)) + '<button class="x" data-close aria-label="Cerrar">×</button></div><div class="bd"><div><div class="kicker">' + esc(p.f) + '</div><h3 id="shName">' + esc(p.n) + '</h3><div class="small">' + esc(p.fmt) + (p.pk ? ' · ' + eur(p.pk) + (p.u === 'ud' ? '/ud' : '/kg') : '') + '</div></div>' +
+      '<div style="display:flex;gap:10px;align-items:baseline"><span class="big price"' + (d ? ' style="color:var(--coral)"' : '') + '>' + eur(unitPrice(p) * s.q) + '</span>' + (d ? '<s class="small">' + eur(p.pp * s.q) + '</s>' : '') + '</div>' +
+      (p.c.length ? '<div><div class="lbl">¿Cómo te lo preparamos?</div><div class="chips">' + p.c.map(function (c) { return '<button class="chip" data-cut="' + esc(c) + '" aria-pressed="' + (c === s.cut) + '">' + esc(c) + '</button>'; }).join('') + '</div><span class="sh" style="margin-top:8px">El corte es una opción del producto (variantes)</span></div>' : '') +
+      eta(p) +
+      '<div class="foot"><div class="stepper"><button data-q="-1" aria-label="Quitar uno">−</button><output>' + s.q + '</output><button data-q="1" aria-label="Añadir uno">+</button></div><button class="btn coral" data-addprod' + (blocked ? ' disabled' : '') + '>' + (blocked ? 'No disponible en tu zona' : 'Añadir a la cesta') + '</button></div>' +
+      '<div class="tip"><b>Consejo del pescadero</b>' + esc(TIPS[p.f] || '') + '</div></div>';
+  }
+  $('#sheet').addEventListener('click', function (e) {
+    var s = state.sheet;
+    if (e.target.closest('[data-close]')) return closeAll();
+    var c = e.target.closest('[data-cut]'); if (c) { s.cut = c.dataset.cut; drawSheet(); return; }
+    var q = e.target.closest('[data-q]'); if (q) { s.q = Math.max(1, s.q + +q.dataset.q); drawSheet(); return; }
+    if (e.target.closest('[data-addprod]')) { addProd(s.p, s.q, s.cut); closeAll(); }
+  });
+  function addProd(p, q, cut) { state.cart.push({ name: p.n, detail: p.fmt + (cut ? ' · ' + cut : ''), unit: unitPrice(p), qty: q || 1, local: p.local }); updateCart(); fly(p.n, PAIR[p.f]); }
+  function fly(name, pairs) {
+    var z = zone(state.cp), sub = subtotal(), free = z && z.free ? z.free : 40;
+    var ship = sub >= free ? '<div class="small" style="color:var(--ok);font-weight:700">' + (z && z.n ? 'Tienes el envío gratis.' : 'Ya tienes el envío gratis en Elche y alrededores.') + '</div>' : '<div class="small">Te faltan <b>' + eur(free - sub) + '</b> para el envío gratis' + (z && z.n ? '' : ' en Elche') + '.</div><div class="bar"><i style="width:' + Math.min(100, sub / free * 100) + '%"></i></div>';
+    var mini = (pairs || []).map(function (n) { return byName[n]; }).filter(Boolean).filter(function (p) { return !state.cart.some(function (l) { return l.name === p.n; }); }).slice(0, 2);
+    $('#fly').innerHTML = '<div class="ok"><svg class="art" width="20" height="20"><use href="#i-bag"/></svg>' + esc(name) + ' está en tu cesta</div>' + ship +
+      (mini.length ? '<div class="lbl" style="margin:2px 0 0">Combina bien con</div><div class="mini">' + mini.map(prodCard).join('') + '</div><span class="sh">Productos complementarios (Search &amp; Discovery)</span>' : '') +
+      '<div class="acts"><button class="link" data-flyclose style="color:var(--muted)">Seguir comprando</button><button class="btn navy sm" data-flycart>Ver la cesta</button></div>';
+    $('#fly').hidden = false; clearTimeout(fly.t); fly.t = setTimeout(function () { $('#fly').hidden = true; }, 7000);
+  }
+
+
+  /* ---------- Mostrador ---------- */
+  var FICHAS = [
+{"n":"Lenguado","slate":"LENGUADO","ico":"flat","tags":["plancha","horno","ninos","suave"],
+ "desc":"Carne blanca, fina y suave. El favorito de los que dicen que no les gusta el pescado.",
+ "sabor":{"i":2,"grasa":"Magro","tex":"Fina y delicada","esp":"Muy pocas, salen enteras"},
+ "cook":[["Plancha","Entero sin piel, 3-4 minutos por lado a fuego medio-alto."],["Meunière","Enharinado, en sartén con mantequilla, 3 minutos por lado."],["Horno","15 minutos a 180 ºC con aceite y limón."]],
+ "rec":[{"t":"Lenguado a la meunière","time":"20 min","steps":["Seca bien los lenguados y pásalos por harina.","Dóralos en la sartén con mantequilla y un hilo de aceite, 3 minutos por lado.","Sácalos, añade a la sartén zumo de limón y perejil picado y riégalos con esa salsa."],"buy":[["Lenguado",2,"Entero limpio sin piel"]],"casa":"Harina, mantequilla, limón y perejil"},
+        {"t":"Filetes de lenguado al horno con almejas","time":"30 min","steps":["Haz una cama de patata panadera ya pochada en la fuente.","Pon encima los filetes con sal, ajo y perejil.","Añade las almejas y un chorro de vino blanco: 12 minutos a 190 ºC, hasta que se abran."],"buy":[["Lenguado",2,"En filetes"],["Almeja japónica",1,null]],"casa":"Patata, ajo, perejil y vino blanco"}],
+ "tips":["Pídenoslo sin piel: te lo dejamos listo y no tienes que pelearte con él.","Para niños, en filetes: no tiene ni una espina."],
+ "warn":["Alérgeno: pescado."]},
+
+{"n":"Merluza","slate":"MERLUZA","ico":"fish","tags":["horno","arroz","fritura","ninos","suave"],
+ "desc":"La de toda la vida: tierna, suave y fácil de cocinar de mil formas.",
+ "sabor":{"i":2,"grasa":"Magra","tex":"Tierna, se separa en lascas","esp":"En lomos, ninguna; la rodaja lleva la central"},
+ "cook":[["Rebozada","Rodajas en harina y huevo, 2-3 minutos por lado."],["En salsa verde","Lomos, 5-6 minutos a fuego suave en la salsa."],["Horno","Cola entera, 20 minutos a 190 ºC."]],
+ "rec":[{"t":"Merluza en salsa verde","time":"25 min","steps":["Dora ajo laminado en una cazuela, añade una cucharada de harina y un chorro de vino blanco.","Incorpora un poco de caldo de pescado y mucho perejil picado.","Mete los lomos con la piel hacia arriba y mueve la cazuela 5-6 minutos para que ligue la salsa."],"buy":[["Merluza",4,"En lomos"],["Caldo de pescado casero",1,null],["Almeja japónica",1,null]],"casa":"Ajo, harina, vino blanco y perejil"},
+        {"t":"Cola de merluza al horno","time":"30 min","steps":["Pon la cola sobre unas patatas en rodajas ya pochadas.","Riégala con un refrito de ajo y guindilla, sal y un chorro de vino blanco.","20 minutos a 190 ºC."],"buy":[["Merluza",4,"Cola para horno"]],"casa":"Patata, ajo, guindilla y vino blanco"}],
+ "tips":["La cabeza y la espina te las damos para el caldo, sin coste.","Para que no se rompa al rebozar, sécala bien antes."],
+ "warn":["Alérgeno: pescado.","Para niños pequeños, pídela en lomos o filetes: la rodaja lleva la espina central."]},
+
+{"n":"Dorada","slate":"DORADA","ico":"fish","tags":["plancha","horno","suave"],
+ "desc":"Carne firme y sabrosa. A la sal o a la espalda, no falla.",
+ "sabor":{"i":3,"grasa":"Semigrasa","tex":"Firme y jugosa","esp":"Pocas, grandes y fáciles de quitar"},
+ "cook":[["A la sal","Entera sin escamar y cubierta de sal gruesa, 20-25 minutos a 200 ºC."],["A la espalda","Abierta, a la plancha por la piel 6-7 minutos."],["Horno","Con patata y cebolla, 20 minutos a 190 ºC."]],
+ "rec":[{"t":"Dorada a la sal","time":"35 min","steps":["Pídenos la dorada «para horno o a la sal»: la vaciamos y no la escamamos.","Haz una cama de sal gruesa un poco humedecida, pon la dorada y cúbrela entera.","25 minutos a 200 ºC. Rompe la costra en la mesa y retira la piel."],"buy":[["Dorada",2,"Para horno o a la sal"]],"casa":"2 kg de sal gruesa"},
+        {"t":"Dorada a la espalda","time":"15 min","steps":["Plancha muy caliente y la dorada abierta con la piel hacia abajo.","6-7 minutos sin moverla; la vuelta, solo 1 minuto.","Por encima, ajo laminado frito con guindilla y un chorrito de vinagre."],"buy":[["Dorada",2,"Abierto a la espalda"]],"casa":"Ajo, guindilla, aceite y vinagre"}],
+ "tips":["Una dorada de unos 400 g es justo una ración.","A la sal, la piel la protege: queda jugosa aunque te pases un par de minutos."],
+ "warn":["Alérgeno: pescado."]},
+
+{"n":"Lubina","slate":"LUBINA","ico":"fish","tags":["horno","plancha","crudo","suave"],
+ "desc":"Más fina que la dorada, de sabor muy limpio. Va muy bien en crudo.",
+ "sabor":{"i":2,"grasa":"Semigrasa","tex":"Fina y delicada","esp":"Pocas"},
+ "cook":[["Horno","Entera, 18-20 minutos a 190 ºC."],["Plancha","En filetes, 4 minutos por la piel y 1 por el otro lado."],["Ceviche","En dados, 10 minutos en lima (congelada antes)."]],
+ "rec":[{"t":"Ceviche de lubina","time":"20 min","steps":["Pídela en filetes y congélala al menos 5 días antes, o pídenosla ya congelada.","Descongélala en la nevera, córtala en dados y mézclala con zumo de lima, cebolla morada, cilantro y sal.","Deja que se marine 10 minutos y sirve muy frío."],"buy":[["Lubina",2,"En filetes"]],"casa":"Limas, cebolla morada, cilantro y guindilla"},
+        {"t":"Lubina al horno con patatas","time":"35 min","steps":["Pocha patata y cebolla en rodajas en la fuente, 15 minutos.","Pon la lubina encima, con unas rodajas de limón dentro.","18-20 minutos a 190 ºC con un chorro de vino blanco."],"buy":[["Lubina",2,"Entero limpio"]],"casa":"Patata, cebolla, limón y vino blanco"}],
+ "tips":["La salvaje tiene más sabor: pregúntanos si hoy ha entrado.","Está hecha cuando la carne se separa de la espina sin esfuerzo."],
+ "warn":["Alérgeno: pescado.","En crudo (ceviche, tartar), congélala antes: al menos 5 días en el congelador de casa, por el anisakis."]},
+
+{"n":"Boquerón","slate":"BOQUERONES","ico":"fish","tags":["fritura","crudo","intenso"],
+ "desc":"El de la fritura y el del aperitivo en vinagre. Barato y buenísimo.",
+ "sabor":{"i":4,"grasa":"Graso (azul)","tex":"Tierna","esp":"La central; abiertos en filetes, ninguna"},
+ "cook":[["Frito","Enharinados, en aceite a 180 ºC, 1-2 minutos."],["En vinagre","Filetes, 4-6 horas en vinagre con sal (congelados antes)."],["Plancha","Abiertos, 1 minuto por lado."]],
+ "rec":[{"t":"Boquerones en vinagre","time":"15 min + 6 h","steps":["Pídelos abiertos en filetes y congélalos al menos 5 días.","Descongélalos en la nevera y cúbrelos con vinagre de vino, un poco de agua y sal: 4-6 horas en la nevera.","Escúrrelos y cúbrelos con aceite de oliva, ajo y perejil picados."],"buy":[["Boquerón",1,"Abierto en filetes sin espina (para fritura o vinagre)"]],"casa":"Vinagre de vino, ajo, perejil y aceite"},
+        {"t":"Boquerones fritos","time":"15 min","steps":["Pídelos sin cabeza y limpios.","Pásalos por harina de freír y sacude el exceso.","Fríelos en tandas pequeñas, con el aceite bien caliente, hasta que estén dorados. La sal, al final."],"buy":[["Boquerón",1,"Sin cabeza"]],"casa":"Harina de freír, aceite y limón"}],
+ "tips":["Si son para vinagre, dínoslo y te los damos ya abiertos.","Cómelos en el día: el pescado azul pequeño es el que menos aguanta."],
+ "warn":["Alérgeno: pescado.","En vinagre, marinados o crudos: congélalos antes al menos 5 días por el anisakis (recomendación de AESAN)."]},
+
+{"n":"Salmonete","slate":"SALMONETES","ico":"fish","tags":["fritura","plancha","intenso"],
+ "desc":"Sabor a mar puro. Pequeño, pero de lo más sabroso de la lonja.",
+ "sabor":{"i":4,"grasa":"Semigraso","tex":"Fina","esp":"Bastantes pequeñas; en filetes, casi ninguna"},
+ "cook":[["Frito","Entero y enharinado, 3-4 minutos."],["Plancha","En filetes, 2 minutos por la piel y 30 segundos del otro lado."],["Arroz","Sus filetes, encima del arroz los últimos minutos."]],
+ "rec":[{"t":"Salmonetes fritos","time":"20 min","steps":["Pídelos enteros y limpios.","Sécalos, sálalos y enharínalos.","Fríelos en aceite muy caliente 3-4 minutos, hasta que estén crujientes."],"buy":[["Salmonete",4,"Entero limpio"]],"casa":"Harina, aceite y limón"},
+        {"t":"Salmonete a la plancha con ajo","time":"10 min","steps":["Pídelos en filetes.","Plancha muy caliente, 2 minutos por la piel hasta que quede crujiente.","Vuelta de 30 segundos y un refrito de ajo y perejil por encima."],"buy":[["Salmonete",4,"En filetes (para fritura o plancha)"]],"casa":"Ajo, perejil y aceite"}],
+ "tips":["Si lo fríes entero, deja el hígado: da muchísimo sabor.","En filetes es perfecto para quien no quiere espinas."],
+ "warn":["Alérgeno: pescado.","Entero tiene espinas finas: para niños, mejor en filetes."]},
+
+{"n":"Atún rojo","slate":"ATÚN ROJO","ico":"fish","tags":["plancha","crudo","intenso"],
+ "desc":"Del Mediterráneo, de carne roja y potente. Vuelta y vuelta, o en crudo.",
+ "sabor":{"i":5,"grasa":"Graso","tex":"Carnosa, como un buen solomillo","esp":"Ninguna"},
+ "cook":[["Plancha","Tacos o rodaja de 2 cm, 1 minuto por lado, rosado por dentro."],["Tartar","Picado a cuchillo y aliñado al momento (congelado antes)."],["Encebollado","Tacos, los últimos 5 minutos en la cebolla pochada."]],
+ "rec":[{"t":"Tataki de atún","time":"15 min","steps":["Pídelo en lomo. Si lo vas a dejar crudo por dentro, congélalo antes al menos 5 días.","Márcalo en la plancha muy caliente, 30 segundos por cada cara.","Córtalo en lonchas y sírvelo con sésamo, soja y un poco de jengibre."],"buy":[["Atún rojo",2,"En lomos"]],"casa":"Sésamo, salsa de soja y jengibre"},
+        {"t":"Tartar de atún","time":"15 min","steps":["Pídelo «para tartar o sashimi»: te lo damos ya congelado.","Pícalo a cuchillo en dados pequeños.","Alíñalo al momento con soja, aceite de sésamo, cebollino y aguacate."],"buy":[["Atún rojo",2,"Para tartar o sashimi (congelado previamente)"]],"casa":"Aguacate, soja, aceite de sésamo y cebollino"}],
+ "tips":["No lo pases: en cuanto se hace del todo, se seca.","La ventresca es la parte más grasa: si te gusta, pruébala."],
+ "warn":["Alérgeno: pescado.","Mercurio (AESAN): si estás embarazada, buscas estarlo o das el pecho, y en niños de hasta 10 años, mejor evitarlo. De 10 a 14 años, como mucho 120 g al mes.","Crudo o poco hecho: congelado antes al menos 5 días, por el anisakis."]},
+
+{"n":"Suprema de salmón","slate":"SALMÓN","ico":"fish","tags":["horno","plancha","crudo","ninos"],
+ "desc":"Supremas sin piel ni espinas. Lo que más piden las familias.",
+ "sabor":{"i":3,"grasa":"Graso","tex":"Mantecosa","esp":"Ninguna"},
+ "cook":[["Horno","12 minutos a 200 ºC."],["Plancha","4 minutos por un lado y 2 por el otro."],["Papillote","15 minutos a 190 ºC con verduras."]],
+ "rec":[{"t":"Salmón en papillote","time":"25 min","steps":["Pon cada suprema sobre papel de horno con calabacín, zanahoria y cebolla en tiras.","Sal, eneldo, un chorrito de aceite y unas gotas de limón. Cierra bien el paquete.","15 minutos a 190 ºC y se abre en la mesa."],"buy":[["Suprema de salmón",2,null]],"casa":"Calabacín, zanahoria, cebolla, eneldo y limón"},
+        {"t":"Salmón con soja y miel","time":"15 min","steps":["Dora las supremas en la sartén, 3 minutos por lado.","Añade una mezcla de soja, miel y un poco de ajo rallado.","Deja que reduzca 1 minuto y sírvelo con arroz blanco."],"buy":[["Suprema de salmón",2,null]],"casa":"Soja, miel, ajo y arroz"}],
+ "tips":["El pescado ideal para empezar con los niños: no tiene ni una espina.","Para sushi casero, pídenoslo para crudo y te lo damos ya congelado."],
+ "warn":["Alérgeno: pescado.","Para comerlo crudo, congelado antes al menos 5 días, salvo que te lo vendamos ya preparado para crudo."]},
+
+{"n":"Rape","slate":"RAPE","ico":"fish","tags":["arroz","plancha","ninos","suave"],
+ "desc":"Carne firme que no se deshace. El rey de los arroces y los guisos.",
+ "sabor":{"i":2,"grasa":"Magro","tex":"Firme, casi como marisco","esp":"Solo la central; en medallones, ninguna"},
+ "cook":[["Arroz","En rodajas o medallones, los últimos 8 minutos."],["Plancha","Medallones, 2-3 minutos por lado."],["Guisado","En cazuela con su salsa, 6-8 minutos."]],
+ "rec":[{"t":"Rape a la marinera","time":"30 min","steps":["Haz un sofrito de cebolla, ajo y tomate, con pimentón y un chorro de vino blanco.","Añade el caldo de pescado y deja que hierva 5 minutos.","Mete el rape y las almejas, 6-8 minutos, hasta que se abran."],"buy":[["Rape",4,"En rodajas"],["Almeja japónica",1,null],["Caldo de pescado casero",1,null]],"casa":"Cebolla, ajo, tomate, pimentón y vino blanco"},
+        {"t":"Brochetas de rape y gamba","time":"20 min","steps":["Pídelo en medallones.","Ensarta los medallones alternando con gamba blanca pelada y pimiento.","Plancha fuerte, 2-3 minutos por lado; termina con ajo y perejil."],"buy":[["Rape",4,"En medallones"],["Gamba blanca",1,null]],"casa":"Pimiento, ajo y perejil"}],
+ "tips":["La cabeza da el mejor caldo: te la damos sin coste.","Suelta agua: sécalo bien antes de la plancha."],
+ "warn":["Alérgeno: pescado."]},
+
+{"n":"Gamba roja","slate":"GAMBA ROJA","ico":"shrimp","tags":["plancha","arroz","intenso"],
+ "desc":"De la lonja de Calpe. A la plancha con sal gorda y poco más.",
+ "sabor":{"i":5,"grasa":"—","tex":"Firme y dulce","esp":"No tiene"},
+ "cook":[["Plancha","Con sal gorda, 1-2 minutos por lado."],["Cocida","Agua con sal como la del mar; fuera en cuanto vuelva a hervir."],["Arroz","Las colas encima, los últimos 3 minutos."]],
+ "rec":[{"t":"Gamba roja a la plancha","time":"10 min","steps":["Plancha muy caliente con una cama de sal gruesa.","Pon las gambas 1-2 minutos por lado: el caparazón debe tostarse un poco.","Sírvelas al momento, sin nada más."],"buy":[["Gamba roja",1,"Crudo"]],"casa":"Sal gruesa"},
+        {"t":"Arroz con gamba roja","time":"45 min","steps":["Pela las gambas y sofríe las cabezas para sacar todo su jugo; retíralas.","Sofrito de ñora y tomate, el arroz y el caldo de pescado caliente.","Pon las colas de gamba encima los últimos 3 minutos."],"buy":[["Gamba roja",1,"Crudo"],["Caldo de pescado casero",1,null]],"casa":"Arroz, ñora, tomate y ajo"}],
+ "tips":["Si la vas a cocer, dínoslo y te la damos cocida, sin coste.","Fresca, el color es vivo y la cabeza está firme y pegada."],
+ "warn":["Alérgeno: crustáceos.","AESAN recomienda no abusar de chupar las cabezas: acumulan cadmio."]},
+
+{"n":"Sepia","slate":"SEPIA","ico":"squid","tags":["plancha","arroz","fritura"],
+ "desc":"Limpia y lista. Plancha rápida o guiso largo; nunca término medio.",
+ "sabor":{"i":3,"grasa":"Magra","tex":"Tierna si la haces poco o mucho","esp":"No tiene"},
+ "cook":[["Plancha","En tiras, a fuego fuerte 2-3 minutos."],["Arroz","Troceada y sofrita al principio."],["Guisada","Con cebolla, 30-40 minutos a fuego lento."]],
+ "rec":[{"t":"Sepia a la plancha con alioli","time":"10 min","steps":["Pídela en tiras, o entera y hazle unos cortes por encima.","Plancha muy caliente con un poco de aceite, 2-3 minutos.","Sal gorda, ajo y perejil, y alioli al lado."],"buy":[["Sepia",1,"En tiras"]],"casa":"Ajo, perejil y alioli"},
+        {"t":"Sepia con guisantes","time":"45 min","steps":["Pocha cebolla y ajo, añade la sepia troceada y deja que suelte el agua.","Un chorro de vino blanco, tomate rallado y un vaso de caldo de pescado.","30 minutos a fuego lento; los guisantes, los últimos 10."],"buy":[["Sepia",1,"Troceada"],["Caldo de pescado casero",1,null]],"casa":"Cebolla, guisantes, tomate y vino blanco"}],
+ "tips":["A la plancha, rápida: pasados 3 minutos se endurece y entonces solo la arregla un guiso largo.","Si quieres la tinta para un arroz negro, te la guardamos."],
+ "warn":["Alérgeno: moluscos."]},
+
+{"n":"Mejillón","slate":"MEJILLÓN","ico":"shell","tags":["arroz","suave"],
+ "desc":"Gallego, vivo y limpio. El marisco más agradecido y más barato.",
+ "sabor":{"i":3,"grasa":"Magro","tex":"Tierno y jugoso","esp":"No tiene"},
+ "cook":[["Al vapor","Olla tapada con laurel, 3-4 minutos hasta que se abran."],["A la marinera","Con sofrito y vino blanco, 5 minutos."],["En arroz","Abiertos aparte; su agua, al caldo."]],
+ "rec":[{"t":"Mejillones al vapor","time":"10 min","steps":["Lávalos con agua fría: te los damos ya limpios.","Olla con un dedo de agua, laurel y unos granos de pimienta. Tapa y fuego fuerte.","En 3-4 minutos se abren: sácalos y sírvelos con limón."],"buy":[["Mejillón",1,null]],"casa":"Laurel, pimienta y limón"},
+        {"t":"Mejillones a la marinera","time":"20 min","steps":["Ábrelos al vapor y guarda su agua colada.","Sofrito de cebolla, ajo y pimentón con una cucharada de harina.","Añade el agua de los mejillones y un chorro de vino blanco; mete los mejillones 2 minutos más."],"buy":[["Mejillón",1,null]],"casa":"Cebolla, ajo, pimentón, harina y vino blanco"}],
+ "tips":["En la nevera, en su malla y con un paño húmedo; nunca en agua.","Su agua es oro para el caldo de una paella."],
+ "warn":["Alérgeno: moluscos.","Antes de cocinarlos, tira los que estén abiertos y no se cierren al tocarlos; después, los que no se hayan abierto."]}
+]
+;
+  var fichaBy = {}; FICHAS.forEach(function (f) { fichaBy[f.n] = f; });
+  var SOLD_OUT = ['Rodaballo'];
+  var LOW = { 'Gamba roja': 'Quedan 4' };
+  var WANT = [['', 'Todo'], ['plancha', 'A la plancha'], ['horno', 'Al horno'], ['arroz', 'Arroz y guisos'], ['fritura', 'Fritura'], ['crudo', 'En crudo'], ['ninos', 'Sin espinas'], ['suave', 'Sabor suave'], ['intenso', 'Sabor intenso']];
+  var mState = { want: '', f: null, tab: 'cook' };
+  var COL = { 'Lenguado': '#8A6A3E', 'Merluza': '#3E5675', 'Dorada': '#9C7A1E', 'Lubina': '#4F6478', 'Boquerón': '#2D5F86', 'Salmonete': '#C8324F', 'Atún rojo': '#8E1F33', 'Suprema de salmón': '#D0612F', 'Rape': '#6B4E3A', 'Gamba roja': '#C8324F', 'Sepia': '#5B5577', 'Mejillón': '#1F3A6E' };
+  function pile(f, big) { return '<span class="pile" aria-hidden="true" style="color:' + (COL[f.n] || '#1F3A6E') + '"><svg class="art c"><use href="#i-' + f.ico + '"/></svg><svg class="art b"><use href="#i-' + f.ico + '"/></svg><svg class="art"><use href="#i-' + f.ico + '"/></svg></span>'; }
+  function slate(f, p) { return '<span class="slate"><span class="nm">' + esc(f.slate) + '</span><span class="pr">' + eur(p.pk) + (p.u === 'ud' ? '/ud' : '/kg') + '</span></span>'; }
+  function renderCounter() {
+    $('#mWant').innerHTML = '<span class="lbl">¿Qué te apetece?</span>' + WANT.map(function (w) { return '<button class="chip" data-want="' + w[0] + '" aria-pressed="' + (w[0] === mState.want) + '">' + w[1] + '</button>'; }).join('');
+    $('#mIce').innerHTML = FICHAS.map(function (f) {
+      var p = byName[f.n], on = !mState.want || f.tags.indexOf(mState.want) > -1;
+      return '<button class="tray' + (on ? '' : ' off') + '" data-ficha="' + esc(f.n) + '" aria-label="' + esc(f.n) + ', ' + eur(p.pk) + ' el kilo' + (on ? '' : ' (no encaja con el filtro)') + '">' + (LOW[f.n] ? '<span class="flag">' + LOW[f.n] + '</span>' : '') + pile(f) + slate(f, p) + '</button>';
+    }).join('');
+    $('#mOut').innerHTML = 'Hoy se ha terminado: ' + SOLD_OUT.map(function (n) { return '<s>' + esc(n.toUpperCase()) + '</s>'; }).join(' ') + '<span>· Cuando se acaba, sale solo de la pizarra.</span>';
+    var d = new Date(); $('#mDate').textContent = WD[d.getDay()] + ' ' + d.getDate() + ' de ' + ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'][d.getMonth()];
+  }
+  $('#mWant').addEventListener('click', function (e) { var b = e.target.closest('[data-want]'); if (!b) return; mState.want = b.dataset.want; renderCounter(); });
+  document.addEventListener('click', function (e) { var b = e.target.closest('[data-ficha]'); if (b) openFicha(b.dataset.ficha); });
+  function openFicha(n) { mState.f = fichaBy[n]; mState.tab = 'cook'; drawFicha(); $('#veil').hidden = false; $('#ficha').hidden = false; $('#ficha').scrollTop = 0; $('#ficha .x').focus(); }
+  function dots(n) { var h = '<span class="dots" aria-hidden="true">'; for (var i = 1; i <= 5; i++) h += '<i' + (i <= n ? ' class="on"' : '') + '></i>'; return h + '</span>'; }
+  var INT = ['', 'Muy suave', 'Suave', 'Medio', 'Intenso', 'Muy intenso'];
+  function recLines(r) { return r.buy.map(function (b) { var p = byName[b[0]]; return { p: p, q: b[1], cut: b[2] || p.c[0] || '' }; }); }
+  function drawFicha() {
+    var f = mState.f, p = byName[f.n], t = mState.tab, s = f.sabor;
+    var tabs = [['cook', 'Cocinarlo'], ['rec', 'Recetas'], ['tips', 'Consejos'], ['warn', 'Advertencias']];
+    var panel = '';
+    if (t === 'cook') panel = '<ul class="how">' + f.cook.map(function (c) { return '<li><b>' + esc(c[0]) + '</b><span>' + esc(c[1]) + '</span></li>'; }).join('') + '</ul><span class="sh">Texto en un metacampo del producto (de serie)</span>';
+    if (t === 'rec') panel = f.rec.map(function (r, i) {
+      var ls = recLines(r), tot = ls.reduce(function (a, l) { return a + unitPrice(l.p) * l.q; }, 0);
+      return '<details class="recipe"' + (i === 0 ? ' open' : '') + '><summary>' + esc(r.t) + '<small>' + esc(r.time) + ' · 2 personas</small></summary><div class="in"><ol>' + r.steps.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ol>' +
+        '<div class="buy"><b style="color:var(--navy)">De la pescadería</b><ul>' + ls.map(function (l) { return '<li>' + l.q + ' × ' + esc(l.p.n) + ' (' + esc(l.p.fmt) + (l.cut ? ', ' + esc(l.cut.toLowerCase()) : '') + ')</li>'; }).join('') + '</ul><span class="small">De casa: ' + esc(r.casa.toLowerCase()) + '.</span>' +
+        '<div class="row"><b class="price">' + eur(tot) + '</b><button class="btn coral sm" data-addrec="' + i + '">Añadir lo de la receta</button></div></div></div></details>';
+    }).join('') + '<span class="sh">Cada receta, un metaobjeto con su propia página (de serie)</span><span class="sh theme">«Añadir lo de la receta»: botón del tema con la API del carrito</span>';
+    if (t === 'tips') panel = '<ul class="tips">' + f.tips.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>';
+    if (t === 'warn') panel = '<ul class="warn">' + f.warn.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul><span class="sh">Metacampo de texto; los alérgenos son información obligatoria (Reg. UE 1169/2011)</span>';
+    $('#ficha').innerHTML = '<div class="ph">' + (p.img ? '<img src="img/' + p.img + '.jpg" alt="' + esc(p.n) + '">' : pile(f)) + slate(f, p) + '<button class="x" data-close aria-label="Cerrar">×</button></div>' +
+      '<div class="bd"><div><div class="kicker">' + esc(p.f) + ' · ' + esc(p.fmt) + '</div><h3 id="fiName">' + esc(f.n) + '</h3><p class="desc">' + esc(f.desc) + '</p></div>' +
+      '<dl class="meter"><div><dt>Sabor</dt><dd>' + dots(s.i) + INT[s.i] + '</dd></div><div><dt>Grasa</dt><dd>' + esc(s.grasa) + '</dd></div><div><dt>Textura</dt><dd>' + esc(s.tex) + '</dd></div><div><dt>Espinas</dt><dd>' + esc(s.esp) + '</dd></div></dl>' +
+      '<span class="sh">Sabor, grasa, textura y espinas: metacampos del producto (de serie)</span>' +
+      '<div class="ftabs" role="tablist">' + tabs.map(function (x) { return '<button role="tab" data-ftab="' + x[0] + '" aria-selected="' + (x[0] === t) + '">' + x[1] + (x[0] === 'warn' ? '<span class="n">' + f.warn.length + '</span>' : '') + '</button>'; }).join('') + '</div>' +
+      '<div class="fpanel" role="tabpanel">' + panel + '</div>' +
+      '<div class="foot"><button class="btn navy" data-tobuy>Elegir corte y añadir · ' + eur(unitPrice(p)) + '</button></div></div>';
+  }
+  $('#ficha').addEventListener('click', function (e) {
+    if (e.target.closest('[data-close]')) return closeAll();
+    var t = e.target.closest('[data-ftab]'); if (t) { mState.tab = t.dataset.ftab; drawFicha(); var nb = $('#ficha [data-ftab="' + mState.tab + '"]'); if (nb) nb.focus(); return; }
+    var r = e.target.closest('[data-addrec]'); if (r) {
+      var rec = mState.f.rec[+r.dataset.addrec];
+      recLines(rec).forEach(function (l) { state.cart.push({ name: l.p.n, detail: l.p.fmt + (l.cut ? ' · ' + l.cut : '') + ' · receta ' + rec.t.toLowerCase(), unit: unitPrice(l.p), qty: l.q, local: l.p.local }); });
+      updateCart(); closeAll(); fly(rec.t, []); return;
+    }
+    if (e.target.closest('[data-tobuy]')) { var n = mState.f.n; closeAll(); openSheet(n); }
+  });
+
+  /* ---------- Presupuesto ---------- */
+  function renderBudgetCtl() {
+    $('#bPeople').innerHTML = [2, 4, 6].map(function (n) { return '<button class="chip" data-bp="' + n + '" aria-pressed="' + (n === state.bPeople) + '">' + n + ' personas</button>'; }).join('');
+    $('#bOcc').innerHTML = OCC.map(function (o) { return '<button class="chip" data-bo="' + o[0] + '" aria-pressed="' + (o[0] === state.bOcc) + '">' + o[1] + '</button>'; }).join('');
+  }
+  function renderBudget() {
+    var amount = +$('#bAmount').value, people = state.bPeople;
+    $('#bAmtLabel').textContent = amount + ' €';
+    var opts = PACKS.filter(function (pk) { return !state.bOcc || pk.occ === state.bOcc; }).map(function (pk) { return { pk: pk, p: packPrice(pk, people).final }; }).sort(function (a, b) { return b.p - a.p; });
+    var fit = opts.filter(function (o) { return o.p <= amount; });
+    var list = fit.length ? fit.slice(0, 4) : opts.slice(-1);
+    $('#bOut').innerHTML = (fit.length ? '' : '<p class="small" style="margin:0">Con ' + amount + ' € no llega ningún pack de ese tipo para ' + people + ' personas. Este es el más ajustado:</p>') + list.map(function (o) {
+      var diff = amount - o.p;
+      return '<div class="r"><div class="ph">' + photo(o.pk.img, o.pk.n, o.pk.icon) + '</div><div class="tx"><h3>' + esc(o.pk.n) + '</h3><span>' + esc(o.pk.who) + ' · ' + people + ' personas</span><span>' + (diff >= 0 ? 'Te sobran ' + eur(diff) : 'Son ' + eur(-diff) + ' más') + '</span></div><div class="act"><b class="price">' + eur(o.p) + '</b><button class="btn navy sm" data-bpick="' + o.pk.id + '">Añadir</button></div></div>';
+    }).join('');
+  }
+  $('#bAmount').addEventListener('input', renderBudget);
+  $('#v-presupuesto').addEventListener('click', function (e) {
+    var p = e.target.closest('[data-bp]'); if (p) { state.bPeople = +p.dataset.bp; renderBudgetCtl(); renderBudget(); return; }
+    var o = e.target.closest('[data-bo]'); if (o) { state.bOcc = o.dataset.bo; renderBudgetCtl(); renderBudget(); return; }
+    var k = e.target.closest('[data-bpick]'); if (k) addPack(k.dataset.bpick, state.bPeople);
+  });
+
+  /* ---------- Asistente ---------- */
+  var chat = { occ: null, people: null, max: null };
+  var EXTRA = { arroz: 'Almeja de Carril', fritura: 'Ensaladilla de bonito', diario: 'Lasaña de espinacas y pescadilla', fiesta: 'Ostra Gillardeau', barbacoa: 'Gamba roja', ninos: 'Hamburguesa de merluza' };
+  function say(html, who) { var d = document.createElement('div'); d.className = 'bub ' + (who || 'bot'); d.innerHTML = html; $('#msgs').appendChild(d); $('#msgs').scrollTop = 1e6; }
+  function quick(opts) { $('#quick').innerHTML = opts.map(function (o) { return '<button class="chip" data-qa="' + esc(o[0]) + '">' + esc(o[1]) + '</button>'; }).join(''); }
+  function parse(t) {
+    t = t.toLowerCase();
+    var m = t.match(/(\d+)\s*(personas|pers|de nosotros|comensales)?/); var n = m ? +m[1] : null;
+    if (n && n > 0 && n <= 20 && !/€|euros/.test(t.slice(t.indexOf(m[1]), t.indexOf(m[1]) + 8))) chat.people = n;
+    var e = t.match(/(\d+)\s*(€|euros)/); if (e) chat.max = +e[1];
+    var map = [['arroz', /arroz|paella|caldero|banda/], ['fritura', /fri(t|e)|rebozad|boquer/], ['fiesta', /marisc|celebr|cumple|navidad|fiesta|ostra|capricho|especial/], ['barbacoa', /barbacoa|brasa|parrilla/], ['ninos', /niñ|peque|espina/], ['diario', /diario|semana|plancha|cena|comida|sano|dieta/]];
+    map.forEach(function (x) { if (!chat.occ && x[1].test(t)) chat.occ = x[0]; });
+    if (/sushi/.test(t)) return 'sushi';
+    if (/(c(o|ó)mo|cuando|cuándo).*(llega|env)/.test(t) || /env(i|í)o|reparto|llega/.test(t)) return 'envio';
+  }
+  function next() {
+    if (!chat.occ) { say('¿Para qué es la compra?'); quick(OCC.slice(0, 6)); return; }
+    if (!chat.people) { say('¿Para cuántos sois?'); quick([['p2', '2 personas'], ['p4', '4 personas'], ['p6', '6 personas']]); return; }
+    if (chat.max === null) { say('¿Tienes un presupuesto en mente?'); quick([['m40', 'Hasta 40 €'], ['m80', 'Hasta 80 €'], ['m150', 'Hasta 150 €'], ['m0', 'Me da igual']]); return; }
+    recommend();
+  }
+  function recommend() {
+    var cands = PACKS.filter(function (pk) { return pk.occ === chat.occ; }).map(function (pk) { return { pk: pk, p: packPrice(pk, chat.people).final }; }).sort(function (a, b) { return b.p - a.p; });
+    var pick = chat.max ? (cands.filter(function (c) { return c.p <= chat.max; })[0] || cands[cands.length - 1]) : cands[0];
+    var over = chat.max && pick.p > chat.max;
+    var ex = byName[EXTRA[chat.occ]];
+    say('Para ' + chat.people + ' personas te recomiendo el <b>pack ' + esc(pick.pk.n) + '</b>' + (over ? ', aunque se pasa ' + eur(pick.p - chat.max) + ' de lo que querías gastar' : '') + ':' +
+      '<div class="reco"><div class="ph">' + photo(pick.pk.img, pick.pk.n, pick.pk.icon) + '</div><div class="tx"><b>' + esc(pick.pk.n) + ' · ' + eur(pick.p) + '</b><span class="small">' + packLines(pick.pk, chat.people).map(function (l) { return l.q + ' × ' + esc(l.p.n); }).join(', ') + '</span><button class="btn navy sm" data-chatpack="' + pick.pk.id + '" style="justify-self:start">Añadir a la cesta</button></div></div>');
+    say('<b>Consejo del pescadero:</b> ' + esc(pick.pk.tip));
+    if (ex) say('Si quieres completarlo: <b>' + esc(ex.n) + '</b> (' + esc(ex.fmt) + ', ' + eur(unitPrice(ex)) + ').' + (ex.local ? ' Solo lo llevamos en Elche y alrededores.' : '') + ' <button class="link" data-chatprod="' + esc(ex.n) + '">Añadirlo</button>');
+    quick([['otra', 'Ver otra opción'], ['envio', '¿Cuándo me llega?'], ['reset', 'Empezar de nuevo'], ['menu', 'Otra consulta']]);
+    chat.last = pick.pk.id;
+  }
+  function answer(key, label) {
+    if (label) say(esc(label), 'me');
+    if (key === 'reset') { chat = { occ: null, people: null, max: null }; $('#msgs').innerHTML = ''; hello(); return; }
+    if (key === 'envio') { var z = zone(state.cp); say(z && z.n ? 'Para ' + state.cp + ' (' + z.n + '): ' + eta(null).replace(/<[^>]+>/g, '') + ' Envío gratis desde ' + eur(z.free) + '.' : 'Dime tu código postal arriba, en «¿Dónde lo recibes?», y te digo el día exacto. En Elche te lo llevamos el mismo día; al resto de la Península, en 24 horas.'); quick(MENU); return; }
+    if (key === 'sushi') { say('El sushi lo preparamos en la tienda de Jorge Juan y solo lo llevamos en Elche y alrededores, para que llegue perfecto. Lo tienes en Pieza a pieza › Sushi y elaborados.'); quick(MENU); return; }
+    if (key === 'elegir') { chat = { occ: null, people: null, max: null }; next(); return; }
+    if (key === 'menu') { chat = { occ: null, people: null, max: null }; say('¿En qué más te puedo ayudar?'); quick(MENU); return; }
+    if (key === 'cocinar') { say('Dime qué pescado o marisco vas a preparar, por ejemplo «lenguado» o «gamba roja», y te cuento cómo lo haríamos nosotros.'); quick([['menu', 'Volver']]); return; }
+    if (key === 'tiendas') { say('Calle Jorge Juan, 35 y Porta de la Morera, 5, en Elche. De lunes a sábado de 9:00 a 21:00 y los domingos de 9:00 a 14:00. Servicio a domicilio: 686 973 996.'); quick(MENU.filter(function (m) { return m[0] !== 'tiendas'; })); return; }
+    if (key === 'humano') { say('Claro. En la tienda real te pasaría con la pescadería por WhatsApp, en horario de tienda: 686 973 996.'); quick(MENU); return; }
+    if (key === 'otra') { var c = PACKS.filter(function (pk) { return pk.occ !== chat.occ; }); chat.occ = c[Math.floor(Math.random() * c.length)].occ; recommend(); return; }
+    if (key[0] === 'p' && /^p\d+$/.test(key)) chat.people = +key.slice(1);
+    else if (/^m\d+$/.test(key)) chat.max = +key.slice(1);
+    else if (OCC.some(function (o) { return o[0] === key; })) chat.occ = key;
+    next();
+  }
+  var MENU = [['elegir', 'Ayúdame a elegir'], ['envio', '¿Cuándo me llega?'], ['cocinar', 'Cómo preparar un pescado'], ['tiendas', 'Tiendas y horarios'], ['humano', 'Hablar con la pescadería']];
+  function hello() { say('¡Hola! Soy el asistente de Pescados Granados. ¿En qué te puedo ayudar?'); quick(MENU); }
+  $('#quick').addEventListener('click', function (e) { var b = e.target.closest('[data-qa]'); if (b) answer(b.dataset.qa, b.textContent); });
+  $('#msgs').addEventListener('click', function (e) {
+    var a = e.target.closest('[data-chatpack]'); if (a) addPack(a.dataset.chatpack, chat.people);
+    var p = e.target.closest('[data-chatprod]'); if (p) { var pr = byName[p.dataset.chatprod]; if (pr.local && zone(state.cp) && zone(state.cp).k !== 'local') toast('Solo disponible en Elche y alrededores'); else addProd(pr, 1, pr.c[0]); }
+  });
+  $('#chatForm').addEventListener('submit', function (e) {
+    e.preventDefault(); var t = $('#chatIn').value.trim(); if (!t) return; $('#chatIn').value = ''; say(esc(t), 'me');
+    if (/^(hola|buenas|buenos días|buenas tardes|hey)\b/i.test(t)) { say('¡Hola! ¿En qué te puedo ayudar?'); quick(MENU); return; }
+    var low = t.toLowerCase(), prod = PRODUCTS.filter(function (p) { return low.indexOf(p.n.toLowerCase().split(',')[0]) > -1; }).sort(function (a, b) { return b.n.length - a.n.length; })[0];
+    if (prod && !/arroz|paella|fritura|para \d/.test(low)) { say('<b>' + esc(prod.n) + '</b> (' + esc(prod.fmt) + ', ' + eur(unitPrice(prod)) + '). ' + esc(TIPS[prod.f] || '') + (prod.c.length ? ' Te lo podemos preparar: ' + esc(prod.c.join(', ').toLowerCase()) + '.' : '') + ' <button class="link" data-chatprod="' + esc(prod.n) + '">Añadirlo</button>'); quick(MENU); return; }
+    var special = parse(t); if (special) { answer(special); return; }
+    if (!chat.occ && !chat.people && chat.max === null) { say('Te ayudo con lo que necesites. En esta demo entiendo cosas como «fritura para 4», «mariscada, 80 euros» o el nombre de un pescado; en la tienda real entendería cualquier pregunta.'); quick(MENU); return; }
+    next();
+  });
+
+  /* ---------- Cesta ---------- */
+  function subtotal() { return state.cart.reduce(function (s, l) { return s + l.unit * l.qty; }, 0); }
+  function updateCart() { $('#cartN').textContent = state.cart.reduce(function (s, l) { return s + l.qty; }, 0); if (!$('#drawer').hidden) drawCart(); }
+  function drawCart(total) {
+    var z = zone(state.cp), sub = subtotal();
+    if (total) { $('#drawer').innerHTML = '<div class="hd"><h3>Pedido</h3><button data-close aria-label="Cerrar">×</button></div><div class="done"><h3>Así llegaría tu pedido</h3><p>En la tienda real, aquí se abriría el pago seguro de Shopify y recibirías la confirmación por correo. Esto es una demo: no se ha hecho ningún pedido.</p><p><b>' + eur(total) + '</b> · ' + esc(z.n) + '</p><span class="sh">Checkout y pagos de Shopify</span><button class="btn navy" data-reset>Volver a la tienda</button></div>'; return; }
+    var ok = z && (z.k === 'local' || z.k === 'pen' || z.k === 'bal');
+    var blocked = ok && z.k !== 'local' && state.cart.some(function (l) { return l.local; });
+    var h = '<div class="hd"><h3>Tu cesta</h3><button data-close aria-label="Cerrar">×</button></div><div class="lines">';
+    if (!state.cart.length) h += '<p class="small" style="padding:30px 0;text-align:center">Todavía no has elegido nada.</p>';
+    state.cart.forEach(function (l, i) {
+      h += '<div class="line"><b>' + esc(l.name) + '</b><span class="p price">' + eur(l.unit * l.qty) + '</span><span class="d">' + esc(l.detail) + '</span><span class="ctl"><button data-dq="' + i + '" data-v="-1" aria-label="Quitar uno">−</button><span>' + l.qty + '</span><button data-dq="' + i + '" data-v="1" aria-label="Añadir uno">+</button></span>' + (l.local && ok && z.k !== 'local' ? '<span class="warnline">Solo en Elche y alrededores: quítalo para enviar a ' + esc(z.n) + '.</span>' : '') + '</div>';
+    });
+    h += '</div>';
+    if (state.cart.length) {
+      var fee = ok ? (sub >= z.free ? 0 : z.fee) : 0;
+      h += '<div class="sum">';
+      if (!ok) h += '<button class="btn line" data-cp>Dinos tu código postal para calcular el envío</button>';
+      else {
+        if (!state.day) state.day = days(z)[0].k;
+        h += '<div class="small"><b style="color:var(--ink)">Entrega en ' + esc(state.cp) + ' · ' + esc(z.n) + '</b> <button class="link" data-cp>Cambiar</button></div>';
+        h += fee ? '<div class="small">Te faltan <b>' + eur(z.free - sub) + '</b> para el envío gratis.</div><div class="bar"><i style="width:' + Math.min(100, sub / z.free * 100) + '%"></i></div>' : '<div class="small" style="color:var(--ok);font-weight:700">Tienes el envío gratis.</div>';
+        h += '<div class="lbl" style="margin:4px 0 0">Día de entrega</div><div class="days" role="group" aria-label="Día de entrega">' + days(z).map(function (d) { return '<button class="chip" data-day="' + d.k + '" aria-pressed="' + (d.k === state.day) + '">' + d.t + '</button>'; }).join('') + '</div><span class="sh app">Día de entrega y hora límite: app de entregas (p. ej. Zapiet)</span>';
+      }
+      h += '<div class="r"><span>Productos</span><span class="price">' + eur(sub) + '</span></div><div class="r"><span>Envío</span><span class="price">' + (ok ? (fee ? eur(fee) : 'Gratis') : '—') + '</span></div><span class="sh">Envío gratis desde un importe: tarifas por importe de pedido</span><div class="r t"><span>Total</span><span class="price">' + eur(sub + fee) + '</span></div>' +
+        '<button class="btn coral" data-checkout' + (ok && !blocked ? '' : ' disabled') + '>' + (blocked ? 'Revisa los productos marcados' : 'Tramitar pedido') + '</button></div>';
+    }
+    $('#drawer').innerHTML = h;
+  }
+  $('#drawer').addEventListener('click', function (e) {
+    if (e.target.closest('[data-close]')) return closeAll();
+    if (e.target.closest('[data-reset]')) { state.cart = []; updateCart(); return closeAll(); }
+    if (e.target.closest('[data-cp]')) { closeAll(); return openPop(); }
+    var q = e.target.closest('[data-dq]'); if (q) { var l = state.cart[+q.dataset.dq]; l.qty += +q.dataset.v; if (l.qty < 1) state.cart.splice(+q.dataset.dq, 1); updateCart(); drawCart(); return; }
+    var d = e.target.closest('[data-day]'); if (d) { state.day = d.dataset.day; drawCart(); return; }
+    if (e.target.closest('[data-checkout]')) { var z = zone(state.cp), sub = subtotal(); drawCart(sub + (sub >= z.free ? 0 : z.fee)); }
+  });
+  $('#openCart').addEventListener('click', function () { drawCart(); $('#veil').hidden = false; $('#drawer').hidden = false; $('#drawer [data-close]').focus(); });
+
+  /* ---------- Código postal ---------- */
+  function openPop() { $('#cpIn').value = state.cp; cpInfo(); $('#veil').hidden = false; $('#pop').hidden = false; $('#cpIn').focus(); }
+  function cpInfo() {
+    var z = zone($('#cpIn').value), el = $('#cpInfo');
+    if (!z) { el.textContent = 'Con tu código postal te decimos qué día te llega cada cosa y cuánto cuesta el envío.'; return; }
+    if (z.k === 'bad') { el.textContent = 'Ese código postal no parece de España.'; return; }
+    if (z.k === 'no') { el.textContent = 'De momento no enviamos pescado fresco a ' + z.n + '.'; return; }
+    el.innerHTML = '<b>' + z.n + '.</b> Primer día de entrega: ' + days(z)[0].long + '. Envío gratis desde ' + eur(z.free) + '; si no, ' + eur(z.fee) + '.';
+  }
+  $('#cpBtn').addEventListener('click', openPop);
+  $('#cpIn').addEventListener('input', function (e) { e.target.value = e.target.value.replace(/\D/g, '').slice(0, 5); cpInfo(); });
+  $('#cpIn').addEventListener('keydown', function (e) { if (e.key === 'Enter') $('#cpOk').click(); });
+  $('#cpOk').addEventListener('click', function () { setCp($('#cpIn').value); closeAll(); var z = zone(state.cp); toast(z && z.n ? 'Entregas en ' + z.n : 'Código postal guardado'); });
+
+  /* ---------- Navegación ---------- */
+  var VIEWS = ['inicio', 'packs', 'piezas', 'mostrador', 'presupuesto'];
+  function route() {
+    var v = location.hash.slice(1); if (v === 'asistente') { openBot(); return; } if (VIEWS.indexOf(v) < 0) v = 'inicio';
+    VIEWS.forEach(function (n) { document.getElementById('v-' + n).classList.toggle('on', n === v); });
+    var nv = v === 'mostrador' ? 'piezas' : v;
+    $$('nav.tabs a, nav.bottom a').forEach(function (a) { if (a.getAttribute('href') === '#' + nv) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', route);
+  function openBot() { $('#hint').hidden = true; $('#botPanel').hidden = false; $('#fab').hidden = true; if (!$('#msgs').children.length) hello(); setTimeout(function () { $('#chatIn').focus(); }, 50); }
+  function closeBot() { $('#botPanel').hidden = true; $('#fab').hidden = false; $('#fab').focus(); }
+  $('#fab').addEventListener('click', openBot);
+  $('#botClose').addEventListener('click', closeBot);
+  $('#hintX').addEventListener('click', function () { $('#hint').hidden = true; });
+  $('#hint').addEventListener('click', function (e) { if (!e.target.closest('#hintX')) openBot(); });
+  setTimeout(function () { if ($('#botPanel').hidden) $('#hint').hidden = false; }, 2500);
+  $('#fly').addEventListener('click', function (e) {
+    if (e.target.closest('[data-flyclose]')) { $('#fly').hidden = true; return; }
+    if (e.target.closest('[data-flycart]')) { $('#fly').hidden = true; $('#openCart').click(); return; }
+    if (e.target.closest('[data-prod]')) $('#fly').hidden = true;
+  });
+  $('#fly').addEventListener('mouseenter', function () { clearTimeout(fly.t); });
+  function closeAll() { $('#veil').hidden = true; $('#sheet').hidden = true; $('#ficha').hidden = true; $('#drawer').hidden = true; $('#pop').hidden = true; }
+  $('#veil').addEventListener('click', closeAll);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { if (!$('#botPanel').hidden) closeBot(); closeAll(); } });
+  $('#monthBtn').addEventListener('click', function () { toast('En la tienda real, aquí te suscribirías a la selección del mes'); });
+  $('#techBtn').addEventListener('click', function () { var on = !document.documentElement.classList.contains('tech'); document.documentElement.classList.toggle('tech', on); this.setAttribute('aria-pressed', String(on)); });
+
+  function renderAll() {
+    $('#recoList').innerHTML = RECO.map(function (r) { return r.pk ? packMini(getPack(r.pk)) : prodCard(byName[r.p]); }).join('');
+    $('#offerList').innerHTML = Object.keys(OFFERS).map(function (n) { return prodCard(byName[n]); }).join('');
+    renderPacks(); renderFams(); renderProds(); renderBudgetCtl(); renderBudget(); renderCounter();
+  }
+  if (innerWidth <= 560) $('#cpLabel').textContent = 'Código postal';
+  renderAll(); route();
+})();
+</script>
+
+</body></html>
