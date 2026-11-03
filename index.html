@@ -148,6 +148,13 @@ nav.tabs a[aria-current="page"]::after { content: ""; position: absolute; left: 
 /* Lonja + selección del mes */
 .duo { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 26px; align-items: start; }
 .duo .pgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.pgrid.g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 760px) { .pgrid.g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 12px; } }
+.card .cover { display: flex; flex-direction: column; color: inherit; text-decoration: none; flex: 1; }
+.card button.qa { border: 0; cursor: pointer; z-index: 2; }
+.card .ovl { position: absolute; inset: 0; z-index: 1; }
+.card .ph .badge { z-index: 2; }
+.card .save { color: var(--ok); font-size: 12.5px; font-weight: 600; margin-left: auto; }
 .month { background: var(--navy); color: #fff; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; position: relative; overflow: hidden; }
 .month h3 { color: #fff; font-size: 24px; }
 .month p { margin: 0; color: #D8E0EE; }
@@ -475,15 +482,22 @@ footer b { color: #fff; display: block; font-family: var(--head); }
 
     <section class="sec">
       <div class="wrap">
-        <div class="sec-head"><div><div class="kicker">Lo que te recomendamos</div><h2>Lo que más sale esta semana</h2></div><a class="link" href="#packs">Ver todos los packs</a><span class="sh theme">Colección «Recomendados», ordenada a mano o por ventas</span></div>
-        <div class="rail" id="recoList"></div>
+        <div class="sec-head"><div><div class="kicker">Packs</div><h2>Nuestros packs más pedidos</h2></div><a class="link" href="#packs">Ver todos los packs</a><span class="sh">Colección «Packs destacados»; cada pack, un producto de Shopify Bundles</span></div>
+        <div class="pgrid g4" id="homePacks"></div>
+      </div>
+    </section>
+
+    <section class="sec" style="padding-top:0">
+      <div class="wrap">
+        <div class="sec-head"><div><div class="kicker">Hoy en lonja</div><h2>Lo mejor de la lonja hoy</h2></div><a class="link" href="#piezas">Ver todo el pescado</a><span class="sh">Colección «Lo mejor de la lonja», la elige Andrés cada día desde el panel</span></div>
+        <div class="pgrid g4" id="homeLonja"></div>
       </div>
     </section>
 
     <section class="sec" style="padding-top:0">
       <div class="wrap duo">
         <div>
-          <div class="sec-head"><div><div class="kicker">Ofertas de la semana</div><h2>Lo mejor de la lonja</h2></div><span class="sh">Precio tachado y colección «Ofertas»</span></div>
+          <div class="sec-head"><div><div class="kicker">Ofertas de la semana</div><h2>Rebajado esta semana</h2></div><span class="sh">Precio tachado y colección «Ofertas»</span></div>
           <div class="pgrid" id="offerList"></div>
         </div>
         <aside class="month">
@@ -659,10 +673,10 @@ footer b { color: #fff; display: block; font-family: var(--head); }
     { id: 'arroz', n: 'Arroz a banda', who: 'Fin de semana', occ: 'arroz', img: 'quisquilla', base: 4, items: [{ p: 'Cola de gamba pelada', q: 1 }, { p: 'Sepia', q: 1 }, { slot: ['Rape', 'Atún rojo'], q: 4, l: 'Pescado' }, { p: 'Caldo de pescado casero', q: 1 }], note: 'Con el caldo ya preparado', tip: 'Sofríe la sepia, luego la gamba un minuto y sácala. Arroz, caldo caliente y el pescado los últimos 8 minutos.' },
     { id: 'paella', n: 'Paella marinera', who: 'Fin de semana', occ: 'arroz', img: 'mejillon', base: 4, items: [{ p: 'Cigalas', q: 1 }, { p: 'Calamar', q: 1 }, { p: 'Mejillón', q: 1 }, { p: 'Almeja japónica', q: 1 }, { slot: ['Rape', 'Atún rojo'], q: 4, l: 'Pescado' }, { p: 'Caldo de pescado casero', q: 1 }], tip: 'Abre el mejillón y la almeja aparte y usa su agua en el caldo. Las cigalas, encima al final.' },
     { id: 'fritura', n: 'Fritura', who: 'Para compartir', occ: 'fritura', img: '', icon: 'fish', base: 4, items: [{ p: 'Boquerón', q: 1 }, { p: 'Calamar', q: 1 }, { p: 'Pescadilla', q: 2 }, { p: 'Palaya', q: 1 }, { p: 'Salmonete', q: 4 }], note: 'Limpio y listo para enharinar', tip: 'Harina de freír, aceite bien caliente y poca cantidad cada vez. La palaya, la última.' },
-    { id: 'plancha', n: 'Plancha de diario', who: 'Comida rápida', occ: 'diario', img: 'lenguado', base: 2, items: [{ slot: ['Dorada', 'Lubina', 'Atún rojo', 'Suprema de salmón', 'Lenguado', 'Merluza', 'Salmonete', 'Pescadilla'], q: 2, l: 'Pescado' }, { p: 'Quisquilla', q: 1 }], note: 'Abierto y limpio para la plancha', tip: 'Plancha muy caliente, primero por la piel y sin moverlo. La quisquilla, cocida 1 minuto con sal.' },
+    { id: 'plancha', n: 'Plancha de diario', who: 'Comida rápida', occ: 'diario', img: 'salmon', base: 2, items: [{ slot: ['Dorada', 'Lubina', 'Atún rojo', 'Suprema de salmón', 'Lenguado', 'Merluza', 'Salmonete', 'Pescadilla'], q: 2, l: 'Pescado' }, { p: 'Quisquilla', q: 1 }], note: 'Abierto y limpio para la plancha', tip: 'Plancha muy caliente, primero por la piel y sin moverlo. La quisquilla, cocida 1 minuto con sal.' },
     { id: 'semana', n: 'Semana en casa', who: 'Familia', occ: 'diario', img: 'merluza', base: 4, items: [{ slot: ['Merluza', 'Suprema de salmón'], q: 4, l: 'Comida 1' }, { slot: ['Boquerón', 'Sardina', 'Caballa'], q: 2, l: 'Comida 2' }, { p: 'Dorada', q: 2 }], tip: 'Lo azul se come primero. La dorada aguanta bien para el horno el tercer día.' },
     { id: 'ninos', n: 'Sin espinas', who: 'Familias con niños', occ: 'ninos', img: 'salmon', base: 4, items: [{ p: 'Suprema de salmón', q: 4 }, { p: 'Merluza', q: 4 }, { p: 'Lenguado', q: 2 }], note: 'Todo en filetes, sin una espina', tip: 'Al horno con un poco de aceite, 12 minutos a 200 ºC. Rebozado, les encanta.' },
-    { id: 'mariscada', n: 'Mariscada', who: 'Celebración', occ: 'fiesta', img: 'cigalas', base: 4, items: [{ p: 'Gamba roja', q: 1 }, { p: 'Gamba blanca', q: 1 }, { p: 'Cigalas', q: 1 }, { p: 'Quisquilla', q: 1 }, { p: 'Ostra gallega', q: 1 }], prep: true, tip: 'Si lo pides cocido, te lo damos listo para servir. La gamba roja, mejor a la plancha con sal gorda.' },
+    { id: 'mariscada', n: 'Mariscada', who: 'Celebración', occ: 'fiesta', img: 'ostras', base: 4, items: [{ p: 'Gamba roja', q: 1 }, { p: 'Gamba blanca', q: 1 }, { p: 'Cigalas', q: 1 }, { p: 'Quisquilla', q: 1 }, { p: 'Ostra gallega', q: 1 }], prep: true, tip: 'Si lo pides cocido, te lo damos listo para servir. La gamba roja, mejor a la plancha con sal gorda.' },
     { id: 'barbacoa', n: 'Barbacoa', who: 'Al aire libre', occ: 'barbacoa', img: 'lecha', base: 4, items: [{ p: 'Sardina', q: 1 }, { p: 'Salmón en rodajas', q: 4 }, { p: 'Gamba blanca', q: 1 }, { p: 'Sepia', q: 1 }], tip: 'Brasa sin llama. Sardina con sal gorda, la sepia a tiras y el salmón con piel hacia abajo.' },
     { id: 'gourmet', n: 'Gourmet', who: 'Para darse un capricho', occ: 'fiesta', img: 'ventresca', base: 2, items: [{ p: 'Ventresca', q: 1 }, { p: 'Gamba roja', q: 1 }, { p: 'Ostra Gillardeau', q: 1 }], tip: 'La ventresca, vuelta y vuelta. Las ostras, recién abiertas con unas gotas de limón.' }
   ];
@@ -674,8 +688,9 @@ footer b { color: #fff; display: block; font-family: var(--head); }
     'Sushi y elaborados': 'Listo para tomar o en pocos minutos: sigue las indicaciones de la etiqueta.'
   };
   var PAIR = { 'Pescado blanco': ['Almeja japónica', 'Caldo de pescado casero'], 'Pescado azul': ['Ensaladilla de bonito', 'Gamba blanca'], 'Marisco': ['Ostra gallega', 'Quisquilla'], 'Cefalópodos': ['Gamba blanca', 'Mejillón'], 'Sushi y elaborados': ['Ostra Gillardeau', 'Ensaladilla de bogavante'] };
-  var FRESH = ['Gamba roja', 'Lenguado', 'Dorada', 'Boquerón', 'Salmonete', 'Cigalas'];
-  var RECO = [{ pk: 'mariscada' }, { pk: 'arroz' }, { p: 'Gamba roja' }, { p: 'Ventresca' }, { p: 'Lenguado' }, { p: 'Ostra Gillardeau' }];
+  var FRESH = ['Gamba roja', 'Lenguado', 'Dorada', 'Boquerón', 'Salmonete', 'Cigalas', 'Atún rojo'];
+  var HOME_PACKS = ['mariscada', 'arroz', 'fritura', 'plancha'];
+  var LONJA = ['Gamba roja', 'Lenguado', 'Cigalas', 'Atún rojo'];
   var FAMS = ['Pescado blanco', 'Pescado azul', 'Marisco', 'Cefalópodos', 'Sushi y elaborados'];
   var OCC = [['diario', 'Diario'], ['arroz', 'Arroz o paella'], ['fritura', 'Fritura'], ['fiesta', 'Celebración'], ['barbacoa', 'Barbacoa'], ['ninos', 'Niños'], ['', 'Me da igual']];
   var state = { people: {}, slots: {}, prep: {}, fam: FAMS[0], cart: [], cp: '', day: null, sheet: null, bPeople: 4, bOcc: '' };
@@ -737,6 +752,13 @@ footer b { color: #fff; display: block; font-family: var(--head); }
     var pr = packPrice(pk, pk.base);
     return '<a class="card" href="#packs" data-gopack="' + pk.id + '" style="text-decoration:none"><div class="ph">' + photo(pk.img, pk.n, pk.icon) + '<span class="badge">Pack · ' + pk.base + ' personas</span><span class="qa" aria-hidden="true">+</span></div><div class="bd"><span class="nm">' + esc(pk.n) + '</span><span class="fm">' + esc(pk.who) + '</span><span class="row"><span class="pp price">' + eur(pr.final) + '</span><span class="pk">ahorras un 5 %</span></span></div></a>';
   }
+
+  function packCard(pk) {
+    var people = 4, pr = packPrice(pk, people);
+    return '<div class="card"><div class="ph">' + photo(pk.img, pk.n, pk.icon) + '<span class="badge">' + esc(pk.who) + '</span><a class="ovl" href="#packs" data-gopack="' + pk.id + '" tabindex="-1" aria-hidden="true"></a>' +
+      '<button class="qa" data-homepack="' + pk.id + '" aria-label="Añadir el pack ' + esc(pk.n) + ' para ' + people + ' personas a la cesta">+</button></div><a class="cover" href="#packs" data-gopack="' + pk.id + '"><div class="bd"><span class="nm">Pack ' + esc(pk.n) + '</span><span class="fm">Para ' + people + ' personas</span><span class="row"><span class="pp price">' + eur(pr.final) + '</span><s>' + eur(pr.full) + '</s><span class="save">Ahorras un 5 %</span></span></div></a></div>';
+  }
+  $('#homePacks').addEventListener('click', function (e) { var b = e.target.closest('[data-homepack]'); if (b) { e.preventDefault(); addPack(b.dataset.homepack, 4); } });
 
   /* ---------- Packs ---------- */
   function getPack(id) { return PACKS.filter(function (x) { return x.id === id; })[0]; }
@@ -2365,7 +2387,8 @@ null
   $('#techBtn').addEventListener('click', function () { var on = !document.documentElement.classList.contains('tech'); document.documentElement.classList.toggle('tech', on); this.setAttribute('aria-pressed', String(on)); });
 
   function renderAll() {
-    $('#recoList').innerHTML = RECO.map(function (r) { return r.pk ? packMini(getPack(r.pk)) : prodCard(byName[r.p]); }).join('');
+    $('#homePacks').innerHTML = HOME_PACKS.map(function (id) { return packCard(getPack(id)); }).join('');
+    $('#homeLonja').innerHTML = LONJA.map(function (n) { return prodCard(byName[n]); }).join('');
     $('#offerList').innerHTML = Object.keys(OFFERS).map(function (n) { return prodCard(byName[n]); }).join('');
     renderPacks(); renderFams(); renderProds(); renderBudgetCtl(); renderBudget(); renderCounter();
   }
