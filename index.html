@@ -232,6 +232,11 @@ nav.tabs a[aria-current="page"]::after { content: ""; position: absolute; left: 
 .reco .ph { background: var(--dusk-2); min-height: 90px; }
 .reco .ph img { width: 100%; height: 100%; object-fit: cover; }
 .reco .tx { padding: 10px 12px 10px 0; display: grid; gap: 4px; }
+.cacts { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 8px; }
+.clist { margin: 6px 0; padding-left: 18px; display: grid; gap: 4px; }
+.typing { display: inline-flex; gap: 4px; padding: 4px 0; } .typing i { width: 7px; height: 7px; border-radius: 50%; background: var(--dusk); animation: blink 1s infinite; } .typing i:nth-child(2) { animation-delay: .15s; } .typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes blink { 0%, 100% { opacity: .3; } 50% { opacity: 1; } }
+@media (max-width: 600px) { .quick { flex-wrap: nowrap !important; overflow-x: auto; scrollbar-width: none; } .quick .chip { flex: none; } }
 .quick { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 16px 12px; }
 .chat form { display: flex; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--line); background: #fff; }
 .chat form input { flex: 1; min-width: 0; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; min-height: 40px; }
@@ -650,12 +655,12 @@ footer b { color: #fff; display: block; font-family: var(--head); }
 <div class="hint" id="hint" hidden><button class="hint-x" id="hintX" aria-label="Cerrar">×</button>¡Hola! ¿En qué te puedo ayudar?</div>
 <section class="bot-panel" id="botPanel" role="dialog" aria-label="Asistente de compra" hidden>
   <div class="chat">
-    <div class="hd"><span class="bot-ic sm"><svg class="art"><use href="#i-bot"/></svg></span><div><b>Asistente de Pescados Granados</b><small>Pedidos, envíos, consejos · o te pasa con la pescadería</small></div><button class="x2" id="botClose" aria-label="Cerrar el asistente">×</button></div>
+    <div class="hd"><span class="bot-ic sm"><svg class="art"><use href="#i-bot"/></svg></span><div><b>Tu pescadero de Pescados Granados</b><small>Recetas, envíos, alérgenos y pedidos · o te pasa con la tienda</small></div><button class="x2" id="botClose" aria-label="Cerrar el asistente">×</button></div>
     <div class="msgs" id="msgs" aria-live="polite"></div>
     <div class="quick" id="quick"></div>
-    <form id="chatForm"><input id="chatIn" autocomplete="off" aria-label="Escribe tu pregunta" placeholder="Escribe tu pregunta"><button class="btn navy sm">Enviar</button></form>
+    <form id="chatForm"><input id="chatIn" autocomplete="off" aria-label="Escribe tu pregunta" placeholder="Pregúntame lo que quieras"><button class="btn navy sm">Enviar</button></form>
   </div>
-  <span class="sh theme" style="margin:8px 0 0">Asistente a medida (Armiva) en el tema; en la versión real, con IA y revisado por la pescadería</span>
+  <span class="sh theme" style="margin:8px 0 0">Asistente a medida (Armiva) en el tema, sin IA ni cuota: usa el catálogo, el stock y las fichas de Shopify</span>
 </section>
 <div class="fly" id="fly" role="status" hidden></div>
 <div class="toast" id="toast" hidden></div>
@@ -795,11 +800,11 @@ footer b { color: #fff; display: block; font-family: var(--head); }
     var s = e.target.closest('[data-slot]'); if (s) { state.slots[s.dataset.slot] = s.value; var id = s.dataset.slot.replace(/\d+$/, ''); $('#pk-' + id).innerHTML = renderPack(getPack(id)); return; }
     var t = e.target.closest('[data-prep]'); if (t) state.prep[t.dataset.prep] = t.value !== 'Crudo';
   });
-  function addPack(id, people) {
+  function addPack(id, people, silent) {
     var pk = getPack(id); people = people || pk.base;
     var lines = packLines(pk, people), pr = packPrice(pk, people);
     state.cart.push({ name: 'Pack ' + pk.n + ' · ' + people + ' personas', detail: lines.map(function (l) { return l.q + ' × ' + l.p.n; }).join(', ') + (pk.prep && state.prep[id] ? ' · cocido' : ''), unit: pr.final, qty: 1, local: false });
-    updateCart(); fly('Pack ' + pk.n, [EXTRA[pk.occ]]);
+    updateCart(); if (!silent) fly('Pack ' + pk.n, [EXTRA[pk.occ]]);
   }
 
   /* ---------- Pieza a pieza ---------- */
@@ -831,7 +836,7 @@ footer b { color: #fff; display: block; font-family: var(--head); }
     var q = e.target.closest('[data-q]'); if (q) { s.q = Math.max(1, s.q + +q.dataset.q); drawSheet(); return; }
     if (e.target.closest('[data-addprod]')) { addProd(s.p, s.q, s.cut); closeAll(); }
   });
-  function addProd(p, q, cut) { state.cart.push({ name: p.n, detail: p.fmt + (cut ? ' · ' + cut : ''), unit: unitPrice(p), qty: q || 1, local: p.local }); updateCart(); fly(p.n, PAIR[p.f]); }
+  function addProd(p, q, cut, silent) { state.cart.push({ name: p.n, detail: p.fmt + (cut ? ' · ' + cut : ''), unit: unitPrice(p), qty: q || 1, local: p.local }); updateCart(); if (!silent) fly(p.n, PAIR[p.f]); }
   function fly(name, pairs) {
     var z = zone(state.cp), sub = subtotal(), free = z && z.free ? z.free : 40;
     var ship = sub >= free ? '<div class="small" style="color:var(--ok);font-weight:700">' + (z && z.n ? 'Tienes el envío gratis.' : 'Ya tienes el envío gratis en Elche y alrededores.') + '</div>' : '<div class="small">Te faltan <b>' + eur(free - sub) + '</b> para el envío gratis' + (z && z.n ? '' : ' en Elche') + '.</div><div class="bar"><i style="width:' + Math.min(100, sub / free * 100) + '%"></i></div>';
@@ -2238,71 +2243,387 @@ null
     var k = e.target.closest('[data-bpick]'); if (k) addPack(k.dataset.bpick, state.bPeople);
   });
 
-  /* ---------- Asistente ---------- */
-  var chat = { occ: null, people: null, max: null };
+  /* ---------- Asistente: pescadero virtual (sin IA, con los datos de la tienda) ---------- */
   var EXTRA = { arroz: 'Almeja de Carril', fritura: 'Ensaladilla de bonito', diario: 'Lasaña de espinacas y pescadilla', fiesta: 'Ostra Gillardeau', barbacoa: 'Gamba roja', ninos: 'Hamburguesa de merluza' };
-  function say(html, who) { var d = document.createElement('div'); d.className = 'bub ' + (who || 'bot'); d.innerHTML = html; $('#msgs').appendChild(d); $('#msgs').scrollTop = 1e6; }
+  var WA = '686 973 996';
+  var ctx = { p: null, pack: null, people: null, pending: null, offer: null, line: null, miss: 0 };
+  function say(html, who) { var d = document.createElement('div'); d.className = 'bub ' + (who || 'bot'); d.innerHTML = html; $('#msgs').appendChild(d); $('#msgs').scrollTop = 1e6; return d; }
   function quick(opts) { $('#quick').innerHTML = opts.map(function (o) { return '<button class="chip" data-qa="' + esc(o[0]) + '">' + esc(o[1]) + '</button>'; }).join(''); }
-  function parse(t) {
-    t = t.toLowerCase();
-    var m = t.match(/(\d+)\s*(personas|pers|de nosotros|comensales)?/); var n = m ? +m[1] : null;
-    if (n && n > 0 && n <= 20 && !/€|euros/.test(t.slice(t.indexOf(m[1]), t.indexOf(m[1]) + 8))) chat.people = n;
-    var e = t.match(/(\d+)\s*(€|euros)/); if (e) chat.max = +e[1];
-    var map = [['arroz', /arroz|paella|caldero|banda/], ['fritura', /fri(t|e)|rebozad|boquer/], ['fiesta', /marisc|celebr|cumple|navidad|fiesta|ostra|capricho|especial/], ['barbacoa', /barbacoa|brasa|parrilla/], ['ninos', /niñ|peque|espina/], ['diario', /diario|semana|plancha|cena|comida|sano|dieta/]];
-    map.forEach(function (x) { if (!chat.occ && x[1].test(t)) chat.occ = x[0]; });
-    if (/sushi/.test(t)) return 'sushi';
-    if (/(c(o|ó)mo|cuando|cuándo).*(llega|env)/.test(t) || /env(i|í)o|reparto|llega/.test(t)) return 'envio';
+  function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
+
+  /* Texto: minúsculas, sin tildes, palabras y raíces */
+  function norm(t) { return String(t).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9€,.\s]/g, ' ').replace(/\s+/g, ' ').trim(); }
+  function stem(w) { if (w.length > 4 && /[lnrdz]es$/.test(w)) return w.slice(0, -2); if (w.length > 3 && /s$/.test(w)) return w.slice(0, -1); return w; }
+  function toks(t) { return norm(t).replace(/[,.]/g, ' ').split(' ').filter(Boolean).map(stem); }
+  function lev(a, b) {
+    var m = a.length, n = b.length, prev = [], cur, i, j;
+    for (j = 0; j <= n; j++) prev[j] = j;
+    for (i = 1; i <= m; i++) { cur = [i]; for (j = 1; j <= n; j++) cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); prev = cur; }
+    return prev[n];
   }
-  function next() {
-    if (!chat.occ) { say('¿Para qué es la compra?'); quick(OCC.slice(0, 6)); return; }
-    if (!chat.people) { say('¿Para cuántos sois?'); quick([['p2', '2 personas'], ['p4', '4 personas'], ['p6', '6 personas']]); return; }
-    if (chat.max === null) { say('¿Tienes un presupuesto en mente?'); quick([['m40', 'Hasta 40 €'], ['m80', 'Hasta 80 €'], ['m150', 'Hasta 150 €'], ['m0', 'Me da igual']]); return; }
-    recommend();
+  var NOFUZZ = ' bonita bonitas gracia plancha semana manana quiero quiere tiene teneis cuesta cuanto precio receta pescado fresco fresca limpio limpia entero entera filete rodaja cocido cocida espina persona sabado domingo horario envio pedido marisco cerrado abierto cuando donde playa salado salada cena comida comer favor ';
+  function near(a, b) {
+    if (a === b) return true;
+    var L = Math.min(a.length, b.length); if (L < 5 || NOFUZZ.indexOf(' ' + a + ' ') > -1) return false;
+    return lev(a, b) <= (L >= 8 ? 2 : 1);
   }
-  function recommend() {
-    var cands = PACKS.filter(function (pk) { return pk.occ === chat.occ; }).map(function (pk) { return { pk: pk, p: packPrice(pk, chat.people).final }; }).sort(function (a, b) { return b.p - a.p; });
-    var pick = chat.max ? (cands.filter(function (c) { return c.p <= chat.max; })[0] || cands[cands.length - 1]) : cands[0];
-    var over = chat.max && pick.p > chat.max;
-    var ex = byName[EXTRA[chat.occ]];
-    say('Para ' + chat.people + ' personas te recomiendo el <b>pack ' + esc(pick.pk.n) + '</b>' + (over ? ', aunque se pasa ' + eur(pick.p - chat.max) + ' de lo que querías gastar' : '') + ':' +
-      '<div class="reco"><div class="ph">' + photo(pick.pk.img, pick.pk.n, pick.pk.icon) + '</div><div class="tx"><b>' + esc(pick.pk.n) + ' · ' + eur(pick.p) + '</b><span class="small">' + packLines(pick.pk, chat.people).map(function (l) { return l.q + ' × ' + esc(l.p.n); }).join(', ') + '</span><button class="btn navy sm" data-chatpack="' + pick.pk.id + '" style="justify-self:start">Añadir a la cesta</button></div></div>');
-    say('<b>Consejo del pescadero:</b> ' + esc(pick.pk.tip));
-    if (ex) say('Si quieres completarlo: <b>' + esc(ex.n) + '</b> (' + esc(ex.fmt) + ', ' + eur(unitPrice(ex)) + ').' + (ex.local ? ' Solo lo llevamos en Elche y alrededores.' : '') + ' <button class="link" data-chatprod="' + esc(ex.n) + '">Añadirlo</button>');
-    quick([['otra', 'Ver otra opción'], ['envio', '¿Cuándo me llega?'], ['reset', 'Empezar de nuevo'], ['menu', 'Otra consulta']]);
-    chat.last = pick.pk.id;
+
+  /* Catálogo: nombres y formas de llamarlo */
+  var ALIAS = [];
+  function addAlias(key, names) { ALIAS.push({ k: toks(key), n: names }); }
+  PRODUCTS.forEach(function (p) { addAlias(p.n.replace(',', ''), [p.n]); });
+  [['gamba', ['Gamba roja', 'Gamba blanca']], ['ostra', ['Ostra gallega', 'Ostra Gillardeau']], ['almeja', ['Almeja japónica', 'Almeja de Carril']], ['ensaladilla', ['Ensaladilla de bonito', 'Ensaladilla de bogavante']],
+   ['salmon', ['Suprema de salmón']], ['salmon en rodaja', ['Salmón en rodajas']], ['rodaja de salmon', ['Salmón en rodajas']], ['filete de salmon', ['Salmón, filete entero']], ['suprema', ['Suprema de salmón']],
+   ['atun', ['Atún rojo']], ['boqueron', ['Boquerón']], ['clochina', ['Mejillón']], ['robalo', ['Lubina']], ['sushi', ['Sushi variado']], ['caldo', ['Caldo de pescado casero']], ['fumet', ['Caldo de pescado casero']],
+   ['gamba pelada', ['Cola de gamba pelada']], ['cola de gamba', ['Cola de gamba pelada']], ['lasana', ['Lasaña de espinacas y pescadilla']], ['hamburguesa', ['Hamburguesa de merluza']], ['pata de pulpo', ['Pata de pulpo cocido']],
+   ['pulpo cocido', ['Pata de pulpo cocido']], ['cangrejo', ['Cangrejo azul']], ['carril', ['Almeja de Carril']], ['gillardeau', ['Ostra Gillardeau']], ['bouchot', ['Mejillón bouchot']], ['canailla', ['Cañaílla']], ['cigala', ['Cigalas']],
+   ['calamare', ['Calamar']], ['chipiron', ['Calamar']], ['navaja', ['Navajas']], ['percebe', ['Percebe']], ['langostino', ['Langostino']]].forEach(function (a) { addAlias(a[0], a[1]); });
+  function findProducts(t) {
+    var U = toks(t), hits = [];
+    ALIAS.forEach(function (a) {
+      for (var i = 0; i + a.k.length <= U.length; i++) {
+        var ok = true; for (var j = 0; j < a.k.length; j++) { if (!near(U[i + j], a.k[j])) { ok = false; break; } }
+        if (ok) hits.push({ s: i, e: i + a.k.length, n: a.n, exact: a.n.length === 1 && toks(a.n[0].replace(',', '')).join(' ') === a.k.join(' ') });
+      }
+    });
+    hits.sort(function (x, y) { return (y.e - y.s) - (x.e - x.s) || (y.exact - x.exact); });
+    var used = [], out = [];
+    hits.forEach(function (h) {
+      for (var i = h.s; i < h.e; i++) if (used[i]) return;
+      for (i = h.s; i < h.e; i++) used[i] = 1;
+      out.push(h.n);
+    });
+    return out;
   }
-  function answer(key, label) {
-    if (label) say(esc(label), 'me');
-    if (key === 'reset') { chat = { occ: null, people: null, max: null }; $('#msgs').innerHTML = ''; hello(); return; }
-    if (key === 'envio') { var z = zone(state.cp); say(z && z.n ? 'Para ' + state.cp + ' (' + z.n + '): ' + eta(null).replace(/<[^>]+>/g, '') + ' Envío gratis desde ' + eur(z.free) + '.' : 'Dime tu código postal arriba, en «¿Dónde lo recibes?», y te digo el día exacto. En Elche te lo llevamos el mismo día; al resto de la Península, en 24 horas.'); quick(MENU); return; }
-    if (key === 'sushi') { say('El sushi lo preparamos en la tienda de Jorge Juan y solo lo llevamos en Elche y alrededores, para que llegue perfecto. Lo tienes en Pieza a pieza › Sushi y elaborados.'); quick(MENU); return; }
-    if (key === 'elegir') { chat = { occ: null, people: null, max: null }; next(); return; }
-    if (key === 'menu') { chat = { occ: null, people: null, max: null }; say('¿En qué más te puedo ayudar?'); quick(MENU); return; }
-    if (key === 'cocinar') { say('Dime qué pescado o marisco vas a preparar, por ejemplo «lenguado» o «gamba roja», y te cuento cómo lo haríamos nosotros.'); quick([['menu', 'Volver']]); return; }
-    if (key === 'tiendas') { say('Calle Jorge Juan, 35 y Porta de la Morera, 5, en Elche. De lunes a sábado de 9:00 a 21:00 y los domingos de 9:00 a 14:00. Servicio a domicilio: 686 973 996.'); quick(MENU.filter(function (m) { return m[0] !== 'tiendas'; })); return; }
-    if (key === 'humano') { say('Claro. En la tienda real te pasaría con la pescadería por WhatsApp, en horario de tienda: 686 973 996.'); quick(MENU); return; }
-    if (key === 'otra') { var c = PACKS.filter(function (pk) { return pk.occ !== chat.occ; }); chat.occ = c[Math.floor(Math.random() * c.length)].occ; recommend(); return; }
-    if (key[0] === 'p' && /^p\d+$/.test(key)) chat.people = +key.slice(1);
-    else if (/^m\d+$/.test(key)) chat.max = +key.slice(1);
-    else if (OCC.some(function (o) { return o[0] === key; })) chat.occ = key;
-    next();
+  var PACKW = [['mariscada', /mariscada/], ['paella', /paella/], ['arroz', /arroz a banda|arroz banda|\bpack de arroz|\barroz\b/], ['fritura', /fritura|pescaito|frito variado/], ['barbacoa', /barbacoa|brasa|parrilla/], ['gourmet', /gourmet|capricho/], ['ninos', /sin espinas.*pack|pack.*sin espinas|pack.*ni(n|ñ)o|pack sin espinas/], ['semana', /semana en casa|para la semana|toda la semana/], ['plancha', /pack.*plancha|plancha de diario/]];
+  function findPack(t) { for (var i = 0; i < PACKW.length; i++) if (PACKW[i][1].test(t)) return PACKW[i][0]; return null; }
+  var NUMW = { un: 1, una: 1, uno: 1, dos: 2, tres: 3, cuatro: 4, cinco: 5, seis: 6, siete: 7, ocho: 8, nueve: 9, diez: 10, doce: 12 };
+  function num(w) { return /^\d+$/.test(w) ? +w : NUMW[w]; }
+  function findPeople(t) {
+    var m = t.match(/(?:para|somos|seremos|semos)\s+(\d+|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|doce)\b/) || t.match(/\b(\d+|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|doce)\s+(?:personas|persona|pax|comensales|adultos)/);
+    var n = m ? num(m[1]) : null; return n && n <= 20 ? n : null;
   }
-  var MENU = [['elegir', 'Ayúdame a elegir'], ['envio', '¿Cuándo me llega?'], ['cocinar', 'Cómo preparar un pescado'], ['tiendas', 'Tiendas y horarios'], ['humano', 'Hablar con la pescadería']];
-  function hello() { say('¡Hola! Soy el asistente de Pescados Granados. ¿En qué te puedo ayudar?'); quick(MENU); }
-  $('#quick').addEventListener('click', function (e) { var b = e.target.closest('[data-qa]'); if (b) answer(b.dataset.qa, b.textContent); });
+  function findBudget(t) { var m = t.match(/(\d+)\s*(?:€|euros?|eur|pavos)/) || t.match(/(?:no pase de|menos de|hasta|maximo|como mucho|presupuesto de)\s*(\d+)/); return m ? +m[1] : null; }
+  function grams(p) { var m = p.fmt.match(/(\d+(?:,\d+)?)\s*(kg|g)\b/); if (!m) return null; var v = parseFloat(m[1].replace(',', '.')); return m[2] === 'kg' ? v * 1000 : v; }
+  function findQty(t, p) {
+    var m = t.match(/(\d+(?:,\d+)?|medio|un|una|dos|tres)\s*(kilos?|kg|k)\b/) || t.match(/(\d+)\s*(gramos|gr|g)\b/);
+    if (m && p) { var g = m[2][0] === 'g' ? +m[1] : (m[1] === 'medio' ? 500 : (num(m[1]) || parseFloat(m[1].replace(',', '.'))) * 1000); if (/medio kilo|kilo y medio/.test(t)) g = /kilo y medio/.test(t) ? 1500 : 500; var w = grams(p); if (w && p.u !== 'ud') return Math.max(1, Math.round(g / w)); }
+    if (/media docena/.test(t)) return /caja de 6/i.test(p ? p.fmt : '') ? 1 : 6;
+    var d = t.match(/(\d+|una|dos|tres)\s+docenas?/); if (d) { var n = num(d[1]) || 1; return /caja de 6/i.test(p ? p.fmt : '') ? n * 2 : n * 12; }
+    var q = t.replace(/(?:para|somos)\s+\S+/g, '').match(/\b(\d+|un|una|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|doce)\b(?!\s*(?:€|euros|personas|persona|kilo|kg|gramos|minutos))/);
+    var v = q ? num(q[1]) : null; return v && v <= 30 ? v : null;
+  }
+  function findCut(t, p) {
+    if (!p || !p.c.length) return null;
+    var U = toks(t).map(function (w) { return w.replace(/[aoe]$/, ''); }), best = null, bs = 0;
+    var KEY = ' espald filet rodaj lom tac tir trocead anill limpi piel cabez cocid crud viv abiert horn sal cald tartar sashimi plancha fritur vinagr medallon col desmigad relen pat sin ';
+    p.c.forEach(function (c) {
+      var C = toks(c).map(function (w) { return w.replace(/[aoe]$/, ''); }), s = 0;
+      U.forEach(function (u) { if (u.length > 2 && KEY.indexOf(' ' + u + ' ') > -1 && C.indexOf(u) > -1) s++; });
+      if (s > bs) { bs = s; best = c; }
+    });
+    return best;
+  }
+  var CITY = { 'madrid': '28001', 'barcelona': '08001', 'valencia': '46001', 'alicante': '03001', 'murcia': '30001', 'sevilla': '41001', 'malaga': '29001', 'bilbao': '48001', 'zaragoza': '50001', 'granada': '18001', 'albacete': '02001', 'castellon': '12001', 'benidorm': '03501', 'torrevieja': '03181', 'orihuela': '03300', 'elche': '03201', 'elx': '03201', 'santa pola': '03130', 'crevillent': '03330', 'crevillente': '03330', 'san vicente': '03690', 'san juan': '03550', 'palma': '07001', 'mallorca': '07001', 'ibiza': '07800', 'menorca': '07701', 'tenerife': '38001', 'las palmas': '35001', 'canarias': '35001', 'ceuta': '51001', 'melilla': '52001', 'cordoba': '14001', 'valladolid': '47001', 'toledo': '45001', 'cartagena': '30201', 'gandia': '46701', 'denia': '03700' };
+  function findCp(t) { var m = t.match(/\b(\d{5})\b/); if (m) return { cp: m[1], name: m[1] }; for (var c in CITY) if (new RegExp('\\b' + c + '\\b').test(t)) return { cp: CITY[c], name: c.replace(/\b\w/g, function (x) { return x.toUpperCase(); }) }; return null; }
+  var METH = [['plancha', /plancha|planchita|vuelta y vuelta/], ['horno', /horno|asad|a la sal|papillote/], ['fritura', /fri(t|e|r)|freir|frei|rebozad|enharin/], ['arroz', /arroz|paella|caldero|guis|marinera|cazuela|suquet|marmitako/], ['crudo', /crud|sushi|sashimi|tartar|tataki|ceviche|vinagre|marinad/], ['vapor', /vapor|cocid|hervid|\bcoc(er|o|e)\b/], ['plancha', /brasa|barbacoa|parrilla/]];
+  function findMethod(t) { for (var i = 0; i < METH.length; i++) if (METH[i][1].test(t)) return METH[i][0]; return null; }
+  function findTags(t) {
+    var g = []; var m = findMethod(t); if (m && m !== 'vapor') g.push(m);
+    if (/ni(n|ñ)o|nina|peque|crio|sin espina|espinas|hijo|hija/.test(t)) g.push('ninos');
+    if (/suave|que no sepa|no sabe a pescado|delicad/.test(t)) g.push('suave');
+    if (/intens|sabros|mucho sabor|fuerte/.test(t)) g.push('intenso');
+    return g;
+  }
+
+  /* Datos de apoyo */
+  function out(n) { return (typeof SOLD_OUT !== 'undefined' && SOLD_OUT.indexOf(n) > -1) || (typeof OUT_TODAY !== 'undefined' && OUT_TODAY.indexOf(n) > -1); }
+  function el(p, cap) { var n = norm(p.n.split(/[ ,]/)[0]), a = /s$/.test(n) ? (/a$/.test(n.slice(0, -1)) ? 'las' : 'los') : (/a$/.test(n) && n !== 'clochina' ? 'la' : 'el'); return cap ? a[0].toUpperCase() + a.slice(1) : a; }
+  function portion(p, n) { var w = grams(p); if (p.u === 'ud') return Math.max(1, Math.round(n / 2)); if (!w) return 1; if (w <= 450) return n; return Math.max(1, Math.round(n * 200 / w)); }
+  function perKg(p) { return p.pk ? eur(p.pk) + (p.u === 'ud' ? ' la unidad' : ' el kilo') : ''; }
+  function line(p) { return '<b>' + esc(p.n) + '</b> · ' + esc(p.fmt) + ' · ' + eur(unitPrice(p)) + (p.pk ? ' <span class="small">(' + perKg(p) + ')</span>' : ''); }
+  function bAdd(p, cut, q, label) { return '<button class="btn coral sm" data-cadd="' + esc(p.n) + '" data-ccut="' + esc(cut || '') + '" data-cq="' + (q || 1) + '">' + esc(label || 'Añadir a la cesta') + '</button>'; }
+  function bSee(p) { return '<button class="link" data-prod="' + esc(p.n) + '">Ver ficha</button>'; }
+  function acts(h) { return '<div class="cacts">' + h + '</div>'; }
+  function allergen(p) { if (p.f === 'Marisco') return SHELLS.indexOf(p.n) > -1 ? 'moluscos' : 'crustáceos'; if (p.f === 'Cefalópodos') return 'moluscos'; if (p.f === 'Sushi y elaborados') return 'pescado (y puede llevar otros: mira la etiqueta)'; return 'pescado'; }
+  var HUMAN = ' Te lo confirma la pescadería por WhatsApp: <b>' + WA + '</b>.';
+
+  /* Respuestas */
+  function rProduct(p) {
+    var f = fichaBy[p.n];
+    if (out(p.n)) { say('Uy, ' + el(p) + ' <b>' + esc(p.n) + '</b> hoy se ha terminado. ' + alts(p)); return; }
+    say((f ? esc(f.desc) + '<br>' : '') + line(p) + (LOW[p.n] ? ' · <b style="color:var(--coral)">' + LOW[p.n] + '</b>' : '') + (p.local ? '<br><span class="small">Solo lo llevamos en Elche y alrededores.</span>' : '') + acts(bAdd(p, p.c[0]) + bSee(p)));
+    quick((f ? [['t', '¿Cómo lo cocino?'], ['t', 'Dame una receta']] : [['t', '¿Cómo lo cocino?']]).concat(p.c.length > 1 ? [['t', '¿Cómo me lo preparáis?']] : [], [['t', '¿Cuánto cuesta el envío?']]));
+  }
+  function alts(p) {
+    var f = fichaBy[p.n], cand = FICHAS.filter(function (x) { return x.n !== p.n && !out(x.n) && byName[x.n].f === p.f; });
+    if (f) cand.sort(function (a, b) { return b.tags.filter(function (g) { return f.tags.indexOf(g) > -1; }).length - a.tags.filter(function (g) { return f.tags.indexOf(g) > -1; }).length; });
+    cand = cand.slice(0, 2).map(function (x) { return byName[x.n]; });
+    if (!cand.length) return 'Pregúntale a la pescadería si mañana entra.';
+    ctx.offer = { t: 'add', p: cand[0] }; setTimeout(function () { quick(cand.map(function (c) { return ['t', 'Cómo cocinar ' + c.n.toLowerCase()]; }).concat([['t', '¿Qué tenéis hoy bueno?']])); }, 0);
+    return 'Te propongo ' + cand.map(function (c) { return '<b>' + esc(c.n) + '</b> (' + eur(unitPrice(c)) + ')'; }).join(' o ') + ', que hoy está muy bueno.' + acts(cand.map(function (c) { return bAdd(c, c.c[0], 1, 'Añadir ' + c.n); }).join(''));
+  }
+  function rCook(p, meth) {
+    var f = fichaBy[p.n];
+    if (!f) { say('Con ' + el(p) + ' <b>' + esc(p.n) + '</b> lo que mejor funciona: ' + esc(TIPS[p.f] || '') + ' Si quieres una receta concreta, la pescadería te la cuenta encantada.' + acts(bAdd(p, p.c[0]))); quick([['t', '¿Cuánto cuesta?'], ['t', 'Hablar con la pescadería']]); return; }
+    var re = meth ? METH.filter(function (m) { return m[0] === meth; }).map(function (m) { return m[1]; }) : [];
+    var hit = re.length ? f.cook.filter(function (c) { return re.some(function (r) { return r.test(norm(c[0] + ' ' + c[1])); }); }) : [];
+    var rec = re.length ? f.rec.map(function (r, i) { return { r: r, i: i }; }).filter(function (x) { return re.some(function (r) { return r.test(norm(x.r.t + ' ' + x.r.steps.join(' '))); }); }) : [];
+    if (meth && !hit.length && !rec.length) {
+      say(pick(['Te soy sincero:', 'Mira,']) + ' ' + el(p) + ' ' + esc(p.n.toLowerCase()) + ' ' + (meth === 'crudo' ? 'no te lo recomiendo en crudo' : 'no es de lo que mejor queda así') + '. Donde brilla es así:<ul class="clist">' + f.cook.map(function (c) { return '<li><b>' + esc(c[0]) + ':</b> ' + esc(c[1]) + '</li>'; }).join('') + '</ul>');
+    } else {
+      var L = hit.length ? hit : f.cook;
+      say((hit.length ? '' : 'Así lo haríamos nosotros:') + '<ul class="clist">' + L.map(function (c) { return '<li><b>' + esc(c[0]) + ':</b> ' + esc(c[1]) + '</li>'; }).join('') + '</ul>' + (f.tips[0] ? '<span class="small"><b>Truco:</b> ' + esc(f.tips[0]) + '</span>' : ''));
+    }
+    var rs = rec.length ? rec : f.rec.map(function (r, i) { return { r: r, i: i }; });
+    quick(rs.map(function (x) { return ['rec:' + x.i, 'Receta: ' + x.r.t]; }).concat([['t', 'Añádelo a la cesta']]));
+    if (meth === 'crudo' && f.warn.some(function (w) { return /anisakis/.test(w); })) say('Ojo, en crudo: ' + esc(f.warn.filter(function (w) { return /anisakis/.test(w); })[0]));
+  }
+  function rRecipe(p, i, meth) {
+    var f = fichaBy[p.n]; if (!f) { rCook(p, meth); return; }
+    if (i == null) { i = 0; if (meth) { var re = METH.filter(function (m) { return m[0] === meth; })[0]; f.rec.forEach(function (r, k) { if (re && re[1].test(norm(r.t + ' ' + r.steps.join(' ')))) i = k; }); } }
+    var r = f.rec[i], ls = recLines(r), tot = ls.reduce(function (a, l) { return a + unitPrice(l.p) * l.q; }, 0);
+    say('<b>' + esc(r.t) + '</b> <span class="small">· ' + esc(r.time) + ' · 2 personas</span><ol class="clist">' + r.steps.map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('') + '</ol>' +
+      '<span class="small"><b>De la pescadería:</b> ' + ls.map(function (l) { return l.q + ' × ' + esc(l.p.n) + (l.cut ? ' (' + esc(l.cut.toLowerCase()) + ')' : ''); }).join(', ') + '. <b>De casa:</b> ' + esc(r.casa.toLowerCase()) + '.</span>' +
+      acts('<button class="btn coral sm" data-crec="' + esc(p.n) + '" data-ci="' + i + '">Añadir lo de la receta · ' + eur(tot) + '</button>'));
+    ctx.offer = { t: 'rec', p: p, i: i };
+    var other = f.rec.map(function (x, k) { return k; }).filter(function (k) { return k !== i; });
+    quick(other.map(function (k) { return ['rec:' + k, 'Otra: ' + f.rec[k].t]; }).concat([['t', '¿Algo a tener en cuenta?'], ['t', '¿Cuánto cuesta el envío?']]));
+  }
+  function rPrice(p) { if (out(p.n)) { say(el(p, 1) + ' <b>' + esc(p.n) + '</b> hoy no queda. ' + alts(p)); return; } say(line(p) + (OFFERS[p.n] ? '<br>Está de oferta esta semana: <b>−' + OFFERS[p.n] + ' %</b>.' : '') + '<br><span class="small">El corte va incluido.</span>' + acts(bAdd(p, p.c[0]))); ctx.offer = { t: 'add', p: p }; quick([['t', 'Añádelo'], ['t', '¿Cómo lo cocino?']]); }
+  function rStock(p) {
+    if (out(p.n)) { say('Hoy se nos ha terminado ' + el(p) + ' <b>' + esc(p.n) + '</b>. ' + alts(p)); return; }
+    say(pick(['Sí, hoy hay', 'Hay, sí', 'Sí, lo tenemos hoy']) + ' <b>' + esc(p.n.toLowerCase()) + '</b>' + (LOW[p.n] ? ', pero <b>' + LOW[p.n].toLowerCase() + '</b>: si lo quieres, no lo dejes' : '') + (FRESH.indexOf(p.n) > -1 ? '. Ha entrado esta mañana de la lonja' : '') + '. ' + line(p) + acts(bAdd(p, p.c[0]))); ctx.offer = { t: 'add', p: p };
+    quick([['t', 'Añádelo'], ['t', '¿Cómo lo cocino?']]);
+  }
+  function rCuts(p, t) {
+    var c = t ? findCut(t, p) : null;
+    if (c && ctx.line != null && state.cart[ctx.line] && state.cart[ctx.line].name === p.n) { state.cart[ctx.line].detail = p.fmt + ' · ' + c; updateCart(); say('Hecho, ' + el(p) + ' ' + esc(p.n.toLowerCase()) + ' te ' + ({ el: 'lo', la: 'la', los: 'los', las: 'las' })[el(p)] + ' preparamos <b>' + esc(c.toLowerCase()) + '</b>.'); quick([['t', 'Ver la cesta'], ['t', '¿Cómo lo cocino?']]); return; }
+    if (c) { doAdd(p, 1, c); return; }
+    if (!p.c.length) { say(el(p, 1) + ' <b>' + esc(p.n) + '</b> va tal cual, listo para servir o cocinar.'); return; }
+    say(el(p, 1) + ' <b>' + esc(p.n) + '</b> te lo preparamos como quieras, sin coste: ' + p.c.map(function (c) { return '<b>' + esc(c.toLowerCase()) + '</b>'; }).join(', ') + '. ¿Cómo te lo pongo?');
+    quick(p.c.slice(0, 5).map(function (c) { return ['addcut:' + c, c]; }));
+  }
+  function rWarn(p, t) {
+    var preg = /embaraz|lactan|dando el pecho|dar el pecho|bebe/.test(t), kid = /ni(n|ñ)o|nina|hijo|hija|peque|crio|\b[1-9] anos|\b1[0-4] anos/.test(t);
+    var f = p && fichaBy[p.n];
+    if (p) {
+      var h = '<b>' + esc(p.n) + '</b>. Alérgeno: <b>' + allergen(p) + '</b>.';
+      if (f) { var w = f.warn.filter(function (x) { return !/^Alérgeno/.test(x); }); if (w.length) h += '<ul class="clist">' + w.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>'; }
+      var merc = /Atún rojo|Ventresca/.test(p.n);
+      if ((preg || kid) && !merc) h += '<br>Por mercurio no tiene restricción especial: AESAN solo pide evitar pez espada, atún rojo, tiburón y lucio.' + (f && f.tags.indexOf('crudo') > -1 ? ' Eso sí, nada crudo sin congelar antes.' : '');
+      if ((preg || kid) && merc) { h += '<br>Para ' + (preg ? 'embarazo y lactancia' : 'niños') + ' te propongo mejor otra cosa.'; }
+      say(h + '<br><span class="small">Son las recomendaciones generales de AESAN; ante cualquier duda de salud, tu médico. Si hay una alergia, confírmalo antes con la pescadería: todo se prepara en el mismo obrador.</span>');
+      if ((preg || kid) && merc) { var a = byName['Suprema de salmón']; ctx.offer = { t: 'add', p: a }; say('Por ejemplo, <b>salmón</b>: sin espinas y sin problema de mercurio. ' + line(a) + acts(bAdd(a, a.c[0]))); }
+      quick([['t', '¿Cómo lo cocino?'], ['t', 'Hablar con la pescadería']]); return;
+    }
+    if (/alergi|alergic|intoleran|alergeno/.test(t)) {
+      var fam = /crustac|marisco|gamba|langostin|cigala|bogavante/.test(t) ? 'crustáceos' : /molusc|almeja|mejillon|sepia|calamar|pulpo|ostra/.test(t) ? 'moluscos' : /pescado/.test(t) ? 'pescado' : null;
+      if (!fam) { say('Dime a qué eres alérgico (crustáceos, moluscos o pescado) y te digo qué evitar. En cada ficha está su alérgeno.'); quick([['t', 'Alérgico al marisco'], ['t', 'Alérgico a los moluscos']]); return; }
+      var avoid = PRODUCTS.filter(function (x) { return allergen(x) === fam; }).map(function (x) { return x.n; });
+      say('Con alergia a <b>' + fam + '</b>, evita: ' + esc(avoid.slice(0, 12).join(', ')) + (avoid.length > 12 ? '…' : '') + '.' + (fam !== 'pescado' ? ' El pescado (merluza, dorada, lenguado…) sí lo puedes tomar.' : '') + '<br><span class="small">Importante: lo preparamos todo en el mismo obrador, así que puede haber trazas. Con una alergia, confírmalo antes con la pescadería.' + HUMAN + '</span>');
+      quick([['t', 'Algo para 4 sin espinas'], ['t', 'Hablar con la pescadería']]); return;
+    }
+    if (preg || kid) {
+      say((preg ? 'En el embarazo y la lactancia' : 'Para los niños') + ', AESAN recomienda evitar el pescado con más mercurio: pez espada, atún rojo, tiburón y lucio (aquí, el <b>atún rojo</b> y la <b>ventresca</b>)' + (kid && !preg ? '; de 10 a 14 años, como mucho 120 g al mes' : '') + '. Y nada crudo sin congelar antes.<br>Lo más recomendable: merluza, lenguado, salmón o dorada' + (kid ? ', y en filetes, sin una espina' : '') + '.<br><span class="small">Recomendaciones generales de AESAN; ante cualquier duda, tu médico.</span>');
+      quick([['t', 'Algo para 4 sin espinas'], ['t', '¿Cómo hago el lenguado?']]); return;
+    }
+    say('Si me dices de qué producto, te cuento sus alérgenos y lo que conviene saber.'); quick([['t', '¿El atún rojo tiene mercurio?'], ['t', 'Alérgico al marisco']]);
+  }
+  function rShip(t, loc) {
+    if (loc) setCp(loc.cp);
+    var z = zone(state.cp);
+    if (!z) { say('Dime tu código postal o tu ciudad y te digo cuánto cuesta y qué día te llega.'); ctx.pending = { t: 'ship' }; quick([['t', 'Elche'], ['t', 'Alicante'], ['t', 'Madrid']]); return; }
+    if (z.k === 'bad') { say('Ese código postal no me suena de España. ¿Me lo repites?'); ctx.pending = { t: 'ship' }; return; }
+    if (z.k === 'no') { say('A ' + z.n + ' de momento no enviamos pescado fresco: no llegaría como tiene que llegar.' + HUMAN); quick([['t', 'Hablar con la pescadería']]); return; }
+    var ds = days(z), sub = subtotal(), wd = t.match(/\b(lunes|martes|miercoles|jueves|viernes|sabado|domingo)\b/);
+    var h = (loc ? 'Para <b>' + esc(loc.name) + '</b>' : 'A tu código postal (' + esc(state.cp) + ')') + ' (' + z.n + '): ' + (z.k === 'local' ? 'te lo llevamos nosotros' : 'va en caja con frío, en 24 horas') + '. El envío cuesta <b>' + eur(z.fee) + '</b> y es <b>gratis desde ' + eur(z.free) + '</b>' + (sub ? (sub >= z.free ? ', y con lo que llevas ya lo tienes gratis' : '; con lo que llevas te faltan ' + eur(z.free - sub)) : '') + '.';
+    if (wd) { var names = ['domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'], want = names.indexOf(wd[1]); var hit = ds.filter(function (d) { return new Date(d.k + 'T12:00').getDay() === want; })[0]; h += hit ? ' Y sí: te puede llegar ' + hit.long + '.' : ' Ese día no repartimos a tu zona; el primero que tienes es ' + ds[0].long + '.'; }
+    else h += ' El primer día que te puede llegar: <b>' + ds[0].long + '</b>' + (z.k === 'local' && ds[0].t === 'Hoy' ? ', si lo pides antes de las 12:00' : '') + '.';
+    if (z.k !== 'local') h += '<br><span class="small">El sushi y los elaborados solo los llevamos en Elche y alrededores.</span>';
+    say(h); quick([['t', '¿Qué tenéis hoy bueno?'], ['t', 'Ver la cesta']]);
+  }
+  function rRecommend(t, e) {
+    var packId = e.pack, tags = e.tags, people = e.people || (tags.length ? null : ctx.people), budget = e.budget;
+    if (!packId && people && tags.length === 1 && tags[0] === 'ninos') { packId = 'ninos'; tags = []; }
+    if (!packId && !tags.length) {
+      var occ = /romantic|cena especial|aniversario|capricho|en pareja|san valentin/.test(t) ? 'gourmet' : /celebr|cumple|navidad|fiesta|especial/.test(t) ? 'mariscada' : /fin de semana|finde/.test(t) ? 'arroz' : null;
+      if (occ) packId = occ;
+      else if (people && !budget) packId = 'semana';
+    }
+    if (packId || (people && !tags.length) || (budget && !tags.length)) {
+      var occ2 = packId ? getPack(packId).occ : null;
+      var cands = PACKS.filter(function (p) { return !occ2 || p.occ === occ2; }).map(function (p) { return { pk: p, pr: packPrice(p, people || p.base).final }; }).sort(function (a, b) { return b.pr - a.pr; });
+      if (packId && !budget) cands = cands.filter(function (c) { return c.pk.id === packId; }).concat(cands.filter(function (c) { return c.pk.id !== packId; }));
+      var ch = budget ? (cands.filter(function (c) { return c.pr <= budget; })[0] || cands[cands.length - 1]) : cands[0];
+      var n = people || ch.pk.base, over = budget && ch.pr > budget;
+      var asked = e.pack && e.pack !== ch.pk.id ? getPack(e.pack) : null;
+      ctx.pack = ch.pk.id; ctx.people = n; ctx.budget = budget || ctx.budget; ctx.offer = { t: 'pack', id: ch.pk.id, n: n };
+      say((asked ? 'La ' + esc(asked.n.toLowerCase()) + ' para ' + n + ' se te va a ' + eur(packPrice(asked, n).final) + '. Con ese presupuesto, ' : pick(['Para eso lo tengo claro:', 'Mira lo que te propongo:', 'Yo me llevaría esto:']) + ' ') + 'el <b>pack ' + esc(ch.pk.n) + '</b> para ' + n + ' personas' + (over ? ', aunque se pasa ' + eur(ch.pr - budget) + ' de lo que querías gastar' : '') + '.' +
+        '<div class="reco"><div class="ph">' + photo(ch.pk.img, ch.pk.n, ch.pk.icon) + '</div><div class="tx"><b>' + eur(ch.pr) + '</b><span class="small">' + packLines(ch.pk, n).map(function (l) { return l.q + ' × ' + esc(l.p.n); }).join(', ') + '</span><button class="btn coral sm" data-cpack="' + ch.pk.id + '" data-cn="' + n + '" style="justify-self:start">Añadir el pack</button></div></div>' +
+        '<span class="small"><b>Consejo:</b> ' + esc(ch.pk.tip) + '</span>');
+      quick([['t', 'Para 2'], ['t', 'Para 6'], ['t', 'Otra opción'], ['t', '¿Cuánto cuesta el envío?']]);
+      return;
+    }
+    var list = FICHAS.filter(function (f) { return !out(f.n) && tags.every(function (g) { return f.tags.indexOf(g) > -1; }); });
+    if (budget) list = list.filter(function (f) { return unitPrice(byName[f.n]) * (people ? Math.ceil(people / 2) : 1) <= budget; });
+    list.sort(function (a, b) { return (FRESH.indexOf(b.n) > -1) - (FRESH.indexOf(a.n) > -1); });
+    list = list.slice(0, 3);
+    if (!list.length) { say('Con todo eso junto no me sale nada hoy. Cuéntamelo de otra forma o pregúntale a la pescadería, que seguro que te busca algo.' + HUMAN); quick([['t', '¿Qué tenéis hoy bueno?'], ['t', 'Hablar con la pescadería']]); return; }
+    var L = { plancha: 'a la plancha', horno: 'al horno', fritura: 'para freír', arroz: 'para arroz o guiso', crudo: 'en crudo', ninos: 'sin espinas', suave: 'de sabor suave', intenso: 'con mucho sabor' };
+    ctx.p = byName[list[0].n]; ctx.offer = { t: 'add', p: ctx.p };
+    say('Si lo quieres ' + tags.map(function (g) { return L[g]; }).join(' y ') + (people ? ', para ' + people : '') + ', hoy te diría:<ul class="clist">' + list.map(function (f) { var p = byName[f.n]; return '<li>' + line(p) + '<br><span class="small">' + esc(f.desc) + '</span></li>'; }).join('') + '</ul>' + acts(list.map(function (f) { var p = byName[f.n]; return bAdd(p, findCut(L[tags[0]] || '', p) || p.c[0], people ? Math.max(1, Math.ceil(people / 2)) : 1, 'Añadir ' + p.n); }).join('')));
+    quick(list.map(function (f) { return ['t', 'Cómo cocinar ' + f.n.toLowerCase()]; }).slice(0, 2).concat([['t', 'Mejor un pack']]));
+  }
+  function rToday() {
+    var L = (typeof LONJA !== 'undefined' ? LONJA : FRESH).filter(function (n) { return !out(n); }).map(function (n) { return byName[n]; });
+    ctx.offer = { t: 'add', p: L[0] }; ctx.p = L[0];
+    say(pick(['Hoy ha entrado de lujo:', 'Lo mejor de la lonja de hoy:']) + '<ul class="clist">' + L.map(function (p) { return '<li>' + line(p) + (LOW[p.n] ? ' · <b style="color:var(--coral)">' + LOW[p.n] + '</b>' : '') + '</li>'; }).join('') + '</ul>' +
+      'Y de oferta esta semana: ' + Object.keys(OFFERS).map(function (n) { return esc(n.toLowerCase()) + ' (−' + OFFERS[n] + ' %)'; }).join(', ') + '.' + acts(L.slice(0, 2).map(function (p) { return bAdd(p, p.c[0], 1, 'Añadir ' + p.n); }).join('')));
+    quick([['t', 'Cómo cocinar gamba roja'], ['t', 'Algo para 4 sin espinas'], ['t', 'Un pack para el finde']]);
+  }
+  function doAdd(p, q, cut, np) {
+    if (out(p.n)) { say(el(p, 1) + ' <b>' + esc(p.n) + '</b> hoy no queda. ' + alts(p)); return; }
+    var z = zone(state.cp); if (p.local && z && z.k !== 'local') { say(el(p, 1) + ' <b>' + esc(p.n) + '</b> solo lo llevamos en Elche y alrededores, y tu código postal es de ' + z.n + '.'); return; }
+    cut = cut || p.c[0] || ''; q = q || 1;
+    addProd(p, q, cut, true); ctx.p = p; ctx.line = state.cart.length - 1; ctx.offer = null;
+    var sub = subtotal(), free = z && z.free ? z.free : 40;
+    say(pick(['Hecho.', 'Apuntado.', 'Marchando.']) + (np ? ' Para ' + np + ', te' : ' Te') + ' pongo <b>' + q + ' × ' + esc(p.n) + '</b>' + (cut ? ' (' + esc(cut.toLowerCase()) + ')' : '') + '. Llevas <b>' + eur(sub) + '</b>' + (sub >= free ? ' y el envío ya es gratis.' : '; te faltan ' + eur(free - sub) + ' para el envío gratis' + (z && z.n ? '' : ' en Elche') + '.'));
+    var others = p.c.filter(function (c) { return c !== cut; }).slice(0, 3);
+    quick(others.map(function (c) { return ['cut:' + c, 'Mejor ' + c.toLowerCase()]; }).concat([['t', 'Ver la cesta'], ['t', '¿Qué más me recomiendas?']]));
+  }
+  function doPack(id, n) {
+    var pk = getPack(id); n = n || ctx.people || pk.base; addPack(id, n, true); ctx.offer = null;
+    say('Hecho: <b>pack ' + esc(pk.n) + '</b> para ' + n + ' personas en tu cesta (' + eur(packPrice(pk, n).final) + '). Llevas <b>' + eur(subtotal()) + '</b>.');
+    var ex = byName[EXTRA[pk.occ]]; if (ex && !out(ex.n)) { ctx.offer = { t: 'add', p: ex }; say('Si quieres redondearlo, con esto queda de diez: ' + line(ex) + acts(bAdd(ex, ex.c[0]))); }
+    quick([['t', 'Ver la cesta'], ['t', '¿Cuánto cuesta el envío?']]);
+  }
+  function doRecipe(p, i) {
+    var f = fichaBy[p.n], r = f.rec[i];
+    recLines(r).forEach(function (l) { state.cart.push({ name: l.p.n, detail: l.p.fmt + (l.cut ? ' · ' + l.cut : '') + ' · receta ' + r.t.toLowerCase(), unit: unitPrice(l.p), qty: l.q, local: l.p.local }); });
+    updateCart(); ctx.offer = null;
+    say('Listo: te he puesto en la cesta lo de la receta <b>' + esc(r.t.toLowerCase()) + '</b>, ya con su corte. Llevas <b>' + eur(subtotal()) + '</b>. ¡Que aproveche!');
+    quick([['t', 'Ver la cesta'], ['t', '¿Cuánto cuesta el envío?']]);
+  }
+  function rCart() {
+    if (!state.cart.length) { say('Tu cesta está vacía de momento. ¿Te digo qué hay hoy bueno?'); quick([['t', '¿Qué tenéis hoy bueno?']]); return; }
+    say('Llevas:<ul class="clist">' + state.cart.map(function (l) { return '<li>' + l.qty + ' × ' + esc(l.name) + ' · ' + eur(l.unit * l.qty) + '</li>'; }).join('') + '</ul>Total productos: <b>' + eur(subtotal()) + '</b>.' + acts('<button class="btn navy sm" data-cart>Abrir la cesta y pagar</button>'));
+    quick([['t', '¿Cuánto cuesta el envío?'], ['t', '¿Qué más me recomiendas?']]);
+  }
+  function rRemove(ps) {
+    var done = [];
+    ps.forEach(function (p) { for (var i = state.cart.length - 1; i >= 0; i--) if (state.cart[i].name === p.n) { state.cart.splice(i, 1); done.push(p.n); break; } });
+    updateCart();
+    say(done.length ? 'Quitado: ' + esc(done.join(', ')) + '. Llevas ' + eur(subtotal()) + '.' : 'Eso no lo tenías en la cesta.'); quick([['t', 'Ver la cesta']]);
+  }
+  function rHello() { say(pick(['¡Buenas! ', '¡Hola, buenas! ']) + 'Soy el pescadero virtual de Pescados Granados. Pregúntame lo que quieras: qué hay hoy, cómo cocinar algo, para cuántos, cuánto te cuesta el envío… y si quieres, te lo pongo en la cesta.'); quick(MENU); }
+  var MENU = [['t', '¿Qué tenéis hoy bueno?'], ['t', 'Algo para 4 sin espinas'], ['t', '¿Cómo hago la dorada?'], ['t', '¿Cuánto cuesta el envío?'], ['t', 'Hablar con la pescadería']];
+  function hello() { rHello(); }
+
+  /* Cerebro: qué quiere decir el cliente */
+  function handle(raw, forced) {
+    var t = norm(raw);
+    var gr = /^(hola|buenas tardes|buenas noches|buenas|buenos dias|hey|ey|que tal)\b[ ,]*/;
+    if (gr.test(t)) { var rest = t.replace(gr, '').replace(/^(que tal|como estas|como va)\b[ ,]*/, ''); if (!rest) return rHello(); t = rest; }
+    var found = findProducts(t), amb = found.filter(function (n) { return n.length > 1; })[0];
+    var ps = found.filter(function (n) { return n.length === 1; }).map(function (n) { return byName[n[0]]; });
+    if (forced) { ps = [forced].concat(ps.filter(function (x) { return x !== forced; })); amb = null; }
+    var e = { pack: findPack(t), people: findPeople(t), budget: findBudget(t), loc: findCp(t), meth: findMethod(t), tags: findTags(t) };
+    var p = ps[0] || null;
+    if (amb && !p) { ctx.pending = { raw: raw }; say('¿Cuál de estas?'); quick(amb.map(function (n) { return ['t', n]; })); return; }
+    // Respuestas cortas a lo último que se ofreció
+    if (/^(si|sip|vale|venga|dale|ok|okey|claro|perfecto|va|de acuerdo|si por favor|si porfa|adelante)\b/.test(t) && !ps.length && ctx.offer) {
+      var o = ctx.offer; if (o.t === 'add') return doAdd(o.p, 1, o.p.c[0]); if (o.t === 'pack') return doPack(o.id, o.n); if (o.t === 'rec') return doRecipe(o.p, o.i);
+    }
+    // Pendiente: respuesta a una pregunta del asistente
+    if (ctx.pending) {
+      var pend = ctx.pending; ctx.pending = null;
+      if (pend.t === 'ship' && e.loc) return rShip(t, e.loc);
+      if (pend.raw && p) { handle(pend.raw, p); return; }
+    }
+    if (p) ctx.p = p; else if (!e.pack) p = ctx.p;
+    var hasProd = ps.length > 0;
+    if (/^(gracias|muchas gracias|genial|perfecto|estupendo|mil gracias)\b/.test(t) && !hasProd) { say(pick(['¡A ti! Aquí me tienes para lo que necesites.', 'Nada, hombre. ¿Algo más?', '¡De nada! ¿Te ayudo con algo más?'])); quick(MENU.slice(0, 4)); return; }
+    if (/^(adios|hasta luego|chao|nos vemos)\b/.test(t)) { say('¡Hasta luego! Que aproveche.'); return; }
+    if (/bonit|me gusta|guay|chula|que bien|eres un crack|muy bien|que maquina/.test(t) && !hasProd) { say(pick(['¡Gracias! Aquí estamos para que comas bien.', '¡Muchas gracias! Lo bueno es el pescado, yo solo lo cuento.']) + ' ¿Te ayudo con algo?'); quick(MENU.slice(0, 4)); return; }
+    if (/que lleva|que trae|que incluye|que tiene el pack|que va en/.test(t) && (e.pack || ctx.pack)) { var pq = getPack(e.pack || ctx.pack), pn = e.people || ctx.people || pq.base; ctx.pack = pq.id; ctx.offer = { t: 'pack', id: pq.id, n: pn }; say('El <b>pack ' + esc(pq.n) + '</b> para ' + pn + ' lleva:<ul class="clist">' + packLines(pq, pn).map(function (l) { return '<li>' + l.q + ' × ' + esc(l.p.n) + ' <span class="small">(' + esc(l.p.fmt) + ')</span></li>'; }).join('') + '</ul>' + (pq.note ? esc(pq.note) + '. ' : '') + 'Sale a <b>' + eur(packPrice(pq, pn).final) + '</b>, un 5 % menos que por separado.' + acts('<button class="btn coral sm" data-cpack="' + pq.id + '" data-cn="' + pn + '">Añadir el pack</button>')); quick([['t', 'Para 2'], ['t', 'Para 6'], ['t', 'Otra opción']]); return; }
+    if (/que packs|packs (hay|teneis|tienes)|lista de packs|todos los packs/.test(t)) { say('Estos son los packs, con todo limpio y cortado para la receta:<ul class="clist">' + PACKS.map(function (x) { return '<li><b>' + esc(x.n) + '</b> · ' + esc(x.who.toLowerCase()) + ' · ' + eur(packPrice(x, x.base).final) + ' para ' + x.base + '</li>'; }).join('') + '</ul>¿Para cuántos sois?'); quick(['mariscada', 'arroz', 'fritura', 'ninos'].map(function (id) { var x = getPack(id); return ['t', '¿Qué lleva el pack ' + x.n.toLowerCase() + '?']; })); return; }
+    if (/hablar con|persona|humano|whatsapp|telefono|llamar|andres|alguien de la tienda|un pescadero de verdad/.test(t)) { say('Claro. En horario de tienda te atienden por WhatsApp en el <b>' + WA + '</b> (lunes a sábado de 9 a 21 h, domingos de 9 a 14 h). En la tienda real, te pasaría la conversación directamente.'); quick(MENU.slice(0, 3)); return; }
+    if (/^ver la cesta$|mi cesta|que llevo|carrito|ver cesta|que tengo en la cesta/.test(t)) return rCart();
+    if (/\b(pagar|tramitar|finalizar|terminar el pedido|hacer el pedido)\b/.test(t) && !/con (que|tarjeta|bizum)|como (se )?paga|formas? de pago/.test(t)) { if (!state.cart.length) return rCart(); say('Perfecto, te abro la cesta para que elijas el día y pagues.'); setTimeout(function () { $('#openCart').click(); }, 500); return; }
+    if (/\b(quita|quitame|quitalo|quitala|elimina|borra|saca)\b/.test(t)) return rRemove(ps.length ? ps : (ctx.p ? [ctx.p] : []));
+    if (/tarjeta|bizum|efectivo|forma de pago|formas de pago|como (se )?paga|pagar con|apple pay|google pay/.test(t)) { say('Se paga en el pago seguro de Shopify: con <b>tarjeta, Apple Pay o Google Pay</b>. Otras formas, como Bizum o pagar en la tienda, te las confirma la pescadería.'); quick(MENU.slice(0, 3)); return; }
+    if (/horario|abris|abierto|cerrais|cierra|a que hora|donde estais|direccion|donde esta la tienda|tiendas/.test(t) && !/llega|envio/.test(t)) { say('Estamos en <b>Calle Jorge Juan, 35</b> y en <b>Porta de la Morera, 5</b>, en Elche. De lunes a sábado de 9:00 a 21:00 y los domingos de 9:00 a 14:00. Pásate cuando quieras.'); quick(MENU.slice(0, 3)); return; }
+    if (/descuento|codigo|cupon|rebaja|oferta|promocion|mas barato|economic/.test(t) && !hasProd) { say('Con el código <b>BIENVENIDA</b> tienes un 10 % menos en tu primer pedido. Y esta semana están de oferta: ' + Object.keys(OFFERS).map(function (n) { return '<b>' + esc(n) + '</b> (−' + OFFERS[n] + ' %)'; }).join(', ') + '.'); quick(Object.keys(OFFERS).map(function (n) { return ['t', n]; })); return; }
+    if (/suscrip|cada mes|seleccion del mes|caja del mes/.test(t)) { say('La <b>selección del mes</b>: una caja con lo mejor de temporada, elegida por nosotros, para 2 o 4 personas, desde 59 € al mes. Te avisamos antes de prepararla y la cambias si quieres.'); quick(MENU.slice(0, 3)); return; }
+    if (/sushi/.test(t) && !/salmon|atun/.test(t) || /elaborado|lasana|ensaladilla|precocinado/.test(t) && !hasProd) { var su = byName['Sushi variado']; say('El sushi y los elaborados los hacemos en la tienda de Jorge Juan, y solo los llevamos en Elche y alrededores para que lleguen perfectos. ' + line(su) + acts(bAdd(su, su.c[0]))); ctx.offer = { t: 'add', p: su }; quick([['t', '¿Cuánto cuesta el envío?']]); return; }
+    if (/fresc|de hoy|del dia|congelad/.test(t) && !hasProd && !/que (hay|teneis|tienes)/.test(t)) { say('Todo lo fresco viene cada mañana de la <b>lonja de Calpe</b>: en la web solo ves lo que tenemos ese día. Lo que es para comer en crudo te lo damos ya congelado, por seguridad.'); quick([['t', '¿Qué tenéis hoy bueno?']]); return; }
+    if (/temporada|que (hay|teneis|tienes) (hoy|bueno|fresco)|lo mejor de hoy|que me recomiendas hoy|que ha entrado|novedades/.test(t) && !hasProd) return rToday();
+    if (/alergi|alergic|intoleran|alergeno|embaraz|lactan|mercurio|anisakis|es seguro|puede comer|pueden comer|tener en cuenta|cuidado|peligro/.test(t)) return rWarn(hasProd ? ps[0] : (/tener en cuenta|cuidado|puede comer/.test(t) ? ctx.p : null), t);
+    if (/envio|enviais|enviar|envias|me llega|llegaria|cuando llega|reparto|repartis|entrega|a domicilio|portes|mandais|mandar|cuanto tarda/.test(t) || (e.loc && !hasProd)) return rShip(t, e.loc);
+    var addI = /\b(ponme|pon|ponmelo|ponmela|ponmelos|anade|anademe|anademelo|anadelo|anadela|anadir|echame|echa|me llevo|llevo|dame|apuntame|apunta|lo quiero|la quiero|los quiero|las quiero|me lo quedo|me la quedo|quiero|metelo|metela|mete|compro|lo compro|pidelo)\b/.test(t);
+    var strong = /\b(ponme|pon|anade|anademe|anadir|echame|dame|apuntame|me llevo|lo compro)\b/.test(t) || /quiero (el|un|ese) pack/.test(t);
+    if (strong && (e.pack || /pack/.test(t))) { var id = e.pack || ctx.pack; if (id) return doPack(id, e.people || ctx.people); }
+    var pron = /\b(ponmelo|ponmela|ponmelos|ponmelas|anadelo|anadela|anademelo|anademela|anadelos|metelo|metela|lo quiero|la quiero|los quiero|las quiero|me lo quedo|me la quedo|eso|esa|ese|esos|esas|otro|otra|uno mas|una mas)\b/.test(t) || (/^(ponme|pon|anade|anademe|echame|dame|quiero)\s+(\d+|un|una|dos|tres|cuatro|cinco|seis|medio|media)\b/.test(t) && !/algo|para \S+|persona/.test(t));
+    if (addI && p && (hasProd || pron) && !/receta|como|recomiend/.test(t)) {
+      if (ps.length > 1) { ps.forEach(function (x) { doAdd(x, findQty(t, x) || 1, findCut(t, x)); }); return; }
+      var qn = findQty(t, p), np = e.people; if (np && (!qn || qn === np)) qn = portion(p, np);
+      return doAdd(p, qn, findCut(t, p), np);
+    }
+    if (/^(para|y para|mejor para)\s+\S+$/.test(t) && e.people && ctx.pack) return rRecommend(t, { pack: ctx.pack, tags: [], people: e.people });
+    if (/otra opcion|otro pack|algo diferente|otra cosa/.test(t) && ctx.pack) {
+      ctx.seen = (ctx.seen || []).concat([ctx.pack]);
+      var nn = ctx.people || 4, others = PACKS.filter(function (x) { return ctx.seen.indexOf(x.id) < 0 && (!ctx.budget || packPrice(x, nn).final <= ctx.budget); });
+      if (!others.length) { ctx.seen = []; say('No tengo más packs que encajen' + (ctx.budget ? ' en ' + eur(ctx.budget) : '') + '. Si quieres, te monto algo a medida pieza a pieza: dime qué te apetece.'); quick([['t', 'Algo a la plancha'], ['t', '¿Qué tenéis hoy bueno?']]); return; }
+      var nx = others.sort(function (a, b) { return packPrice(b, nn).final - packPrice(a, nn).final; })[0];
+      return rRecommend('', { pack: nx.id, tags: [], people: nn, budget: null });
+    }
+    if (/receta|como se hace|como (lo |la |los |las )?(hago|cocino|cocinar|preparo|hacer|preparar|guiso)|que hago con|ideas? para|como se (cocina|prepara)|^como cocinar|y (al|a la|en|con)\b|que tal (al|a la|en)\b|^(al|a la|en) (horno|plancha|crudo|sal|vapor)/.test(t) && p) {
+      if (/receta/.test(t)) return rRecipe(p, null, e.meth);
+      return rCook(p, e.meth);
+    }
+    if (/cuanto (cuesta|vale|sale|es)|precio|a cuanto|que cuesta|que vale|cuanto me sale/.test(t) && p) return rPrice(p);
+    if (/limpi|cortais|cortar|me lo prepar|me la prepar|me los prepar|como me lo|como me la|como lo prepar|filete|rodaja|lomo|sin piel|abiert|dejais|dejas|ponerlo|ponerla|cocid|crud/.test(t) && p && !/receta|cocin/.test(t)) return rCuts(p, t);
+    if (/\b(hay|teneis|tienes|tendreis|tendras|queda|quedan|disponible|os queda)\b/.test(t)) {
+      if (hasProd) return rStock(ps[0]);
+      var w = t.match(/\b(?:hay|teneis|tienes|tendreis|venden|vendeis)\s+(?:algo de\s+|un\s+|una\s+|el\s+|la\s+)?([a-z]{4,})/);
+      if (w && !/algo|que|hoy|bueno|fresco|pack|ofert|para|sushi/.test(w[1])) { say('El ' + esc(w[1]) + ' ahora mismo no lo tengo en la web.' + HUMAN + ' Si entra en lonja, te lo guardan.'); quick([['t', '¿Qué tenéis hoy bueno?']]); return; }
+      if (!e.tags.length && !e.pack && !e.people) return rToday();
+    }
+    if (hasProd && e.meth && !e.people && !e.budget && !e.pack && !addI) return rCook(ps[0], e.meth);
+    if (e.pack || e.tags.length || e.people || e.budget || /recomiend|aconsej|que me (das|propones|sugieres)|que compro|no se que|alguna idea|para cenar|para comer|\bcena\b|\bcomida\b|celebra|romantic|cumple|navidad|invitados|que me llevo|que me recomiendas|que mas/.test(t)) {
+      if (/que mas/.test(t) && !e.tags.length && !e.pack) return rToday();
+      if (/mejor un pack|un pack/.test(t) && !e.pack) return rRecommend(t, { pack: ctx.pack || 'semana', tags: [], people: e.people || ctx.people, budget: e.budget });
+      return rRecommend(t, e);
+    }
+    if (hasProd) { if (e.meth) return rCook(ps[0], e.meth); return rProduct(ps[0]); }
+    if (e.meth && ctx.p) return rCook(ctx.p, e.meth);
+    ctx.miss++;
+    say(pick(['Eso no te lo sé contestar bien y prefiero no inventármelo.', 'Ahí me pillas: no quiero decirte algo que no sea verdad.']) + HUMAN + ' O pregúntamelo de otra forma: entiendo de pescado, recetas, packs, envíos y alérgenos.');
+    quick(MENU);
+  }
+
+  $('#quick').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-qa]'); if (!b) return;
+    var k = b.dataset.qa, label = b.textContent;
+    if (k.indexOf('cut:') === 0 && ctx.line != null && state.cart[ctx.line]) { var l = state.cart[ctx.line], p = byName[l.name], c = k.slice(4); l.detail = p.fmt + ' · ' + c; updateCart(); say(esc(label), 'me'); say('Cambiado: te lo preparamos <b>' + esc(c.toLowerCase()) + '</b>.'); quick([['t', 'Ver la cesta'], ['t', '¿Cómo lo cocino?']]); return; }
+    if (k.indexOf('addcut:') === 0 && ctx.p) { say(esc(label), 'me'); doAdd(ctx.p, 1, k.slice(7)); return; }
+    if (k.indexOf('rec:') === 0 && ctx.p) { say(esc(label), 'me'); rRecipe(ctx.p, +k.slice(4)); return; }
+    send(label);
+  });
   $('#msgs').addEventListener('click', function (e) {
-    var a = e.target.closest('[data-chatpack]'); if (a) addPack(a.dataset.chatpack, chat.people);
-    var p = e.target.closest('[data-chatprod]'); if (p) { var pr = byName[p.dataset.chatprod]; if (pr.local && zone(state.cp) && zone(state.cp).k !== 'local') toast('Solo disponible en Elche y alrededores'); else addProd(pr, 1, pr.c[0]); }
+    var a = e.target.closest('[data-cadd]'); if (a) { doAdd(byName[a.dataset.cadd], +a.dataset.cq || 1, a.dataset.ccut); return; }
+    var k = e.target.closest('[data-cpack]'); if (k) { doPack(k.dataset.cpack, +k.dataset.cn); return; }
+    var r = e.target.closest('[data-crec]'); if (r) { doRecipe(byName[r.dataset.crec], +r.dataset.ci); return; }
+    if (e.target.closest('[data-cart]')) $('#openCart').click();
   });
-  $('#chatForm').addEventListener('submit', function (e) {
-    e.preventDefault(); var t = $('#chatIn').value.trim(); if (!t) return; $('#chatIn').value = ''; say(esc(t), 'me');
-    if (/^(hola|buenas|buenos días|buenas tardes|hey)\b/i.test(t)) { say('¡Hola! ¿En qué te puedo ayudar?'); quick(MENU); return; }
-    var low = t.toLowerCase(), prod = PRODUCTS.filter(function (p) { return low.indexOf(p.n.toLowerCase().split(',')[0]) > -1; }).sort(function (a, b) { return b.n.length - a.n.length; })[0];
-    if (prod && !/arroz|paella|fritura|para \d/.test(low)) { say('<b>' + esc(prod.n) + '</b> (' + esc(prod.fmt) + ', ' + eur(unitPrice(prod)) + '). ' + esc(TIPS[prod.f] || '') + (prod.c.length ? ' Te lo podemos preparar: ' + esc(prod.c.join(', ').toLowerCase()) + '.' : '') + ' <button class="link" data-chatprod="' + esc(prod.n) + '">Añadirlo</button>'); quick(MENU); return; }
-    var special = parse(t); if (special) { answer(special); return; }
-    if (!chat.occ && !chat.people && chat.max === null) { say('Te ayudo con lo que necesites. En esta demo entiendo cosas como «fritura para 4», «mariscada, 80 euros» o el nombre de un pescado; en la tienda real entendería cualquier pregunta.'); quick(MENU); return; }
-    next();
-  });
+  function send(text) {
+    say(esc(text), 'me'); $('#quick').innerHTML = '';
+    var typing = say('<span class="typing"><i></i><i></i><i></i></span>');
+    setTimeout(function () { typing.remove(); try { handle(text); } catch (err) { say('Perdona, me he liado.' + HUMAN); quick(MENU); } }, 380);
+  }
+  $('#chatForm').addEventListener('submit', function (e) { e.preventDefault(); var t = $('#chatIn').value.trim(); if (!t) return; $('#chatIn').value = ''; send(t); });
+
 
   /* ---------- Cesta ---------- */
   function subtotal() { return state.cart.reduce(function (s, l) { return s + l.unit * l.qty; }, 0); }
